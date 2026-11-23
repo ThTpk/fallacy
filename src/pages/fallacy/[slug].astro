@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Diagram from '../../components/Diagram.astro';
-import { mdLite, CATEGORY_TH, KIND_TH, LEVEL_TH, dots, thDate } from '../../lib/text';
+import { mdLite, CATEGORY_TH, KIND_TH, LEVEL_TH, dots, thDate, url } from '../../lib/text';
 
 export async function getStaticPaths() {
   const fallacies = await getCollection('fallacies');
@@ -29,7 +29,7 @@ const examples = [...d.examples].sort((a, b) => order[a.level] - order[b.level])
 ---
 
 <Base title={`${d.name_th} (${d.name_en}) — ตรรกวิบัติ`} description={d.one_liner}>
-  <p class="sub" style="margin:0"><a href="/">กลับหน้ารวม</a></p>
+  <p class="sub" style="margin:0"><a href={url('/')}>กลับหน้ารวม</a></p>
   <h1>{d.name_th}</h1>
   <p class="en" style="margin:0 0 10px">
     {d.name_en}{d.name_la && <> · <em>{d.name_la}</em></>}
@@ -89,7 +89,7 @@ const examples = [...d.examples].sort((a, b) => order[a.level] - order[b.level])
           <ul class="plain">
             {confused.map((f) => (
               <li>
-                <a href={`/fallacy/${f.id}`}>{f.data.name_th}</a>
+                <a href={url(`fallacy/${f.id}`)}>{f.data.name_th}</a>
                 <span class="en"> — {f.data.one_liner}</span>
               </li>
             ))}
@@ -102,7 +102,7 @@ const examples = [...d.examples].sort((a, b) => order[a.level] - order[b.level])
           <ul class="plain">
             {related.map((f) => (
               <li>
-                <a href={`/fallacy/${f.id}`}>{f.data.name_th}</a>
+                <a href={url(`fallacy/${f.id}`)}>{f.data.name_th}</a>
                 <span class="en"> — {f.data.one_liner}</span>
               </li>
             ))}
@@ -119,7 +119,7 @@ const examples = [...d.examples].sort((a, b) => order[a.level] - order[b.level])
         const hit = c.data.fallacies.find((f) => f.slug.id === entry.id)!;
         return (
           <div class="card">
-            <a href={`/case/${c.id}`} style="font-weight:500">{c.data.title_th}</a>
+            <a href={url(`case/${c.id}`)} style="font-weight:500">{c.data.title_th}</a>
             <div class="sub">{c.data.source.outlet} · {thDate(c.data.date_of_statement)}</div>
             <blockquote style="margin-top:8px">{c.data.quote}</blockquote>
             <div style="margin-top:8px">{hit.analysis}</div>

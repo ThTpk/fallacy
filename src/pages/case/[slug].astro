@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { MEDIUM_TH, thDate } from '../../lib/text';
+import { MEDIUM_TH, thDate, url } from '../../lib/text';
 
 export async function getStaticPaths() {
   const cases = await getCollection('cases');
@@ -18,7 +18,7 @@ const byId = new Map(fallacies.map((f) => [f.id, f]));
 ---
 
 <Base title={`${c.title_th} — เคสจริง`} description={c.quote}>
-  <p class="sub" style="margin:0"><a href="/">กลับหน้ารวม</a></p>
+  <p class="sub" style="margin:0"><a href={url('/')}>กลับหน้ารวม</a></p>
   <h1>{c.title_th}</h1>
   <p>
     <span class="tag">{c.case_kind === 'pattern' ? 'รูปแบบที่หน่วยงานรายงาน' : 'คำพูดเฉพาะ'}</span>
@@ -50,7 +50,7 @@ const byId = new Map(fallacies.map((f) => [f.id, f]));
       <div class="card">
         <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline">
           <strong>
-            {fa ? <a href={`/fallacy/${fa.id}`}>{fa.data.name_th}</a> : f.slug.id}
+            {fa ? <a href={url(`fallacy/${fa.id}`)}>{fa.data.name_th}</a> : f.slug.id}
           </strong>
           <span class="tag">{f.confidence === 'clear' ? 'ชัดเจน' : 'ยังเถียงได้'}</span>
         </div>

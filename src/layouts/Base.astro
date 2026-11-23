@@ -3,6 +3,7 @@ interface Props {
   title: string;
   description?: string;
 }
+import { url } from '../lib/text';
 const { title, description } = Astro.props;
 ---
 
@@ -117,7 +118,7 @@ const { title, description } = Astro.props;
   <body>
     <header class="site">
       <div>
-        <strong><a href="/" style="text-decoration:none;color:inherit">ตรรกวิบัติ</a></strong>
+        <strong><a href={url('/')} style="text-decoration:none;color:inherit">ตรรกวิบัติ</a></strong>
         <span class="sub">คลังตรรกวิบัติและเคสจริง</span>
       </div>
     </header>

@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import { CATEGORY_TH, CATEGORY_ORDER, dots, thDate } from '../lib/text';
+import { CATEGORY_TH, CATEGORY_ORDER, dots, thDate, url } from '../lib/text';
 
 const fallacies = await getCollection('fallacies');
 const cases = await getCollection('cases');
@@ -33,7 +33,7 @@ const caseCount = (slug: string) =>
     <p style="margin:6px 0 0">
       การพบตรรกวิบัติบอกได้เพียงว่าข้อสรุปนั้น <em>ยังไม่ได้รับการสนับสนุน</em>
       ไม่ได้บอกว่าข้อสรุปเป็นเท็จ การสรุปว่าเป็นเท็จคือ
-      <a href="/fallacy/fallacy-fallacy">ตรรกวิบัติของการจับตรรกวิบัติ</a> เสียเอง
+      <a href={url('fallacy/fallacy-fallacy')}>ตรรกวิบัติของการจับตรรกวิบัติ</a> เสียเอง
     </p>
   </div>
 
@@ -42,7 +42,7 @@ const caseCount = (slug: string) =>
       <h2>{g.name} <span class="en">{g.items.length} รายการ</span></h2>
       <div class="grid">
         {g.items.map((f) => (
-          <a href={`/fallacy/${f.id}`} class="card" style="text-decoration:none;color:inherit;display:block">
+          <a href={url(`fallacy/${f.id}`)} class="card" style="text-decoration:none;color:inherit;display:block">
             <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline">
               <strong>{f.data.name_th}</strong>
               <span class="lvl">{dots(f.data.difficulty)}</span>
@@ -69,7 +69,7 @@ const caseCount = (slug: string) =>
         .sort((a, b) => b.data.date_of_statement.getTime() - a.data.date_of_statement.getTime())
         .map((c) => (
           <li class="card">
-            <a href={`/case/${c.id}`} style="font-weight:500">{c.data.title_th}</a>
+            <a href={url(`case/${c.id}`)} style="font-weight:500">{c.data.title_th}</a>
             <div class="sub">
               {c.data.source.outlet} · {thDate(c.data.date_of_statement)}
             </div>

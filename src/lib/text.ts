@@ -1,3 +1,9 @@
+/** Prefix an internal path with the configured base.
+ *  The site is served from a subpath on GitHub Pages, so no internal href
+ *  may start with a bare "/". */
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+export const url = (p: string) => `${BASE}/${p.replace(/^\//, '')}`;
+
 /** Minimal inline formatting for the plain-string fields in front matter.
  *  Escapes first, then supports blank-line paragraphs and **bold** only. */
 export function mdLite(s: string): string {
