@@ -1,0 +1,25 @@
+---
+// Mounted only on /fallacy/composition.
+---
+
+<figure class="anim">
+  <div id="composition-stage"></div>
+  <figcaption>
+    อิฐก้อนละสองกิโล วางไปเรื่อย ๆ แล้วดูตัวเลขทางขวา คลิกเพื่อเริ่มก่อใหม่
+    น้ำหนักเป็นคุณสมบัติที่บวกกัน ไม่ใช่คุณสมบัติที่ไหลจากชิ้นส่วนขึ้นไปสู่ส่วนรวม
+  </figcaption>
+</figure>
+
+<style>
+  .anim { margin: 20px 0; }
+  .anim > div { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; line-height: 0; background: var(--surface); }
+  .anim svg { display: block; width: 100%; height: auto; color: var(--text); }
+  .anim :global(.pp) { fill: var(--surface); }
+  .anim :global(.cp-t) { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
+  .anim :global(.cp-n) { font-variant-numeric: tabular-nums; font-weight: 500; }
+  .anim figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; line-height: 1.6; }
+</style>
+
+<script>
+  import '../anim/composition.ts';
+</script>

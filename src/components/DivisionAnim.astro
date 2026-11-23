@@ -1,0 +1,25 @@
+---
+// Mounted only on /fallacy/division.
+---
+
+<figure class="anim">
+  <div id="division-stage"></div>
+  <figcaption>
+    แท่งกำไรแตกออกเองทุกรอบ หรือคลิกเพื่อแบ่งเลย
+    ค่าเฉลี่ยคือคุณสมบัติของทั้งก้อน ส่วนคนตรงกลางได้เท่าไรเป็นอีกเรื่องหนึ่ง
+  </figcaption>
+</figure>
+
+<style>
+  .anim { margin: 20px 0; }
+  .anim > div { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; line-height: 0; background: var(--surface); }
+  .anim svg { display: block; width: 100%; height: auto; color: var(--text); }
+  .anim :global(.pp) { fill: var(--surface); }
+  .anim :global(.dv-t) { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
+  .anim :global(.dv-n) { font-variant-numeric: tabular-nums; }
+  .anim figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; line-height: 1.6; }
+</style>
+
+<script>
+  import '../anim/division.ts';
+</script>
