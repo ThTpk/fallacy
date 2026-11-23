@@ -1,0 +1,31 @@
+---
+// Mounted only on /fallacy/slippery-slope.
+---
+
+<figure class="anim">
+  <div id="slope-stage"></div>
+  <figcaption>
+    คลิกเพื่อก้าวลงขั้นถัดไปทันที แต่ละขั้นให้โอกาส 80% ซึ่งถือว่าใจกว้างมาก
+    และสี่ขั้นต่อกันเหลือราว 41% พื้นที่จางลงทุกขั้นคือความไม่แน่นอนที่ไม่มีใครคิดเงินให้
+  </figcaption>
+</figure>
+
+<style>
+  .anim { margin: 20px 0; }
+  .anim > div {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    line-height: 0;
+    background: var(--surface);
+  }
+  .anim svg { display: block; width: 100%; height: auto; color: var(--text); }
+  .anim :global(.pp) { fill: var(--surface); }
+  .anim :global(.sl-t) { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
+  .anim :global(.sl-n) { font-variant-numeric: tabular-nums; font-weight: 500; }
+  .anim figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; line-height: 1.6; }
+</style>
+
+<script>
+  import '../anim/slippery-slope.ts';
+</script>
