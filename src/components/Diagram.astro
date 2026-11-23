@@ -1,0 +1,286 @@
+---
+// Renders a fallacy's `diagram` field as inline SVG.
+// The shape of the argument is data; this file is the only place that draws it.
+type Diagram = Record<string, any> & { type: string; caption?: string };
+const { d } = Astro.props as { d: Diagram };
+
+const W = 680;
+const LEFT = 40;
+const RIGHT = 640;
+const AVAIL = RIGHT - LEFT;
+
+/** evenly spaced boxes on one row, centred */
+function row(n: number, maxW = 180, gap = 18) {
+  const w = Math.min(maxW, (AVAIL - gap * (n - 1)) / n);
+  const total = w * n + gap * (n - 1);
+  const x0 = LEFT + (AVAIL - total) / 2;
+  return { w, xs: Array.from({ length: n }, (_, i) => x0 + i * (w + gap)) };
+}
+
+/** rough px width of a label at the given font size (Thai glyphs run wide) */
+const textW = (s: string, size = 13) => s.length * size * 0.62;
+const fit = (s: string, boxW: number) => (textW(s) + 20 > boxW ? 11.5 : 13);
+
+let H = 300;
+if (d.type === 'one-way-arrow') H = 250;
+else if (d.type === 'relevance-gap') H = 210;
+else if (d.type === 'substitution') H = 260;
+else if (d.type === 'spectrum') H = 280;
+else if (d.type === 'sample-vs-population') H = 320;
+else if (d.type === 'circular') H = 76 + d.nodes.length * 86;
+else if (d.type === 'sets') H = 290;
+else if (d.type === 'common-cause') H = 300;
+else if (d.type === 'two-meanings') H = 270;
+const capY = d.caption ? H + 4 : 0;
+if (d.caption) H += 34;
+
+// --- per-type geometry -------------------------------------------------
+let ap: any = null;
+if (d.type === 'alternative-paths') {
+  const causes = [d.claimed_cause, ...d.other_causes];
+  const r = row(causes.length, 180, 16);
+  ap = { causes, ...r, y: 196, ey: 48, eh: 58, ew: 190, ex: (W - 190) / 2 };
+}
+let cc: any = null;
+if (d.type === 'common-cause') {
+  const r = row(2, 210, 90);
+  cc = { ...r, y: 200, hx: (W - 220) / 2, hw: 220, hy: 50 };
+}
+let tm: any = null;
+if (d.type === 'two-meanings') {
+  const r = row(2, 220, 60);
+  tm = { ...r, y: 180, wx: (W - 200) / 2, ww: 200, wy: 48 };
+}
+let sp: any = null;
+if (d.type === 'spectrum') {
+  const hid: string[] = d.hidden;
+  const x0 = 120, x1 = 560;
+  sp = {
+    hid, x0, x1,
+    ticks: hid.map((_, i) => x0 + ((i + 1) * (x1 - x0)) / (hid.length + 1)),
+  };
+}
+---
+
+<figure>
+  <svg
+    class="dg"
+    viewBox={`0 0 ${W} ${H}`}
+    role="img"
+    aria-label={d.caption ?? `แผนภาพชนิด ${d.type}`}
+  >
+    <defs>
+      <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      </marker>
+    </defs>
+
+    {d.type === 'alternative-paths' && ap && (
+      <g>
+        <rect x={ap.ex} y={ap.ey} width={ap.ew} height={ap.eh} rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x={W / 2} y={ap.ey + 24} text-anchor="middle" font-size={fit(d.effect, ap.ew)} fill="var(--text)" font-weight="500">{d.effect}</text>
+        <text x={W / 2} y={ap.ey + 44} text-anchor="middle" font-size="11.5" fill="var(--muted)">ผลที่สังเกตเห็น</text>
+
+        {ap.causes.map((c: string, i: number) => (
+          <g>
+            <line
+              x1={ap.xs[i] + ap.w / 2}
+              y1={ap.y - 12}
+              x2={ap.ex + 20 + (i * (ap.ew - 40)) / Math.max(1, ap.causes.length - 1)}
+              y2={ap.ey + ap.eh + 10}
+              stroke="var(--line)"
+              stroke-width="1.4"
+              marker-end="url(#ah)"
+            />
+            <rect
+              x={ap.xs[i]} y={ap.y} width={ap.w} height="46" rx="9"
+              fill={i === 0 ? 'var(--hl-bg)' : 'var(--box)'}
+              stroke={i === 0 ? 'var(--hl)' : 'var(--line)'}
+            />
+            <text x={ap.xs[i] + ap.w / 2} y={ap.y + 28} text-anchor="middle" font-size={fit(c, ap.w)} fill="var(--text)">{c}</text>
+          </g>
+        ))}
+
+        <path
+          d={`M${ap.ex + ap.ew / 2 + 26} ${ap.ey + ap.eh + 10} L${ap.xs[0] + ap.w / 2 + 26} ${ap.y - 12}`}
+          fill="none" stroke="var(--bad)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"
+        />
+        <text x={LEFT} y={ap.y + 86} font-size="12" fill="var(--muted)">
+          เส้นทึบ คือเหตุพาไปสู่ผล ใช้ได้ทุกเส้น
+        </text>
+        <text x={LEFT} y={ap.y + 106} font-size="12" fill="var(--bad)">
+          เส้นประ คือย้อนจากผลไปหาเหตุเดียว ข้อสรุปไม่ตามมา
+        </text>
+      </g>
+    )}
+
+    {d.type === 'one-way-arrow' && (
+      <g>
+        <text x={LEFT} y="40" font-size="12" fill="var(--muted)">ข้ออ้าง ถ้า P แล้ว Q</text>
+        <rect x="80" y="56" width="200" height="48" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x="180" y="85" text-anchor="middle" font-size={fit(d.p, 200)} fill="var(--text)">{d.p}</text>
+        <line x1="290" y1="80" x2="390" y2="80" stroke="var(--line)" stroke-width="1.6" marker-end="url(#ah)" />
+        <rect x="400" y="56" width="200" height="48" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x="500" y="85" text-anchor="middle" font-size={fit(d.q, 200)} fill="var(--text)">{d.q}</text>
+
+        <text x={LEFT} y="152" font-size="12" fill="var(--bad)">ข้อสรุปที่ไม่ตามมา ไม่มี P จึงไม่มี Q</text>
+        <rect x="80" y="168" width="200" height="48" rx="9" fill="var(--hl-bg)" stroke="var(--hl)" />
+        <text x="180" y="197" text-anchor="middle" font-size={fit('ไม่ ' + d.p, 200)} fill="var(--text)">ไม่ {d.p}</text>
+        <path d="M290 192 L390 192" fill="none" stroke="var(--bad)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)" />
+        <rect x="400" y="168" width="200" height="48" rx="9" fill="var(--box)" stroke="var(--line)" stroke-dasharray="4 4" />
+        <text x="500" y="197" text-anchor="middle" font-size={fit('ไม่ ' + d.q, 200)} fill="var(--muted)">ไม่ {d.q}</text>
+      </g>
+    )}
+
+    {d.type === 'substitution' && (
+      <g>
+        <text x={LEFT} y="40" font-size="12" fill="var(--muted)">สิ่งที่ถูกเสนอจริง</text>
+        <rect x={LEFT} y="52" width="250" height="64" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x={LEFT + 125} y="88" text-anchor="middle" font-size={fit(d.original, 250)} fill="var(--text)">{d.original}</text>
+
+        <path d="M300 84 L376 84" fill="none" stroke="var(--bad)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)" />
+        <text x="338" y="70" text-anchor="middle" font-size="11.5" fill="var(--bad)">ถูกแทนด้วย</text>
+
+        <text x="390" y="40" font-size="12" fill="var(--bad)">สิ่งที่ถูกโจมตี</text>
+        <rect x="390" y="52" width="250" height="64" rx="9" fill="var(--hl-bg)" stroke="var(--hl)" />
+        <text x="515" y="88" text-anchor="middle" font-size={fit(d.distorted, 250)} fill="var(--text)">{d.distorted}</text>
+
+        <line x1="515" y1="160" x2="515" y2="124" stroke="var(--line)" stroke-width="1.6" marker-end="url(#ah)" />
+        <text x="515" y="182" text-anchor="middle" font-size="12.5" fill="var(--text)">การโจมตีลงที่กล่องขวา</text>
+        <text x={LEFT} y="222" font-size="12" fill="var(--muted)">กล่องซ้ายยังไม่ถูกแตะ จึงยังต้องถูกตอบ</text>
+      </g>
+    )}
+
+    {d.type === 'spectrum' && sp && (
+      <g>
+        <line x1={sp.x0} y1="130" x2={sp.x1} y2="130" stroke="var(--line)" stroke-width="1.6" />
+        <rect x={sp.x0 - 80} y="106" width="160" height="48" rx="9" fill="var(--hl-bg)" stroke="var(--hl)" />
+        <text x={sp.x0} y="135" text-anchor="middle" font-size={fit(d.pole_a, 160)} fill="var(--text)">{d.pole_a}</text>
+        <rect x={sp.x1 - 80} y="106" width="160" height="48" rx="9" fill="var(--hl-bg)" stroke="var(--hl)" />
+        <text x={sp.x1} y="135" text-anchor="middle" font-size={fit(d.pole_b, 160)} fill="var(--text)">{d.pole_b}</text>
+
+        {sp.hid.map((h: string, i: number) => (
+          <g>
+            <circle cx={sp.ticks[i]} cy="130" r="4" fill="var(--bg)" stroke="var(--ok)" stroke-width="1.6" />
+            <line x1={sp.ticks[i]} y1="138" x2={sp.ticks[i]} y2={176 + i * 26} stroke="var(--line)" stroke-width="0.8" stroke-dasharray="3 3" />
+            <text x={sp.ticks[i]} y={192 + i * 26} text-anchor="middle" font-size="12" fill="var(--ok)">{h}</text>
+          </g>
+        ))}
+        <text x={LEFT} y="70" font-size="12" fill="var(--muted)">ข้ออ้างให้เลือกแค่สองปลาย</text>
+        <text x={LEFT} y="90" font-size="12" fill="var(--ok)">แต่ทุกจุดบนเส้นก็เป็นทางเลือก</text>
+      </g>
+    )}
+
+    {d.type === 'sample-vs-population' && (
+      <g>
+        <circle cx="240" cy="160" r="110" fill="var(--box)" stroke="var(--line)" stroke-dasharray="5 4" />
+        <circle cx="214" cy="190" r="58" fill="var(--hl-bg)" stroke="var(--hl)" />
+        <text x="214" y="195" text-anchor="middle" font-size="12.5" fill="var(--text)" font-weight="500">ส่วนที่เห็น</text>
+
+        <line x1="300" y1="86" x2="380" y2="72" stroke="var(--line)" stroke-width="0.8" stroke-dasharray="3 3" />
+        <text x="388" y="68" font-size="12.5" fill="var(--text)">{d.population}</text>
+        <text x="388" y="88" font-size="11.5" fill="var(--muted)">กลุ่มที่ข้อสรุปครอบถึง</text>
+
+        <line x1="268" y1="196" x2="380" y2="166" stroke="var(--line)" stroke-width="0.8" stroke-dasharray="3 3" />
+        <text x="388" y="162" font-size="12.5" fill="var(--text)">{d.observed}</text>
+        <text x="388" y="182" font-size="11.5" fill="var(--muted)">ข้อมูลที่เรามีจริง</text>
+
+        <line x1="300" y1="215" x2="380" y2="252" stroke="var(--bad)" stroke-width="0.8" stroke-dasharray="3 3" />
+        <text x="388" y="252" font-size="12.5" fill="var(--bad)">{d.unobserved}</text>
+        <text x="388" y="272" font-size="11.5" fill="var(--muted)">หายไปจากข้อมูลอย่างเป็นระบบ</text>
+      </g>
+    )}
+
+    {d.type === 'circular' && (
+      <g>
+        {d.nodes.map((n: string, i: number) => (
+          <g>
+            <rect x="150" y={50 + i * 86} width="420" height="54" rx="9" fill="var(--box)" stroke="var(--line)" />
+            <text x="360" y={82 + i * 86} text-anchor="middle" font-size={fit(n, 420)} fill="var(--text)">{n}</text>
+            {i < d.nodes.length - 1 && (
+              <line x1="360" y1={104 + i * 86} x2="360" y2={40 + (i + 1) * 86} stroke="var(--line)" stroke-width="1.6" marker-end="url(#ah)" />
+            )}
+          </g>
+        ))}
+        <path
+          d={`M150 ${77 + (d.nodes.length - 1) * 86} L96 ${77 + (d.nodes.length - 1) * 86} L96 77 L142 77`}
+          fill="none" stroke="var(--bad)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"
+        />
+        <text x={LEFT} y={H - (d.caption ? 48 : 18)} font-size="12" fill="var(--bad)">
+          เส้นประคือข้อสรุปย้อนกลับไปเป็นข้ออ้างของตัวเอง
+        </text>
+      </g>
+    )}
+
+    {d.type === 'relevance-gap' && (
+      <g>
+        <rect x={LEFT} y="52" width="250" height="68" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x={LEFT + 125} y="80" text-anchor="middle" font-size="11.5" fill="var(--muted)">ข้ออ้าง</text>
+        <text x={LEFT + 125} y="102" text-anchor="middle" font-size={fit(d.premise, 250)} fill="var(--text)">{d.premise}</text>
+
+        <line x1="300" y1="86" x2="330" y2="86" stroke="var(--line)" stroke-width="1.6" />
+        <line x1="350" y1="86" x2="380" y2="86" stroke="var(--line)" stroke-width="1.6" marker-end="url(#ah)" />
+        <text x="325" y="150" text-anchor="middle" font-size="12" fill="var(--bad)">{d.gap_label}</text>
+        <line x1="330" y1="98" x2="350" y2="98" stroke="var(--bad)" stroke-width="1.6" />
+        <line x1="340" y1="98" x2="340" y2="132" stroke="var(--bad)" stroke-width="0.8" stroke-dasharray="3 3" />
+
+        <rect x="390" y="52" width="250" height="68" rx="9" fill="var(--hl-bg)" stroke="var(--hl)" />
+        <text x="515" y="80" text-anchor="middle" font-size="11.5" fill="var(--muted)">ข้อสรุป</text>
+        <text x="515" y="102" text-anchor="middle" font-size={fit(d.conclusion, 250)} fill="var(--text)">{d.conclusion}</text>
+      </g>
+    )}
+
+    {d.type === 'sets' && (
+      <g>
+        <rect x="90" y="60" width="500" height="170" rx="14" fill="var(--box)" stroke="var(--line)" stroke-dasharray="5 4" />
+        <text x="110" y="86" font-size="12.5" fill="var(--muted)">{d.outer}</text>
+        <rect x="150" y="106" width="300" height="100" rx="12" fill="var(--hl-bg)" stroke="var(--hl)" />
+        <text x="300" y="150" text-anchor="middle" font-size={fit(d.inner, 300)} fill="var(--text)" font-weight="500">{d.inner}</text>
+        <text x="300" y="176" text-anchor="middle" font-size="11.5" fill="var(--muted)">ขอบวงนี้ถูกขยับได้</text>
+        <path d="M462 156 L540 156" fill="none" stroke="var(--bad)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)" />
+        <text x="90" y="256" font-size="12.5" fill="var(--text)">ข้ออ้าง {d.claim}</text>
+      </g>
+    )}
+
+    {d.type === 'common-cause' && cc && (
+      <g>
+        <rect x={cc.hx} y={cc.hy} width={cc.hw} height="56" rx="9" fill="var(--hl-bg)" stroke="var(--hl)" />
+        <text x={W / 2} y={cc.hy + 26} text-anchor="middle" font-size={fit(d.hidden_cause, cc.hw)} fill="var(--text)" font-weight="500">{d.hidden_cause}</text>
+        <text x={W / 2} y={cc.hy + 46} text-anchor="middle" font-size="11.5" fill="var(--muted)">ตัวที่สามที่มักไม่ถูกมองเห็น</text>
+
+        <line x1={W / 2 - 40} y1={cc.hy + 66} x2={cc.xs[0] + cc.w / 2} y2={cc.y - 12} stroke="var(--line)" stroke-width="1.6" marker-end="url(#ah)" />
+        <line x1={W / 2 + 40} y1={cc.hy + 66} x2={cc.xs[1] + cc.w / 2} y2={cc.y - 12} stroke="var(--line)" stroke-width="1.6" marker-end="url(#ah)" />
+
+        <rect x={cc.xs[0]} y={cc.y} width={cc.w} height="50" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x={cc.xs[0] + cc.w / 2} y={cc.y + 30} text-anchor="middle" font-size={fit(d.a, cc.w)} fill="var(--text)">{d.a}</text>
+        <rect x={cc.xs[1]} y={cc.y} width={cc.w} height="50" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x={cc.xs[1] + cc.w / 2} y={cc.y + 30} text-anchor="middle" font-size={fit(d.b, cc.w)} fill="var(--text)">{d.b}</text>
+
+        <path d={`M${cc.xs[0] + cc.w + 8} ${cc.y + 25} L${cc.xs[1] - 8} ${cc.y + 25}`} fill="none" stroke="var(--bad)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)" />
+        <text x={W / 2} y={cc.y + 74} text-anchor="middle" font-size="12" fill="var(--bad)">ลูกศรที่ถูกอ้าง ซึ่งไม่มีอยู่</text>
+      </g>
+    )}
+
+    {d.type === 'two-meanings' && tm && (
+      <g>
+        <rect x={tm.wx} y={tm.wy} width={tm.ww} height="54" rx="9" fill="var(--hl-bg)" stroke="var(--hl)" />
+        <text x={W / 2} y={tm.wy + 33} text-anchor="middle" font-size="15" fill="var(--text)" font-weight="500">{d.word}</text>
+        <line x1={W / 2 - 30} y1={tm.wy + 64} x2={tm.xs[0] + tm.w / 2} y2={tm.y - 12} stroke="var(--line)" stroke-width="1.6" marker-end="url(#ah)" />
+        <line x1={W / 2 + 30} y1={tm.wy + 64} x2={tm.xs[1] + tm.w / 2} y2={tm.y - 12} stroke="var(--line)" stroke-width="1.6" marker-end="url(#ah)" />
+
+        <rect x={tm.xs[0]} y={tm.y} width={tm.w} height="62" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x={tm.xs[0] + tm.w / 2} y={tm.y + 24} text-anchor="middle" font-size="11.5" fill="var(--muted)">ความหมายในข้ออ้าง</text>
+        <text x={tm.xs[0] + tm.w / 2} y={tm.y + 46} text-anchor="middle" font-size={fit(d.meaning_1, tm.w)} fill="var(--text)">{d.meaning_1}</text>
+
+        <rect x={tm.xs[1]} y={tm.y} width={tm.w} height="62" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x={tm.xs[1] + tm.w / 2} y={tm.y + 24} text-anchor="middle" font-size="11.5" fill="var(--muted)">ความหมายในข้อสรุป</text>
+        <text x={tm.xs[1] + tm.w / 2} y={tm.y + 46} text-anchor="middle" font-size={fit(d.meaning_2, tm.w)} fill="var(--text)">{d.meaning_2}</text>
+
+      </g>
+    )}
+
+    {d.caption && (
+      <text x={W / 2} y={capY + 18} text-anchor="middle" font-size="12.5" fill="var(--muted)">{d.caption}</text>
+    )}
+  </svg>
+</figure>

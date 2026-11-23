@@ -1,0 +1,152 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Diagram from '../../components/Diagram.astro';
+import { mdLite, CATEGORY_TH, KIND_TH, LEVEL_TH, dots, thDate } from '../../lib/text';
+
+export async function getStaticPaths() {
+  const fallacies = await getCollection('fallacies');
+  const cases = await getCollection('cases');
+  return fallacies.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry, fallacies, cases },
+  }));
+}
+
+const { entry, fallacies, cases } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+
+const byId = new Map(fallacies.map((f) => [f.id, f]));
+const resolve = (refs: { id: string }[]) =>
+  refs.map((r) => byId.get(r.id)).filter((f): f is NonNullable<typeof f> => Boolean(f));
+
+const confused = resolve(d.confused_with);
+const related = resolve(d.related);
+const linkedCases = cases.filter((c) => c.data.fallacies.some((f) => f.slug.id === entry.id));
+const order = { clear: 0, everyday: 1, subtle: 2 } as const;
+const examples = [...d.examples].sort((a, b) => order[a.level] - order[b.level]);
+---
+
+<Base title={`${d.name_th} (${d.name_en}) — ตรรกวิบัติ`} description={d.one_liner}>
+  <p class="sub" style="margin:0"><a href="/">กลับหน้ารวม</a></p>
+  <h1>{d.name_th}</h1>
+  <p class="en" style="margin:0 0 10px">
+    {d.name_en}{d.name_la && <> · <em>{d.name_la}</em></>}
+  </p>
+  <p>
+    <span class="tag">{CATEGORY_TH[d.category]}</span>
+    <span class="tag">{KIND_TH[d.kind]}</span>
+    <span class="tag">ความยาก {dots(d.difficulty)}</span>
+  </p>
+
+  <p style="font-size:1.1rem">{d.one_liner}</p>
+
+  {d.form && <div class="form">{d.form}</div>}
+
+  {d.diagram && <Diagram d={d.diagram} />}
+
+  <h2>ทำไมมันผิด</h2>
+  <div set:html={mdLite(d.why_wrong)} />
+
+  <h2>ตัวอย่าง</h2>
+  {examples.map((ex) => (
+    <div class="card">
+      <div class="lvl">{LEVEL_TH[ex.level]}</div>
+      <blockquote style="margin-top:6px">{ex.text}</blockquote>
+      {ex.note && <div class="sub" style="margin-top:6px">{ex.note}</div>}
+    </div>
+  ))}
+
+  {d.not_fallacy.length > 0 && (
+    <>
+      <h2>กรณีที่คล้ายกันแต่ไม่ผิด</h2>
+      <p class="sub" style="margin-top:0">
+        ส่วนนี้สำคัญเท่ากับตัวตรรกวิบัติ เพราะรูปแบบเหล่านี้หลายอันเป็นเหตุผลที่ใช้ได้จริงในบางบริบท
+      </p>
+      {d.not_fallacy.map((nf) => (
+        <div class="card">
+          <blockquote>{nf.text}</blockquote>
+          <div style="margin-top:6px"><span class="ok">ใช้ได้เพราะ</span> {nf.why_ok}</div>
+        </div>
+      ))}
+    </>
+  )}
+
+  {d.responses.length > 0 && (
+    <>
+      <h2>คำถามที่ใช้ตอบกลับ</h2>
+      <ul>{d.responses.map((r) => <li>{r}</li>)}</ul>
+    </>
+  )}
+
+  {(confused.length > 0 || related.length > 0) && (
+    <>
+      <h2>รายการใกล้เคียง</h2>
+      {confused.length > 0 && (
+        <>
+          <h3>มักสับสนกับ</h3>
+          <ul class="plain">
+            {confused.map((f) => (
+              <li>
+                <a href={`/fallacy/${f.id}`}>{f.data.name_th}</a>
+                <span class="en"> — {f.data.one_liner}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      {related.length > 0 && (
+        <>
+          <h3>เกี่ยวข้อง</h3>
+          <ul class="plain">
+            {related.map((f) => (
+              <li>
+                <a href={`/fallacy/${f.id}`}>{f.data.name_th}</a>
+                <span class="en"> — {f.data.one_liner}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </>
+  )}
+
+  {linkedCases.length > 0 && (
+    <>
+      <h2>เคสจริงที่เข้าข่ายนี้</h2>
+      {linkedCases.map((c) => {
+        const hit = c.data.fallacies.find((f) => f.slug.id === entry.id)!;
+        return (
+          <div class="card">
+            <a href={`/case/${c.id}`} style="font-weight:500">{c.data.title_th}</a>
+            <div class="sub">{c.data.source.outlet} · {thDate(c.data.date_of_statement)}</div>
+            <blockquote style="margin-top:8px">{c.data.quote}</blockquote>
+            <div style="margin-top:8px">{hit.analysis}</div>
+            <div style="margin-top:6px">
+              <span class="tag">
+                {hit.confidence === 'clear' ? 'ชัดเจน' : 'ยังเถียงได้'}
+              </span>
+            </div>
+          </div>
+        );
+      })}
+    </>
+  )}
+
+  <div style="margin-top:28px">
+    <Content />
+  </div>
+
+  <h2>อ้างอิง</h2>
+  <ul class="plain">
+    {d.sources.map((s) => (
+      <li>
+        {s.url ? <a href={s.url}>{s.title}</a> : s.title}
+        {s.author && <span class="en"> — {s.author}</span>}
+        {s.locator && <span class="en"> ({s.locator})</span>}
+      </li>
+    ))}
+  </ul>
+  <p class="sub">ปรับปรุงล่าสุด {thDate(d.updated)}</p>
+</Base>

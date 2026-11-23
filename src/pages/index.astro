@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { CATEGORY_TH, CATEGORY_ORDER, dots, thDate } from '../lib/text';
+
+const fallacies = await getCollection('fallacies');
+const cases = await getCollection('cases');
+
+const byCategory = CATEGORY_ORDER.map((c) => ({
+  id: c,
+  name: CATEGORY_TH[c],
+  items: fallacies
+    .filter((f) => f.data.category === c)
+    .sort((a, b) => a.data.difficulty - b.data.difficulty || a.data.name_th.localeCompare(b.data.name_th, 'th')),
+})).filter((g) => g.items.length > 0);
+
+const caseCount = (slug: string) =>
+  cases.filter((c) => c.data.fallacies.some((f) => f.slug.id === slug)).length;
+---
+
+<Base
+  title="ตรรกวิบัติ — คลังตรรกวิบัติและเคสจริง"
+  description={`คลังตรรกวิบัติ ${fallacies.length} รายการ พร้อมแผนภาพอธิบายว่าตรรกะผิดตรงไหน และเคสจริง ${cases.length} เคสที่ระบุแหล่งที่มา`}
+>
+  <h1>ตรรกวิบัติ</h1>
+  <p class="sub">
+    ตรรกวิบัติ {fallacies.length} รายการ และเคสจริง {cases.length} เคส
+    ทุกรายการมีแผนภาพที่สร้างจากโครงของข้อโต้แย้งเอง และมีช่องบอกกรณีที่คล้ายกันแต่ใช้ได้
+  </p>
+
+  <div class="card">
+    <strong>อ่านก่อนใช้</strong>
+    <p style="margin:6px 0 0">
+      การพบตรรกวิบัติบอกได้เพียงว่าข้อสรุปนั้น <em>ยังไม่ได้รับการสนับสนุน</em>
+      ไม่ได้บอกว่าข้อสรุปเป็นเท็จ การสรุปว่าเป็นเท็จคือ
+      <a href="/fallacy/fallacy-fallacy">ตรรกวิบัติของการจับตรรกวิบัติ</a> เสียเอง
+    </p>
+  </div>
+
+  {byCategory.map((g) => (
+    <section>
+      <h2>{g.name} <span class="en">{g.items.length} รายการ</span></h2>
+      <div class="grid">
+        {g.items.map((f) => (
+          <a href={`/fallacy/${f.id}`} class="card" style="text-decoration:none;color:inherit;display:block">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline">
+              <strong>{f.data.name_th}</strong>
+              <span class="lvl">{dots(f.data.difficulty)}</span>
+            </div>
+            <div class="en">{f.data.name_en}</div>
+            <div style="margin-top:6px">{f.data.one_liner}</div>
+            {caseCount(f.id) > 0 && (
+              <div style="margin-top:8px"><span class="tag">เคสจริง {caseCount(f.id)} เคส</span></div>
+            )}
+          </a>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <section>
+    <h2>เคสจริง <span class="en">{cases.length} เคส</span></h2>
+    <p class="sub" style="margin-top:0">
+      ทุกเคสยกคำพูดตรงตัว ระบุสื่อ วันเผยแพร่ และวันที่เปิดดูหน้าต้นทาง
+      และมีช่องการตีความอย่างเมตตาที่สุดกับช่องสิ่งที่ไม่ได้กล่าวอ้าง
+    </p>
+    <ul class="plain">
+      {cases
+        .sort((a, b) => b.data.date_of_statement.getTime() - a.data.date_of_statement.getTime())
+        .map((c) => (
+          <li class="card">
+            <a href={`/case/${c.id}`} style="font-weight:500">{c.data.title_th}</a>
+            <div class="sub">
+              {c.data.source.outlet} · {thDate(c.data.date_of_statement)}
+            </div>
+          </li>
+        ))}
+    </ul>
+  </section>
+</Base>

@@ -1,0 +1,104 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { MEDIUM_TH, thDate } from '../../lib/text';
+
+export async function getStaticPaths() {
+  const cases = await getCollection('cases');
+  const fallacies = await getCollection('fallacies');
+  return cases.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry, fallacies },
+  }));
+}
+
+const { entry, fallacies } = Astro.props;
+const c = entry.data;
+const byId = new Map(fallacies.map((f) => [f.id, f]));
+---
+
+<Base title={`${c.title_th} — เคสจริง`} description={c.quote}>
+  <p class="sub" style="margin:0"><a href="/">กลับหน้ารวม</a></p>
+  <h1>{c.title_th}</h1>
+  <p>
+    <span class="tag">{c.case_kind === 'pattern' ? 'รูปแบบที่หน่วยงานรายงาน' : 'คำพูดเฉพาะ'}</span>
+    <span class="tag">{MEDIUM_TH[c.source.medium]}</span>
+    <span class="tag">สถานะ {c.status}</span>
+  </p>
+
+  {c.status === 'retracted' && c.retraction_note && (
+    <div class="card" style="border-color:var(--bad)">
+      <strong class="bad">เคสนี้ถูกถอน</strong>
+      <p style="margin:6px 0 0">{c.retraction_note}</p>
+    </div>
+  )}
+
+  <h2>ข้อความที่ยกมา</h2>
+  <div class="card">
+    <blockquote style="font-size:1.08rem">{c.quote}</blockquote>
+    <div class="sub" style="margin-top:10px">ยกมาตรงตัว · {c.quote_lang === 'th' ? 'ภาษาไทย' : 'ภาษาอังกฤษ'}</div>
+  </div>
+
+  <h3>บริบท</h3>
+  <p>{c.context}</p>
+  <p class="sub">ผู้พูดหรือที่มาของข้อความ: {c.speaker_role}{c.speaker_name && ` (${c.speaker_name})`}</p>
+
+  <h2>การวิเคราะห์</h2>
+  {c.fallacies.map((f) => {
+    const fa = byId.get(f.slug.id);
+    return (
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline">
+          <strong>
+            {fa ? <a href={`/fallacy/${fa.id}`}>{fa.data.name_th}</a> : f.slug.id}
+          </strong>
+          <span class="tag">{f.confidence === 'clear' ? 'ชัดเจน' : 'ยังเถียงได้'}</span>
+        </div>
+        {fa && <div class="en">{fa.data.name_en}</div>}
+        <p style="margin:8px 0 0">{f.analysis}</p>
+      </div>
+    );
+  })}
+
+  <h2>การตีความอย่างเมตตาที่สุด</h2>
+  <p>{c.charitable_reading}</p>
+
+  <h2>สิ่งที่เคสนี้ไม่ได้กล่าวอ้าง</h2>
+  <div class="card" style="border-color:var(--accent)">
+    <p style="margin:0">{c.not_claiming}</p>
+  </div>
+
+  <h2>แหล่งที่มา</h2>
+  <div class="card">
+    <div><strong>{c.source.outlet}</strong></div>
+    <div style="margin-top:4px">{c.source.headline}</div>
+    {c.source.author && <div class="sub">โดย {c.source.author}</div>}
+    <div class="sub" style="margin-top:8px">
+      เผยแพร่ {thDate(c.source.published)} · เปิดดูเมื่อ {thDate(c.source.accessed)}
+    </div>
+    <div style="margin-top:8px"><a href={c.source.url}>เปิดหน้าต้นทาง</a></div>
+  </div>
+
+  {c.corroboration.length > 0 && (
+    <>
+      <h3>แหล่งยืนยันเพิ่ม</h3>
+      <ul class="plain">
+        {c.corroboration.map((x) => (
+          <li><a href={x.url}>{x.outlet}</a></li>
+        ))}
+      </ul>
+    </>
+  )}
+
+  {c.verification_notes && (
+    <>
+      <h3>บันทึกการตรวจสอบ</h3>
+      <p class="sub">{c.verification_notes}</p>
+    </>
+  )}
+
+  <p class="sub">
+    หมวด {c.domain} · ระดับความละเอียดอ่อน {c.sensitivity} · ตรวจโดย {c.reviewed_by.join(', ')} ·
+    ปรับปรุงล่าสุด {thDate(c.updated)}
+  </p>
+</Base>
