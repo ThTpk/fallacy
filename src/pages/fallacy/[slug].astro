@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Diagram from '../../components/Diagram.astro';
 import PostHocAnim from '../../components/PostHocAnim.astro';
+import BandwagonAnim from '../../components/BandwagonAnim.astro';
 import { mdLite, CATEGORY_TH, KIND_TH, LEVEL_TH, dots, thDate, url } from '../../lib/text';
 
 export async function getStaticPaths() {
@@ -48,6 +49,7 @@ const examples = [...d.examples].sort((a, b) => order[a.level] - order[b.level])
   {d.diagram && <Diagram d={d.diagram} />}
 
   {entry.id === 'post-hoc' && <PostHocAnim />}
+  {entry.id === 'bandwagon' && <BandwagonAnim />}
 
   <h2>ทำไมมันผิด</h2>
   <div set:html={mdLite(d.why_wrong)} />
