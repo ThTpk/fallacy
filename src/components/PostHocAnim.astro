@@ -1,0 +1,29 @@
+---
+// The one animated figure on the site so far. Mounted only on /fallacy/post-hoc.
+---
+
+<figure class="anim">
+  <div id="posthoc-stage"></div>
+  <figcaption>
+    ลองคลิกที่ไก่ มันจะขันทันทีไม่ว่าจะเป็นเวลาไหน และดวงอาทิตย์ก็ยังขึ้นตามเวลาเดิมของมัน
+  </figcaption>
+</figure>
+
+<style>
+  .anim { margin: 20px 0; }
+  .anim > div {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    line-height: 0;
+  }
+  .anim svg { display: block; width: 100%; height: auto; }
+  /* paper is retinted by applyPalette through --paper on the svg itself */
+  .anim :global(.pp) { fill: var(--paper, #fdfdfc); }
+  .anim :global(.ph-t) { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
+  .anim figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; line-height: 1.6; }
+</style>
+
+<script>
+  import '../anim/post-hoc.ts';
+</script>
