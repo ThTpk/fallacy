@@ -55,11 +55,11 @@ responses:
   - ถ้าสิ่งนี้มีจริง เราควรเห็นหลักฐานอะไรบ้าง และเคยไปหาตรงนั้นแล้วหรือยัง
   - ใครเป็นฝ่ายที่ต้องพิสูจน์ข้ออ้างนี้
   - การไม่พบ มาจากการค้นที่ครอบคลุม หรือจากการไม่ได้ค้น
-confused_with:
-  - begging-the-question
+confused_with: []
 related:
   - appeal-to-authority
   - fallacy-fallacy
+  - begging-the-question
 sources:
   - title: Informal Logic
     author: Douglas Walton

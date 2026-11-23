@@ -57,9 +57,9 @@ responses:
   - เรื่องตัวผู้พูดเกี่ยวกับข้อสรุปอย่างไร
 confused_with:
   - straw-man
-  - appeal-to-celebrity
-related:
   - fallacy-fallacy
+related:
+  - appeal-to-celebrity
 sources:
   - title: Informal Logic
     author: Douglas Walton

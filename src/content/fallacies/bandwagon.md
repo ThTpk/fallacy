@@ -63,9 +63,9 @@ responses:
   - นอกจากคุณภาพแล้ว อะไรทำให้ตัวเลขนี้สูงได้อีก
 confused_with:
   - appeal-to-celebrity
+  - hasty-generalization
 related:
   - appeal-to-authority
-  - hasty-generalization
 sources:
   - title: Introduction to Logic
     author: Copi & Cohen

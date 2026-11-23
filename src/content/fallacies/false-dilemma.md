@@ -54,10 +54,10 @@ responses:
   - มีทางเลือกที่สามไหม
   - เรื่องนี้เป็นเรื่องใช่หรือไม่ใช่ หรือเป็นเรื่องระดับ
   - ใครกำหนดว่ามีแค่สองทางนี้ และกำหนดจากอะไร
-confused_with:
-  - no-true-scotsman
+confused_with: []
 related:
   - straw-man
+  - no-true-scotsman
 sources:
   - title: Introduction to Logic
     author: Copi & Cohen

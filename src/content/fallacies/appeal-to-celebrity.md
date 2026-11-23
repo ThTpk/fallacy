@@ -61,6 +61,7 @@ confused_with:
   - bandwagon
 related:
   - hasty-generalization
+  - ad-hominem
 sources:
   - title: "Appeal to Expert Opinion: Arguments from Authority"
     author: Douglas Walton

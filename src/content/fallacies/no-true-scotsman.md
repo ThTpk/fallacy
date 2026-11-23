@@ -56,6 +56,7 @@ confused_with:
   - begging-the-question
 related:
   - false-dilemma
+  - equivocation
 sources:
   - title: Thinking About Thinking
     author: Antony Flew

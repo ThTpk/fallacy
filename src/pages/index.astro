@@ -5,6 +5,7 @@ import { CATEGORY_TH, CATEGORY_ORDER, dots, thDate, url } from '../lib/text';
 
 const fallacies = await getCollection('fallacies');
 const cases = await getCollection('cases');
+const comparisons = await getCollection('comparisons');
 const foundations = (await getCollection('foundations')).sort(
   (a, b) => a.data.order - b.data.order,
 );
@@ -76,6 +77,30 @@ const caseCount = (slug: string) =>
       </div>
     </section>
   ))}
+
+  <section>
+    <h2>เทียบคู่ที่สับสนบ่อย <span class="en">{comparisons.length} คู่</span></h2>
+    <p class="sub" style="margin-top:0">
+      แต่ละหน้ามีคำถามเดียวที่ใช้แยกคู่นั้นออกจากกัน พร้อมตัวอย่างของทั้งสองฝั่ง
+    </p>
+    <ul class="plain">
+      {comparisons
+        .map((c) => ({
+          c,
+          a: fallacies.find((f) => f.id === c.data.a.id)!,
+          b: fallacies.find((f) => f.id === c.data.b.id)!,
+        }))
+        .sort((x, y) => x.a.data.name_th.localeCompare(y.a.data.name_th, 'th'))
+        .map(({ c, a, b }) => (
+          <li class="card">
+            <a href={url(`compare/${c.id}`)} style="font-weight:500">
+              {a.data.name_th} หรือ {b.data.name_th}
+            </a>
+            <div class="sub">{c.data.question}</div>
+          </li>
+        ))}
+    </ul>
+  </section>
 
   <section>
     <h2>เคสจริง <span class="en">{cases.length} เคส</span></h2>

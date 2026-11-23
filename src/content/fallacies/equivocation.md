@@ -50,10 +50,10 @@ not_fallacy:
 responses:
   - คำนี้ในประโยคแรกกับประโยคหลัง หมายถึงอย่างเดียวกันไหม
   - ลองนิยามคำนี้ให้ชัดก่อน แล้วเขียนเหตุผลใหม่
-confused_with:
-  - straw-man
+confused_with: []
 related:
   - no-true-scotsman
+  - straw-man
 sources:
   - title: Fallacies
     author: C. L. Hamblin

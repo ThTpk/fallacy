@@ -1,0 +1,115 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Diagram from '../../components/Diagram.astro';
+import { thDate, url } from '../../lib/text';
+
+const key = (x: string, y: string) => [x, y].sort().join('--');
+
+export async function getStaticPaths() {
+  const fallacies = await getCollection('fallacies');
+  const comparisons = await getCollection('comparisons');
+  const k = (x: string, y: string) => [x, y].sort().join('--');
+
+  // 1. confused_with must be mutual. A one-way link means one of the two
+  //    entries was edited and the other forgotten.
+  const byId = new Map(fallacies.map((f) => [f.id, f]));
+  for (const f of fallacies) {
+    for (const r of f.data.confused_with) {
+      const other = byId.get(r.id);
+      if (!other) throw new Error(`${f.id}: confused_with points at missing ${r.id}`);
+      if (!other.data.confused_with.some((z) => z.id === f.id)) {
+        throw new Error(
+          `confused_with is not mutual: ${f.id} lists ${r.id}, but ${r.id} does not list ${f.id}`,
+        );
+      }
+    }
+  }
+
+  // 2. a comparison file must be named after its own two slugs, sorted
+  for (const c of comparisons) {
+    const want = k(c.data.a.id, c.data.b.id);
+    if (c.id !== want) {
+      throw new Error(`comparison ${c.id}.md should be named ${want}.md`);
+    }
+  }
+
+  // 3. the set of pairs and the set of files must match exactly
+  const fromEntries = new Set<string>();
+  for (const f of fallacies) {
+    for (const r of f.data.confused_with) fromEntries.add(k(f.id, r.id));
+  }
+  const fromFiles = new Set(comparisons.map((c) => k(c.data.a.id, c.data.b.id)));
+  const missing = [...fromEntries].filter((x) => !fromFiles.has(x));
+  const extra = [...fromFiles].filter((x) => !fromEntries.has(x));
+  if (missing.length || extra.length) {
+    throw new Error(
+      'confused_with and src/content/comparisons are out of sync.' +
+        (missing.length ? `\n  no comparison file for: ${missing.join(', ')}` : '') +
+        (extra.length ? `\n  comparison with no confused_with pair: ${extra.join(', ')}` : ''),
+    );
+  }
+
+  return comparisons.map((entry) => ({
+    params: { pair: entry.id },
+    props: { entry, fallacies },
+  }));
+}
+
+const { entry, fallacies } = Astro.props;
+const c = entry.data;
+const { Content } = await render(entry);
+const byId = new Map(fallacies.map((f) => [f.id, f]));
+const A = byId.get(c.a.id)!;
+const B = byId.get(c.b.id)!;
+---
+
+<Base
+  title={`${A.data.name_th} หรือ ${B.data.name_th} — เทียบคู่ที่สับสน`}
+  description={c.question}
+>
+  <p class="sub" style="margin:0"><a href={url('/')}>กลับหน้ารวม</a></p>
+  <p class="lvl" style="margin:10px 0 0">เทียบคู่ที่สับสนบ่อย</p>
+  <h1>{A.data.name_th} หรือ {B.data.name_th}</h1>
+  <p class="en" style="margin:0 0 14px">{A.data.name_en} / {B.data.name_en}</p>
+
+  <div class="card" style="border-color:var(--accent)">
+    <span class="sub">คำถามเดียวที่ใช้แยก</span>
+    <p style="margin:6px 0 0;font-size:1.12rem">{c.question}</p>
+  </div>
+
+  <div class="grid two">
+    <div class="card">
+      <a href={url(`fallacy/${A.id}`)} style="font-weight:500">{A.data.name_th}</a>
+      <div class="en">{A.data.name_en}</div>
+      <p style="margin:10px 0 0">{c.a_side}</p>
+      <blockquote style="margin-top:10px">{c.example_a}</blockquote>
+    </div>
+    <div class="card">
+      <a href={url(`fallacy/${B.id}`)} style="font-weight:500">{B.data.name_th}</a>
+      <div class="en">{B.data.name_en}</div>
+      <p style="margin:10px 0 0">{c.b_side}</p>
+      <blockquote style="margin-top:10px">{c.example_b}</blockquote>
+    </div>
+  </div>
+
+  <h2>ทำไมถึงสับสนกัน</h2>
+  <p>{c.shared}</p>
+
+  <Content />
+
+  {A.data.diagram && (
+    <>
+      <h2>โครงของ {A.data.name_th}</h2>
+      <Diagram d={A.data.diagram} />
+    </>
+  )}
+  {B.data.diagram && (
+    <>
+      <h2>โครงของ {B.data.name_th}</h2>
+      <Diagram d={B.data.diagram} />
+    </>
+  )}
+
+  <p class="sub" style="margin-top:28px">ปรับปรุงล่าสุด {thDate(c.updated)}</p>
+</Base>

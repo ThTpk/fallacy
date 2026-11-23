@@ -51,9 +51,9 @@ responses:
   - คุณสรุปจุดยืนผมว่าอะไร ผมจะยืนยันให้ว่าตรงหรือไม่
 confused_with:
   - ad-hominem
-  - equivocation
 related:
   - fallacy-fallacy
+  - equivocation
 sources:
   - title: Informal Logic
     author: Douglas Walton

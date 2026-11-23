@@ -91,6 +91,11 @@ const examples = [...d.examples].sort((a, b) => order[a.level] - order[b.level])
               <li>
                 <a href={url(`fallacy/${f.id}`)}>{f.data.name_th}</a>
                 <span class="en"> — {f.data.one_liner}</span>
+                <div>
+                  <a href={url(`compare/${[entry.id, f.id].sort().join('--')}`)} class="sub">
+                    เทียบสองอันนี้ทีละข้อ
+                  </a>
+                </div>
               </li>
             ))}
           </ul>

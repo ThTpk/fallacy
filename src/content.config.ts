@@ -220,4 +220,24 @@ const foundations = defineCollection({
   }),
 });
 
-export const collections = { fallacies, cases, foundations };
+const comparisons = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/comparisons' }),
+  schema: z.object({
+    // the file name must be `<a>--<b>.md` with the two slugs in alphabetical
+    // order; the compare route checks this and fails the build otherwise
+    a: reference('fallacies'),
+    b: reference('fallacies'),
+    // the single question that tells the pair apart
+    question: z.string().max(160),
+    a_side: z.string(),
+    b_side: z.string(),
+    // why they get mixed up in the first place
+    shared: z.string(),
+    example_a: z.string(),
+    example_b: z.string(),
+    status: z.enum(['draft', 'review', 'published']),
+    updated: z.coerce.date(),
+  }),
+});
+
+export const collections = { fallacies, cases, foundations, comparisons };

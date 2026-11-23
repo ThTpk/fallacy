@@ -63,9 +63,9 @@ responses:
   - ถ้าสุ่มใหม่อีกครั้ง ผลจะออกมาเหมือนเดิมไหม
 confused_with:
   - bandwagon
+  - survivorship-bias
 related:
   - appeal-to-authority
-  - survivorship-bias
 sources:
   - title: Informal Logic
     author: Douglas Walton
