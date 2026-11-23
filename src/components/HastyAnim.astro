@@ -1,0 +1,25 @@
+---
+// Mounted only on /fallacy/hasty-generalization.
+---
+
+<figure class="anim">
+  <div id="hasty-stage"></div>
+  <figcaption>
+    ไม่มีใครถูกซ่อนเลยสักคน ทุกคนอยู่บนจอตั้งแต่วินาทีแรก
+    สิ่งเดียวที่เปลี่ยนคือขนาดของกรอบที่เราเลือกดู และตัวเลขก็เปลี่ยนตามไปด้วย
+  </figcaption>
+</figure>
+
+<style>
+  .anim { margin: 20px 0; }
+  .anim > div { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; line-height: 0; background: var(--surface); }
+  .anim svg { display: block; width: 100%; height: auto; color: var(--text); }
+  .anim :global(.pp) { fill: var(--surface); }
+  .anim :global(.hg-t) { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
+  .anim :global(.hg-n) { font-variant-numeric: tabular-nums; font-weight: 500; }
+  .anim figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; line-height: 1.6; }
+</style>
+
+<script>
+  import '../anim/hasty-generalization.ts';
+</script>
