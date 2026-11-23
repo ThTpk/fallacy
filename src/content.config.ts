@@ -153,4 +153,27 @@ const cases = defineCollection({
   ),
 });
 
-export const collections = { fallacies, cases };
+const foundations = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/foundations' }),
+  schema: z.object({
+    title_th: z.string(),
+    title_en: z.string().optional(),
+    // position in the reading path shown on the home page
+    order: z.number().int().min(1),
+    one_liner: z.string().max(160),
+    // the two or three things a reader should leave with
+    key_points: z.array(z.string()).min(2),
+    see_also: z.array(reference('fallacies')).default([]),
+    next: reference('foundations').optional(),
+    sources: z.array(z.object({
+      title: z.string(),
+      author: z.string().optional(),
+      url: z.string().url().optional(),
+      locator: z.string().optional(),
+    })).min(1),
+    status: z.enum(['draft', 'review', 'published']),
+    updated: z.coerce.date(),
+  }),
+});
+
+export const collections = { fallacies, cases, foundations };

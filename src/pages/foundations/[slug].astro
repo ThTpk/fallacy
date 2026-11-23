@@ -1,0 +1,85 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { thDate, url } from '../../lib/text';
+
+export async function getStaticPaths() {
+  const foundations = await getCollection('foundations');
+  const fallacies = await getCollection('fallacies');
+  return foundations.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry, foundations, fallacies },
+  }));
+}
+
+const { entry, foundations, fallacies } = Astro.props;
+const f = entry.data;
+const { Content } = await render(entry);
+
+const total = foundations.length;
+const byId = new Map(fallacies.map((x) => [x.id, x]));
+const seeAlso = f.see_also.map((r) => byId.get(r.id)).filter((x) => Boolean(x));
+const nextEntry = f.next ? foundations.find((x) => x.id === f.next!.id) : undefined;
+---
+
+<Base title={`${f.title_th} — พื้นฐาน`} description={f.one_liner}>
+  <p class="sub" style="margin:0"><a href={url('/')}>กลับหน้ารวม</a></p>
+  <p class="lvl" style="margin:10px 0 0">พื้นฐาน {f.order} จาก {total}</p>
+  <h1>{f.title_th}</h1>
+  {f.title_en && <p class="en" style="margin:0 0 10px">{f.title_en}</p>}
+  <p style="font-size:1.1rem">{f.one_liner}</p>
+
+  <div class="card">
+    <strong>สรุปสั้น</strong>
+    <ul style="margin:8px 0 0">
+      {f.key_points.map((k) => <li>{k}</li>)}
+    </ul>
+  </div>
+
+  <Content />
+
+  {seeAlso.length > 0 && (
+    <>
+      <h2>ตรรกวิบัติที่เกี่ยวข้อง</h2>
+      <ul class="plain">
+        {seeAlso.map((x) => (
+          <li>
+            <a href={url(`fallacy/${x!.id}`)}>{x!.data.name_th}</a>
+            <span class="en"> — {x!.data.one_liner}</span>
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
+
+  {nextEntry ? (
+    <div class="card" style="margin-top:28px">
+      <span class="sub">อ่านต่อ</span>
+      <div style="margin-top:4px">
+        <a href={url(`foundations/${nextEntry.id}`)} style="font-weight:500">
+          {nextEntry.data.title_th}
+        </a>
+      </div>
+      <div class="sub">{nextEntry.data.one_liner}</div>
+    </div>
+  ) : (
+    <div class="card" style="margin-top:28px">
+      <span class="sub">จบส่วนพื้นฐานแล้ว</span>
+      <div style="margin-top:4px">
+        <a href={url('/')} style="font-weight:500">ไปที่คลังตรรกวิบัติ</a>
+      </div>
+    </div>
+  )}
+
+  <h2>อ้างอิง</h2>
+  <ul class="plain">
+    {f.sources.map((s) => (
+      <li>
+        {s.url ? <a href={s.url}>{s.title}</a> : s.title}
+        {s.author && <span class="en"> — {s.author}</span>}
+        {s.locator && <span class="en"> ({s.locator})</span>}
+      </li>
+    ))}
+  </ul>
+  <p class="sub">ปรับปรุงล่าสุด {thDate(f.updated)}</p>
+</Base>

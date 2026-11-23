@@ -65,6 +65,37 @@ const { title, description } = Astro.props;
       h2 { font-size: 1.15rem; font-weight: 600; margin: 36px 0 10px; }
       h3 { font-size: 1rem; font-weight: 600; margin: 24px 0 6px; }
       code, .mono { font-family: ui-monospace, 'Cascadia Code', monospace; font-size: 0.92em; }
+      :not(pre) > code {
+        background: var(--box);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 1px 5px;
+      }
+      pre {
+        background: var(--box) !important;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 14px 16px;
+        overflow-x: auto;
+        line-height: 1.65;
+      }
+      pre code { background: none; border: 0; padding: 0; }
+      @media (prefers-color-scheme: dark) {
+        .astro-code, .astro-code span { color: var(--shiki-dark) !important; }
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 18px 0;
+        font-size: 0.95rem;
+      }
+      th, td {
+        border: 1px solid var(--line);
+        padding: 8px 12px;
+        text-align: left;
+        vertical-align: top;
+      }
+      th { background: var(--box); font-weight: 500; }
       header.site { border-bottom: 1px solid var(--line); background: var(--surface); }
       header.site div { max-width: 760px; margin: 0 auto; padding: 14px 16px; display: flex; gap: 16px; align-items: baseline; }
       header.site strong { font-weight: 600; }

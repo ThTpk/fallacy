@@ -5,6 +5,9 @@ import { CATEGORY_TH, CATEGORY_ORDER, dots, thDate, url } from '../lib/text';
 
 const fallacies = await getCollection('fallacies');
 const cases = await getCollection('cases');
+const foundations = (await getCollection('foundations')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 
 const byCategory = CATEGORY_ORDER.map((c) => ({
   id: c,
@@ -36,6 +39,22 @@ const caseCount = (slug: string) =>
       <a href={url('fallacy/fallacy-fallacy')}>ตรรกวิบัติของการจับตรรกวิบัติ</a> เสียเอง
     </p>
   </div>
+
+  <section>
+    <h2>เริ่มที่นี่ <span class="en">พื้นฐาน {foundations.length} หน้า</span></h2>
+    <p class="sub" style="margin-top:0">
+      อ่านส่วนนี้ก่อนจะได้ประโยชน์จากคลังมากกว่าการไล่อ่านรายชื่อตรรกวิบัติ
+      เพราะเกือบทุกหน้าในคลังอ้างถึงแนวคิดในนี้
+    </p>
+    <ol>
+      {foundations.map((f) => (
+        <li style="margin:8px 0">
+          <a href={url(`foundations/${f.id}`)} style="font-weight:500">{f.data.title_th}</a>
+          <div class="sub">{f.data.one_liner}</div>
+        </li>
+      ))}
+    </ol>
+  </section>
 
   {byCategory.map((g) => (
     <section>
