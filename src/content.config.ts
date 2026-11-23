@@ -1,0 +1,160 @@
+import { defineCollection, reference, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+
+const CATEGORIES = [
+  'formal', 'relevance', 'presumption',
+  'ambiguity', 'causal', 'statistical', 'rhetorical',
+] as const;
+
+const diagram = z.discriminatedUnion('type', [
+  z.object({
+    type: z.literal('alternative-paths'),
+    effect: z.string(),
+    claimed_cause: z.string(),
+    other_causes: z.array(z.string()).min(1),
+  }),
+  z.object({
+    type: z.literal('one-way-arrow'),
+    p: z.string(),
+    q: z.string(),
+  }),
+  z.object({
+    type: z.literal('substitution'),
+    original: z.string(),
+    distorted: z.string(),
+  }),
+  z.object({
+    type: z.literal('spectrum'),
+    pole_a: z.string(),
+    pole_b: z.string(),
+    hidden: z.array(z.string()).min(1),
+  }),
+  z.object({
+    type: z.literal('sample-vs-population'),
+    population: z.string(),
+    observed: z.string(),
+    unobserved: z.string(),
+  }),
+  z.object({
+    type: z.literal('circular'),
+    nodes: z.array(z.string()).min(2),
+  }),
+  z.object({
+    type: z.literal('relevance-gap'),
+    premise: z.string(),
+    conclusion: z.string(),
+    gap_label: z.string(),
+  }),
+  z.object({
+    type: z.literal('sets'),
+    outer: z.string(),
+    inner: z.string(),
+    claim: z.string(),
+  }),
+  z.object({
+    type: z.literal('common-cause'),
+    a: z.string(),
+    b: z.string(),
+    hidden_cause: z.string(),
+  }),
+  z.object({
+    type: z.literal('two-meanings'),
+    word: z.string(),
+    meaning_1: z.string(),
+    meaning_2: z.string(),
+  }),
+]).and(z.object({ caption: z.string().optional() }));
+
+const fallacies = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/fallacies' }),
+  schema: z.object({
+    name_th: z.string(),
+    name_en: z.string(),
+    name_la: z.string().optional(),
+    aliases: z.array(z.string()).default([]),
+    category: z.enum(CATEGORIES),
+    kind: z.enum(['fallacy', 'rhetorical_tactic', 'statistical_error']),
+    difficulty: z.number().int().min(1).max(3),
+    one_liner: z.string().max(120),
+    form: z.string().optional(),
+    why_wrong: z.string(),
+    diagram: diagram.optional(),
+    examples: z.array(z.object({
+      level: z.enum(['clear', 'everyday', 'subtle']),
+      text: z.string(),
+      note: z.string().optional(),
+    })).min(2),
+    not_fallacy: z.array(z.object({
+      text: z.string(),
+      why_ok: z.string(),
+    })).default([]),
+    responses: z.array(z.string()).default([]),
+    confused_with: z.array(reference('fallacies')).default([]),
+    related: z.array(reference('fallacies')).default([]),
+    sources: z.array(z.object({
+      title: z.string(),
+      author: z.string().optional(),
+      url: z.string().url().optional(),
+      locator: z.string().optional(),
+    })).min(1),
+    status: z.enum(['draft', 'review', 'published']),
+    updated: z.coerce.date(),
+  }),
+});
+
+const cases = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/cases' }),
+  schema: z.object({
+    title_th: z.string(),
+    case_kind: z.enum(['statement', 'pattern']),
+    date_of_statement: z.coerce.date(),
+
+    quote: z.string().max(400),
+    quote_lang: z.enum(['th', 'en']).default('th'),
+    quote_is_verbatim: z.literal(true),
+    context: z.string(),
+    speaker_role: z.string(),
+    speaker_name: z.string().optional(),
+
+    source: z.object({
+      outlet: z.string(),
+      headline: z.string(),
+      author: z.string().optional(),
+      url: z.string().url(),
+      archive_url: z.string().url().optional(),
+      published: z.coerce.date(),
+      accessed: z.coerce.date(),
+      medium: z.enum(['news', 'ad', 'social', 'transcript',
+                      'press_release', 'broadcast', 'factcheck', 'legal_filing']),
+    }),
+    corroboration: z.array(z.object({
+      outlet: z.string(),
+      url: z.string().url(),
+    })).default([]),
+    verification_notes: z.string().optional(),
+
+    fallacies: z.array(z.object({
+      slug: reference('fallacies'),
+      analysis: z.string(),
+      confidence: z.enum(['clear', 'arguable']),
+    })).min(1),
+    charitable_reading: z.string(),
+    not_claiming: z.string(),
+
+    domain: z.enum(['health', 'advertising', 'science', 'economy',
+                    'politics', 'law', 'education', 'tech', 'other']),
+    sensitivity: z.enum(['low', 'medium', 'high']),
+    reviewed_by: z.array(z.string()).min(1),
+    status: z.enum(['draft', 'review', 'published', 'retracted']),
+    retraction_note: z.string().optional(),
+    updated: z.coerce.date(),
+  }).refine(
+    (c) => c.status !== 'published' || !!c.source.archive_url,
+    { message: 'published case must have source.archive_url', path: ['source', 'archive_url'] },
+  ).refine(
+    (c) => c.sensitivity !== 'high' || c.reviewed_by.length >= 2,
+    { message: 'high-sensitivity case needs at least 2 reviewers', path: ['reviewed_by'] },
+  ),
+});
+
+export const collections = { fallacies, cases };
