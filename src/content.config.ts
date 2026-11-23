@@ -115,6 +115,17 @@ const diagram = z.discriminatedUnion('type', [
     claimed: z.string(),
     actual: z.string(),
   }),
+  z.object({
+    type: z.literal('chain'),
+    steps: z.array(z.string()).min(3).max(5),
+  }),
+  z.object({
+    type: z.literal('analogy-map'),
+    a: z.string(),
+    b: z.string(),
+    shared: z.array(z.string()).min(1).max(3),
+    differs: z.string(),
+  }),
 ]).and(z.object({ caption: z.string().optional() }));
 
 const fallacies = defineCollection({

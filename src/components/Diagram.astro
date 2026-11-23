@@ -39,6 +39,8 @@ else if (d.type === 'two-strengths') H = 280;
 else if (d.type === 'three-states') H = 210;
 else if (d.type === 'two-layers') H = 300;
 else if (d.type === 'arrow-direction') H = 240;
+else if (d.type === 'chain') H = 60 + d.steps.length * 72 + 30;
+else if (d.type === 'analogy-map') H = 250 + d.shared.length * 38;
 const capY = d.caption ? H + 4 : 0;
 if (d.caption) H += 34;
 
@@ -447,6 +449,66 @@ const mx = { xs: [220, 430], ys: [90, 176], w: 200, h: 72 };
         <text x="525" y="133" text-anchor="middle" font-size={fit(d.b, 190)} fill="var(--text)">{d.b}</text>
         <path d="M422 142 L258 142" fill="none" stroke="var(--ok)" stroke-width="2.2" marker-end="url(#ah)" />
         <text x={W / 2} y="206" text-anchor="middle" font-size="12" fill="var(--ok)">{d.actual}</text>
+      </g>
+    )}
+
+    {d.type === 'chain' && (
+      <g>
+        {d.steps.map((t: string, i: number) => (
+          <g>
+            <rect
+              x="130" y={60 + i * 72} width="420" height="50" rx="9"
+              fill={i === 0 ? 'var(--box)' : 'var(--surface)'}
+              stroke="var(--line)"
+              opacity={1 - i * 0.12}
+            />
+            <text
+              x="340" y={60 + i * 72 + 30} text-anchor="middle"
+              font-size={fit(t, 420)}
+              fill={i === 0 ? 'var(--text)' : 'var(--muted)'}
+            >{t}</text>
+            {i < d.steps.length - 1 && (
+              <line
+                x1="340" y1={60 + i * 72 + 54} x2="340" y2={60 + (i + 1) * 72 - 4}
+                stroke={i === 0 ? 'var(--line)' : 'var(--bad)'}
+                stroke-width="1.5"
+                stroke-dasharray={i === 0 ? undefined : `${6 - i} ${2 + i * 2}`}
+                marker-end="url(#ah)"
+              />
+            )}
+          </g>
+        ))}
+        <text x="570" y={60 + 72 + 20} font-size="11.5" fill="var(--bad)">แต่ละขั้น</text>
+        <text x="570" y={60 + 72 + 36} font-size="11.5" fill="var(--bad)">ไม่แน่นอน</text>
+        <text x="570" y={60 + 72 + 52} font-size="11.5" fill="var(--bad)">และทบกัน</text>
+      </g>
+    )}
+
+    {d.type === 'analogy-map' && (
+      <g>
+        <rect x="60" y="56" width="230" height="54" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x="175" y="88" text-anchor="middle" font-size={fit(d.a, 230)} fill="var(--text)">{d.a}</text>
+        <rect x="390" y="56" width="230" height="54" rx="9" fill="var(--hl-bg)" stroke="var(--hl)" />
+        <text x="505" y="88" text-anchor="middle" font-size={fit(d.b, 230)} fill="var(--text)">{d.b}</text>
+
+        <path d="M175 110 L175 140 L505 140 L505 110" fill="none" stroke="var(--line)" stroke-width="1" />
+        <line x1="340" y1="140" x2="340" y2="160" stroke="var(--line)" stroke-width="1" />
+        <text x="340" y="176" text-anchor="middle" font-size="11.5" fill="var(--muted)">คุณสมบัติที่เทียบกัน</text>
+
+        {d.shared.map((t: string, i: number) => (
+          <g>
+            <circle cx="170" cy={200 + i * 38} r="4" fill="none" stroke="var(--ok)" stroke-width="1.6" />
+            <line x1="180" y1={200 + i * 38} x2="206" y2={200 + i * 38} stroke="var(--ok)" stroke-width="1.4" />
+            <text x="216" y={204 + i * 38} font-size="12.5" fill="var(--text)">{t}</text>
+          </g>
+        ))}
+
+        <circle cx="170" cy={200 + d.shared.length * 38 + 16} r="4" fill="none" stroke="var(--bad)" stroke-width="1.6" />
+        <line
+          x1="180" y1={200 + d.shared.length * 38 + 16} x2="206" y2={200 + d.shared.length * 38 + 16}
+          stroke="var(--bad)" stroke-width="1.4" stroke-dasharray="4 3"
+        />
+        <text x="216" y={204 + d.shared.length * 38 + 16} font-size="12.5" fill="var(--bad)">{d.differs}</text>
       </g>
     )}
 

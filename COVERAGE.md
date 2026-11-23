@@ -15,7 +15,7 @@ Its section 1 is the closest thing to a canonical list. Of the 21 items named
 there, this site currently has 9.
 
 Updated 23 November 2026: the first tier below has since been written, so
-9 of 21 has become 17 of 21. The table records the state at the time of the
+9 of 21 has become 19 of 21; only amphiboly and undistributed middle remain. The table records the state at the time of the
 check.
 
 | SEP core fallacy | here | note |
@@ -80,7 +80,7 @@ draw an arrow pointing the wrong way.
 | two wrongs | `relevance-gap` | very common in online argument |
 | reverse causation | `alternative-paths` | sits beside post hoc and cum hoc |
 
-**Next** — core, but each needs a new diagram type:
+**Next — done, 23 November 2026.** Both are written, with the two new diagram types they needed:
 
 - slippery slope: needs a chain diagram, where each link is weaker than the last
 - faulty analogy: needs a two-column mapping showing which features carry over and which do not
