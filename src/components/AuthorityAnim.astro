@@ -1,0 +1,23 @@
+---
+// Mounted only on /fallacy/appeal-to-authority.
+---
+
+<figure class="anim">
+  <div id="authority-stage"></div>
+  <figcaption>
+    สามเคสสลับกันเอง หรือคลิกเพื่อข้ามไปเคสถัดไป เคสที่ผ่านครบสามด่านไม่ใช่ตรรกวิบัติเลย
+  </figcaption>
+</figure>
+
+<style>
+  .anim { margin: 20px 0; }
+  .anim > div { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; line-height: 0; background: var(--surface); }
+  .anim svg { display: block; width: 100%; height: auto; color: var(--text); }
+  .anim :global(.pp) { fill: var(--surface); }
+  .anim :global(.aa-t) { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
+  .anim figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; line-height: 1.6; }
+</style>
+
+<script>
+  import '../anim/appeal-to-authority.ts';
+</script>

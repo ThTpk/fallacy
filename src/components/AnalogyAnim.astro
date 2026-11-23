@@ -1,0 +1,23 @@
+---
+// Mounted only on /fallacy/faulty-analogy.
+---
+
+<figure class="anim">
+  <div id="analogy-stage"></div>
+  <figcaption>
+    สามแผ่นแรกรับน้ำหนักได้จริง คลิกเพื่อเข็นรถใหม่อีกครั้ง แผ่นที่หายไปคือแผ่นที่ข้อสรุปต้องเหยียบ
+  </figcaption>
+</figure>
+
+<style>
+  .anim { margin: 20px 0; }
+  .anim > div { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; line-height: 0; background: var(--surface); }
+  .anim svg { display: block; width: 100%; height: auto; color: var(--text); }
+  .anim :global(.pp) { fill: var(--surface); }
+  .anim :global(.fa-t) { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
+  .anim figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; line-height: 1.6; }
+</style>
+
+<script>
+  import '../anim/faulty-analogy.ts';
+</script>

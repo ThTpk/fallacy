@@ -15,8 +15,10 @@ export function mdLite(s: string): string {
     .split(/\n{2,}/)
     .map(
       (p) =>
+        // collapse the line breaks first: a **bold** span that wraps across a
+        // line in the YAML would otherwise never match and print its asterisks
         '<p>' +
-        p.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, ' ').trim() +
+        p.replace(/\n/g, ' ').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').trim() +
         '</p>',
     )
     .join('');
