@@ -1,0 +1,1 @@
+const o=(t,i,n)=>Math.max(i,Math.min(n,t)),r=(t,i,n)=>{const s=o((n-t)/(i-t),0,1);return s*s*(3-2*s)},a=t=>r(0,1,t);function c(t=40,i=6,n=0){return{x:n,v:0,step(s,h){return this.v+=(t*(s-this.x)-i*this.v)*h,this.x+=this.v*h,this.x},kick(s){this.v+=s}}}export{a as e,c as s};

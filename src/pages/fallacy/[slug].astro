@@ -7,6 +7,9 @@ import BandwagonAnim from '../../components/BandwagonAnim.astro';
 import StrawManAnim from '../../components/StrawManAnim.astro';
 import SurvivorshipAnim from '../../components/SurvivorshipAnim.astro';
 import SlipperySlopeAnim from '../../components/SlipperySlopeAnim.astro';
+import FalseDilemmaAnim from '../../components/FalseDilemmaAnim.astro';
+import CumHocAnim from '../../components/CumHocAnim.astro';
+import IgnoranceAnim from '../../components/IgnoranceAnim.astro';
 import { mdLite, CATEGORY_TH, KIND_TH, LEVEL_TH, dots, thDate, url } from '../../lib/text';
 
 export async function getStaticPaths() {
@@ -56,6 +59,9 @@ const examples = [...d.examples].sort((a, b) => order[a.level] - order[b.level])
   {entry.id === 'straw-man' && <StrawManAnim />}
   {entry.id === 'survivorship-bias' && <SurvivorshipAnim />}
   {entry.id === 'slippery-slope' && <SlipperySlopeAnim />}
+  {entry.id === 'false-dilemma' && <FalseDilemmaAnim />}
+  {entry.id === 'cum-hoc' && <CumHocAnim />}
+  {entry.id === 'appeal-to-ignorance' && <IgnoranceAnim />}
 
   <h2>ทำไมมันผิด</h2>
   <div set:html={mdLite(d.why_wrong)} />
