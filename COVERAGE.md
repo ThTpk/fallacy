@@ -14,6 +14,10 @@ It is still the best single check on whether this site has holes.
 Its section 1 is the closest thing to a canonical list. Of the 21 items named
 there, this site currently has 9.
 
+Updated 23 November 2026: the first tier below has since been written, so
+9 of 21 has become 17 of 21. The table records the state at the time of the
+check.
+
 | SEP core fallacy | here | note |
 |---|---|---|
 | equivocation | yes | |
@@ -59,8 +63,11 @@ in advertising and online debate, which is what this site is for. They stay.
 
 ## Suggested order of work
 
-**First** — in SEP's core list, common in Thai media, and each reuses a
-diagram type that already exists:
+**First — done, 23 November 2026.** All eight are written and live. Two
+component changes were needed that this plan did not anticipate: the `sets`
+renderer had a no-true-Scotsman caption hardcoded into it, and reverse
+causation needed a new `arrow-direction` type because no existing type could
+draw an arrow pointing the wrong way.
 
 | entry | diagram type | why it matters here |
 |---|---|---|
@@ -73,12 +80,12 @@ diagram type that already exists:
 | two wrongs | `relevance-gap` | very common in online argument |
 | reverse causation | `alternative-paths` | sits beside post hoc and cum hoc |
 
-**Second** — core, but each needs a new diagram type:
+**Next** — core, but each needs a new diagram type:
 
 - slippery slope: needs a chain diagram, where each link is weaker than the last
 - faulty analogy: needs a two-column mapping showing which features carry over and which do not
 
-**Third** — complete the formal category, which currently has only two
+**After that** — complete the formal category, which currently has only two
 entries: undistributed middle, illicit major, fallacy of four terms.
 
 **Probably skip** — amphiboly, accent, form of expression, combination and
