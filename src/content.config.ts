@@ -63,6 +63,49 @@ const diagram = z.discriminatedUnion('type', [
     meaning_1: z.string(),
     meaning_2: z.string(),
   }),
+  // --- types used by the foundation pages: these explain a concept rather
+  // --- than showing where a particular argument breaks
+  z.object({
+    type: z.literal('two-failure-points'),
+    premise: z.string(),
+    conclusion: z.string(),
+    data_error: z.string(),
+    reasoning_error: z.string(),
+  }),
+  z.object({
+    type: z.literal('argument-structure'),
+    premises: z.array(z.string()).min(1).max(3),
+    conclusion: z.string(),
+    hidden_premise: z.string().optional(),
+  }),
+  z.object({
+    type: z.literal('matrix-2x2'),
+    col_labels: z.tuple([z.string(), z.string()]),
+    row_labels: z.tuple([z.string(), z.string()]),
+    cells: z.tuple([z.string(), z.string(), z.string(), z.string()]),
+    highlight: z.number().int().min(0).max(3),
+  }),
+  z.object({
+    type: z.literal('two-strengths'),
+    a_from: z.string(),
+    a_to: z.string(),
+    a_label: z.string(),
+    b_from: z.string(),
+    b_to: z.string(),
+    b_label: z.string(),
+  }),
+  z.object({
+    type: z.literal('three-states'),
+    states: z.tuple([z.string(), z.string(), z.string()]),
+    highlight: z.number().int().min(0).max(2),
+  }),
+  z.object({
+    type: z.literal('two-layers'),
+    lower: z.string(),
+    lower_note: z.string(),
+    upper: z.string(),
+    upper_note: z.string(),
+  }),
 ]).and(z.object({ caption: z.string().optional() }));
 
 const fallacies = defineCollection({
@@ -163,6 +206,7 @@ const foundations = defineCollection({
     one_liner: z.string().max(160),
     // the two or three things a reader should leave with
     key_points: z.array(z.string()).min(2),
+    diagram: diagram.optional(),
     see_also: z.array(reference('fallacies')).default([]),
     next: reference('foundations').optional(),
     sources: z.array(z.object({

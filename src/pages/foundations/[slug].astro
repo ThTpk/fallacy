@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Diagram from '../../components/Diagram.astro';
 import { thDate, url } from '../../lib/text';
 
 export async function getStaticPaths() {
@@ -35,6 +36,8 @@ const nextEntry = f.next ? foundations.find((x) => x.id === f.next!.id) : undefi
       {f.key_points.map((k) => <li>{k}</li>)}
     </ul>
   </div>
+
+  {f.diagram && <Diagram d={f.diagram} />}
 
   <Content />
 

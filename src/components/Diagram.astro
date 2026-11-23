@@ -31,6 +31,13 @@ else if (d.type === 'circular') H = 76 + d.nodes.length * 86;
 else if (d.type === 'sets') H = 290;
 else if (d.type === 'common-cause') H = 300;
 else if (d.type === 'two-meanings') H = 270;
+else if (d.type === 'two-failure-points') H = 270;
+else if (d.type === 'argument-structure')
+  H = 106 + (d.premises.length + (d.hidden_premise ? 1 : 0)) * 62;
+else if (d.type === 'matrix-2x2') H = 300;
+else if (d.type === 'two-strengths') H = 280;
+else if (d.type === 'three-states') H = 210;
+else if (d.type === 'two-layers') H = 300;
 const capY = d.caption ? H + 4 : 0;
 if (d.caption) H += 34;
 
@@ -60,6 +67,21 @@ if (d.type === 'spectrum') {
     ticks: hid.map((_, i) => x0 + ((i + 1) * (x1 - x0)) / (hid.length + 1)),
   };
 }
+let ast: any = null;
+if (d.type === 'argument-structure') {
+  const all = [...d.premises, ...(d.hidden_premise ? [d.hidden_premise] : [])];
+  const y0 = 70, step = 62;
+  ast = {
+    all,
+    y0,
+    step,
+    hiddenIdx: d.hidden_premise ? all.length - 1 : -1,
+    cy: y0 + (all.length * step - 12) / 2,
+  };
+}
+let st3: any = null;
+if (d.type === 'three-states') st3 = row(3, 190, 18);
+const mx = { xs: [220, 430], ys: [90, 176], w: 200, h: 72 };
 ---
 
 <figure>
@@ -276,6 +298,134 @@ if (d.type === 'spectrum') {
         <text x={tm.xs[1] + tm.w / 2} y={tm.y + 24} text-anchor="middle" font-size="11.5" fill="var(--muted)">ความหมายในข้อสรุป</text>
         <text x={tm.xs[1] + tm.w / 2} y={tm.y + 46} text-anchor="middle" font-size={fit(d.meaning_2, tm.w)} fill="var(--text)">{d.meaning_2}</text>
 
+      </g>
+    )}
+
+    {d.type === 'two-failure-points' && (
+      <g>
+        <rect x="60" y="70" width="240" height="58" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x="180" y="92" text-anchor="middle" font-size="11.5" fill="var(--muted)">ข้ออ้าง</text>
+        <text x="180" y="114" text-anchor="middle" font-size={fit(d.premise, 240)} fill="var(--text)">{d.premise}</text>
+        <line x1="312" y1="99" x2="388" y2="99" stroke="var(--line)" stroke-width="1.6" marker-end="url(#ah)" />
+        <rect x="400" y="70" width="240" height="58" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x="520" y="92" text-anchor="middle" font-size="11.5" fill="var(--muted)">ข้อสรุป</text>
+        <text x="520" y="114" text-anchor="middle" font-size={fit(d.conclusion, 240)} fill="var(--text)">{d.conclusion}</text>
+
+        <line x1="180" y1="132" x2="180" y2="174" stroke="var(--hl)" stroke-width="0.8" stroke-dasharray="3 3" />
+        <text x="180" y="194" text-anchor="middle" font-size="12.5" fill="var(--hl)">{d.data_error}</text>
+        <text x="180" y="212" text-anchor="middle" font-size="11.5" fill="var(--muted)">ไม่ใช่ตรรกวิบัติ</text>
+
+        <line x1="350" y1="110" x2="350" y2="222" stroke="var(--bad)" stroke-width="0.8" stroke-dasharray="3 3" />
+        <text x="350" y="242" text-anchor="middle" font-size="12.5" fill="var(--bad)">{d.reasoning_error}</text>
+      </g>
+    )}
+
+    {d.type === 'argument-structure' && ast && (
+      <g>
+        <text x="60" y="52" font-size="11.5" fill="var(--muted)">ข้ออ้าง</text>
+        <text x="430" y="52" font-size="11.5" fill="var(--muted)">ข้อสรุป</text>
+        {ast.all.map((t: string, i: number) => (
+          <g>
+            <rect
+              x="60" y={ast.y0 + i * ast.step} width="300" height="50" rx="9"
+              fill={i === ast.hiddenIdx ? 'none' : 'var(--box)'}
+              stroke={i === ast.hiddenIdx ? 'var(--hl)' : 'var(--line)'}
+              stroke-dasharray={i === ast.hiddenIdx ? '5 4' : undefined}
+            />
+            <text
+              x="210" y={ast.y0 + i * ast.step + 30} text-anchor="middle"
+              font-size={fit(t, 300)}
+              fill={i === ast.hiddenIdx ? 'var(--hl)' : 'var(--text)'}
+            >{t}</text>
+            <line
+              x1="368" y1={ast.y0 + i * ast.step + 25} x2="422" y2={ast.cy}
+              stroke={i === ast.hiddenIdx ? 'var(--hl)' : 'var(--line)'}
+              stroke-width="1.4" stroke-dasharray={i === ast.hiddenIdx ? '5 4' : undefined}
+              marker-end="url(#ah)"
+            />
+          </g>
+        ))}
+        <rect x="430" y={ast.cy - 29} width="190" height="58" rx="9" fill="var(--hl-bg)" stroke="var(--hl)" />
+        <text x="525" y={ast.cy + 5} text-anchor="middle" font-size={fit(d.conclusion, 190)} fill="var(--text)">{d.conclusion}</text>
+        {d.hidden_premise && (
+          <text x="60" y={ast.y0 + ast.all.length * ast.step + 16} font-size="12" fill="var(--hl)">
+            กรอบเส้นประคือข้ออ้างที่ไม่ได้พูดออกมา
+          </text>
+        )}
+      </g>
+    )}
+
+    {d.type === 'matrix-2x2' && (
+      <g>
+        <text x={mx.xs[0] + mx.w / 2} y="70" text-anchor="middle" font-size="12.5" fill="var(--muted)">{d.col_labels[0]}</text>
+        <text x={mx.xs[1] + mx.w / 2} y="70" text-anchor="middle" font-size="12.5" fill="var(--muted)">{d.col_labels[1]}</text>
+        <text x="206" y={mx.ys[0] + 42} text-anchor="end" font-size="12.5" fill="var(--muted)">{d.row_labels[0]}</text>
+        <text x="206" y={mx.ys[1] + 42} text-anchor="end" font-size="12.5" fill="var(--muted)">{d.row_labels[1]}</text>
+        {[0, 1, 2, 3].map((i) => (
+          <g>
+            <rect
+              x={mx.xs[i % 2]} y={mx.ys[Math.floor(i / 2)]} width={mx.w} height={mx.h} rx="8"
+              fill={i === d.highlight ? 'var(--hl-bg)' : 'var(--box)'}
+              stroke={i === d.highlight ? 'var(--hl)' : 'var(--line)'}
+            />
+            <text
+              x={mx.xs[i % 2] + mx.w / 2} y={mx.ys[Math.floor(i / 2)] + mx.h / 2 + 5}
+              text-anchor="middle" font-size={fit(d.cells[i], mx.w)}
+              fill={i === d.highlight ? 'var(--text)' : 'var(--muted)'}
+            >{d.cells[i]}</text>
+          </g>
+        ))}
+      </g>
+    )}
+
+    {d.type === 'two-strengths' && (
+      <g>
+        <rect x="60" y="70" width="200" height="54" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x="160" y="102" text-anchor="middle" font-size={fit(d.a_from, 200)} fill="var(--text)">{d.a_from}</text>
+        <text x="330" y="58" text-anchor="middle" font-size="12" fill="var(--ok)">{d.a_label}</text>
+        <line x1="272" y1="97" x2="388" y2="97" stroke="var(--ok)" stroke-width="2.4" marker-end="url(#ah)" />
+        <rect x="400" y="70" width="200" height="54" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x="500" y="102" text-anchor="middle" font-size={fit(d.a_to, 200)} fill="var(--text)">{d.a_to}</text>
+
+        <rect x="60" y="180" width="200" height="54" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x="160" y="212" text-anchor="middle" font-size={fit(d.b_from, 200)} fill="var(--text)">{d.b_from}</text>
+        <text x="330" y="168" text-anchor="middle" font-size="12" fill="var(--muted)">{d.b_label}</text>
+        <path d="M272 207 L388 207" fill="none" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#ah)" />
+        <rect x="400" y="180" width="200" height="54" rx="9" fill="var(--box)" stroke="var(--line)" stroke-dasharray="4 4" />
+        <text x="500" y="212" text-anchor="middle" font-size={fit(d.b_to, 200)} fill="var(--text)">{d.b_to}</text>
+      </g>
+    )}
+
+    {d.type === 'three-states' && st3 && (
+      <g>
+        {d.states.map((t: string, i: number) => (
+          <g>
+            <rect
+              x={st3.xs[i]} y="80" width={st3.w} height="62" rx="9"
+              fill={i === d.highlight ? 'var(--hl-bg)' : 'var(--box)'}
+              stroke={i === d.highlight ? 'var(--hl)' : 'var(--line)'}
+            />
+            <text
+              x={st3.xs[i] + st3.w / 2} y="117" text-anchor="middle"
+              font-size={fit(t, st3.w)}
+              fill={i === d.highlight ? 'var(--text)' : 'var(--muted)'}
+            >{t}</text>
+          </g>
+        ))}
+      </g>
+    )}
+
+    {d.type === 'two-layers' && (
+      <g>
+        <rect x="90" y="50" width="500" height="84" rx="14" fill="var(--box)" stroke="var(--line)" />
+        <text x="340" y="84" text-anchor="middle" font-size="14" fill="var(--text)" font-weight="500">{d.upper}</text>
+        <text x="340" y="106" text-anchor="middle" font-size="11.5" fill="var(--muted)">{d.upper_note}</text>
+
+        <line x1="340" y1="162" x2="340" y2="142" stroke="var(--line)" stroke-width="1.6" marker-end="url(#ah)" />
+
+        <rect x="90" y="170" width="500" height="84" rx="14" fill="none" stroke="var(--line)" stroke-dasharray="5 4" />
+        <text x="340" y="204" text-anchor="middle" font-size="14" fill="var(--text)" font-weight="500">{d.lower}</text>
+        <text x="340" y="226" text-anchor="middle" font-size="11.5" fill="var(--muted)">{d.lower_note}</text>
       </g>
     )}
 
