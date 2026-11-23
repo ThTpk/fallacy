@@ -14,11 +14,14 @@ source:
   outlet: U.S. Federal Trade Commission
   headline: "FTC Takes Action to Stop Direct Mail Pill Marketers' Unproven Health Claims"
   url: "https://www.ftc.gov/news-events/press-releases/2020/04/ftc-takes-action-stop-direct-mail-pill-marketers-unproven-health"
+  archive_url: "http://web.archive.org/web/20200427072403/https://www.ftc.gov/news-events/press-releases/2020/04/ftc-takes-action-stop-direct-mail-pill-marketers-unproven-health"
   published: 2020-04-20
   accessed: 2026-11-23
   medium: press_release
 verification_notes: >
-  ยังไม่พบสำเนาใน Wayback Machine (คำขอตรวจหมดเวลา) ต้องสั่งเก็บก่อนเปลี่ยนสถานะเป็น published
+  สำเนาที่ใช้อ้างอิงคือ snapshot ของ Wayback Machine วันที่ 27 เมษายน 2020
+  ซึ่งเป็นสำเนาที่ใกล้วันเผยแพร่มากที่สุด และตรวจแล้วเปิดได้ (HTTP 200)
+  มีสำเนาอื่นอีกหลายชุด ชุดถัดไปคือ 29 เมษายน 2020
   ข่าวเผยแพร่ไม่ได้ระบุชื่อ ตำแหน่ง หรือข้อความของ "แพทย์" และ "ผู้ใช้" ที่ถูกกล่าวหาว่าเป็นของปลอม
   รายละเอียดเหล่านั้นต้องไปดูในคำฟ้อง ซึ่งยังไม่ได้อ่าน
   คำสั่งศาลตามหน้าข่าวคือคำพิพากษากว่า 38.1 ล้านดอลลาร์ ระงับบางส่วนตามความสามารถในการชำระ
@@ -47,6 +50,6 @@ not_claiming: >
 domain: health
 sensitivity: low
 reviewed_by: [thanunchai]
-status: draft
+status: review
 updated: 2026-11-23
 ---
