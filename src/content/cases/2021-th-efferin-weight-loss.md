@@ -15,7 +15,6 @@ source:
   outlet: ผู้จัดการออนไลน์ (MGR Online)
   headline: "ข่าวปลอม! ผลิตภัณฑ์ Efferin ช่วยลดน้ำหนักส่วนเกินได้"
   url: "https://mgronline.com/factcheck/detail/9640000057880"
-  archive_url: "http://web.archive.org/web/20210730132959/https://mgronline.com/factcheck/detail/9640000057880"
   published: 2021-06-15
   accessed: 2026-11-23
   medium: factcheck

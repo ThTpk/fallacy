@@ -14,7 +14,6 @@ source:
   outlet: U.S. Federal Trade Commission
   headline: "FTC Takes Action Against TruHeight for Deceptive and Unsubstantiated Advertising of Supposed Height-Enhancing Supplements for Kids and Teens"
   url: "https://www.ftc.gov/news-events/news/press-releases/2026/04/ftc-takes-action-against-truheight-deceptive-unsubstantiated-advertising-supposed-height-enhancing"
-  archive_url: "http://web.archive.org/web/20261018230543/https://www.ftc.gov/news-events/news/press-releases/2026/04/ftc-takes-action-against-truheight-deceptive-unsubstantiated-advertising-supposed-height-enhancing"
   published: 2026-04-13
   accessed: 2026-11-23
   medium: press_release

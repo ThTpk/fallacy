@@ -17,7 +17,6 @@ source:
   outlet: ไทยพีบีเอส (Thai PBS News)
   headline: "อย.เตือนดารา-อินฟลูฯ-แพทย์ อย่ารีวิวอาหารเสริมอ้างรักษาโรค"
   url: "https://www.thaipbs.or.th/news/content/338550"
-  archive_url: "http://web.archive.org/web/20260315204506/https://www.thaipbs.or.th/news/content/338550"
   published: 2024-03-29
   accessed: 2026-11-23
   medium: news

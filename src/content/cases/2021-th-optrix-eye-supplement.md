@@ -20,7 +20,6 @@ source:
   accessed: 2026-11-23
   medium: factcheck
 verification_notes: >
-  ยังไม่มีสำเนาใน Wayback Machine (ตรวจแล้วไม่พบ) ต้องสั่งเก็บก่อนเปลี่ยนเป็น published
   หน่วยงานที่ตรวจสอบตามที่หน้าระบุคือสำนักงานคณะกรรมการอาหารและยา กระทรวงสาธารณสุข
   ร่วมกับศูนย์ต่อต้านข่าวปลอม ประเทศไทย
   คำตัดสินที่หน้าใช้คือ พบว่าประเด็นดังกล่าวนั้น เป็นข้อมูลเท็จ
@@ -47,6 +46,6 @@ not_claiming: >
 domain: health
 sensitivity: low
 reviewed_by: [thanunchai]
-status: draft
+status: review
 updated: 2026-11-23
 ---

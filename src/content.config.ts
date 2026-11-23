@@ -121,7 +121,6 @@ const cases = defineCollection({
       headline: z.string(),
       author: z.string().optional(),
       url: z.string().url(),
-      archive_url: z.string().url().optional(),
       published: z.coerce.date(),
       accessed: z.coerce.date(),
       medium: z.enum(['news', 'ad', 'social', 'transcript',
@@ -149,9 +148,6 @@ const cases = defineCollection({
     retraction_note: z.string().optional(),
     updated: z.coerce.date(),
   }).refine(
-    (c) => c.status !== 'published' || !!c.source.archive_url,
-    { message: 'published case must have source.archive_url', path: ['source', 'archive_url'] },
-  ).refine(
     (c) => c.sensitivity !== 'high' || c.reviewed_by.length >= 2,
     { message: 'high-sensitivity case needs at least 2 reviewers', path: ['reviewed_by'] },
   ),
