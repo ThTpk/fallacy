@@ -1,0 +1,30 @@
+---
+// Mounted only on /fallacy/survivorship-bias.
+---
+
+<figure class="anim">
+  <div id="survivorship-stage"></div>
+  <figcaption>
+    ลำที่ไม่ได้กลับมาจะปรากฏเองทุกรอบ หรือคลิกเพื่อเรียกขึ้นมาเลยก็ได้
+    ข้อมูลที่เรามีคือลำที่กลับมาเท่านั้น และตรงที่มันไม่มีรอย คือตรงที่ทำให้อีกกลุ่มไม่ได้กลับ
+  </figcaption>
+</figure>
+
+<style>
+  .anim { margin: 20px 0; }
+  .anim > div {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    line-height: 0;
+    background: var(--surface);
+  }
+  .anim svg { display: block; width: 100%; height: auto; color: var(--text); }
+  .anim :global(.pp) { fill: var(--surface); }
+  .anim :global(.sv-t) { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
+  .anim figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; line-height: 1.6; }
+</style>
+
+<script>
+  import '../anim/survivorship-bias.ts';
+</script>
