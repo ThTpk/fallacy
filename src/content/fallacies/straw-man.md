@@ -51,6 +51,7 @@ responses:
   - คุณสรุปจุดยืนผมว่าอะไร ผมจะยืนยันให้ว่าตรงหรือไม่
 confused_with:
   - ad-hominem
+  - ignoratio-elenchi
 related:
   - fallacy-fallacy
   - equivocation

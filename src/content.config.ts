@@ -49,6 +49,8 @@ const diagram = z.discriminatedUnion('type', [
     type: z.literal('sets'),
     outer: z.string(),
     inner: z.string(),
+    // only for the no-true-Scotsman shape, where the inner boundary is moved
+    inner_note: z.string().optional(),
     claim: z.string(),
   }),
   z.object({
@@ -105,6 +107,13 @@ const diagram = z.discriminatedUnion('type', [
     lower_note: z.string(),
     upper: z.string(),
     upper_note: z.string(),
+  }),
+  z.object({
+    type: z.literal('arrow-direction'),
+    a: z.string(),
+    b: z.string(),
+    claimed: z.string(),
+    actual: z.string(),
   }),
 ]).and(z.object({ caption: z.string().optional() }));
 

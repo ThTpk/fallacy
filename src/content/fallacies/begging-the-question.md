@@ -56,6 +56,7 @@ responses:
   - ถ้าตัดข้อสรุปออกจากข้ออ้าง เหลืออะไรให้พิสูจน์
 confused_with:
   - no-true-scotsman
+  - loaded-question
 related:
   - appeal-to-ignorance
 sources:

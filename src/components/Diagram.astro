@@ -38,6 +38,7 @@ else if (d.type === 'matrix-2x2') H = 300;
 else if (d.type === 'two-strengths') H = 280;
 else if (d.type === 'three-states') H = 210;
 else if (d.type === 'two-layers') H = 300;
+else if (d.type === 'arrow-direction') H = 240;
 const capY = d.caption ? H + 4 : 0;
 if (d.caption) H += 34;
 
@@ -257,9 +258,16 @@ const mx = { xs: [220, 430], ys: [90, 176], w: 200, h: 72 };
         <rect x="90" y="60" width="500" height="170" rx="14" fill="var(--box)" stroke="var(--line)" stroke-dasharray="5 4" />
         <text x="110" y="86" font-size="12.5" fill="var(--muted)">{d.outer}</text>
         <rect x="150" y="106" width="300" height="100" rx="12" fill="var(--hl-bg)" stroke="var(--hl)" />
-        <text x="300" y="150" text-anchor="middle" font-size={fit(d.inner, 300)} fill="var(--text)" font-weight="500">{d.inner}</text>
-        <text x="300" y="176" text-anchor="middle" font-size="11.5" fill="var(--muted)">ขอบวงนี้ถูกขยับได้</text>
-        <path d="M462 156 L540 156" fill="none" stroke="var(--bad)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)" />
+        <text
+          x="300" y={d.inner_note ? 150 : 162} text-anchor="middle"
+          font-size={fit(d.inner, 300)} fill="var(--text)" font-weight="500"
+        >{d.inner}</text>
+        {d.inner_note && (
+          <g>
+            <text x="300" y="176" text-anchor="middle" font-size="11.5" fill="var(--muted)">{d.inner_note}</text>
+            <path d="M462 156 L540 156" fill="none" stroke="var(--bad)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)" />
+          </g>
+        )}
         <text x="90" y="256" font-size="12.5" fill="var(--text)">ข้ออ้าง {d.claim}</text>
       </g>
     )}
@@ -426,6 +434,19 @@ const mx = { xs: [220, 430], ys: [90, 176], w: 200, h: 72 };
         <rect x="90" y="170" width="500" height="84" rx="14" fill="none" stroke="var(--line)" stroke-dasharray="5 4" />
         <text x="340" y="204" text-anchor="middle" font-size="14" fill="var(--text)" font-weight="500">{d.lower}</text>
         <text x="340" y="226" text-anchor="middle" font-size="11.5" fill="var(--muted)">{d.lower_note}</text>
+      </g>
+    )}
+
+    {d.type === 'arrow-direction' && (
+      <g>
+        <text x={W / 2} y="62" text-anchor="middle" font-size="12" fill="var(--bad)">{d.claimed}</text>
+        <path d="M258 118 L422 118" fill="none" stroke="var(--bad)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)" />
+        <rect x="60" y="100" width="190" height="56" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x="155" y="133" text-anchor="middle" font-size={fit(d.a, 190)} fill="var(--text)">{d.a}</text>
+        <rect x="430" y="100" width="190" height="56" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x="525" y="133" text-anchor="middle" font-size={fit(d.b, 190)} fill="var(--text)">{d.b}</text>
+        <path d="M422 142 L258 142" fill="none" stroke="var(--ok)" stroke-width="2.2" marker-end="url(#ah)" />
+        <text x={W / 2} y="206" text-anchor="middle" font-size="12" fill="var(--ok)">{d.actual}</text>
       </g>
     )}
 

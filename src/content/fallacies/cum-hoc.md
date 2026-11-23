@@ -55,6 +55,7 @@ responses:
   - ข้อมูลนี้มาจากการทดลองที่สุ่มแบ่งกลุ่ม หรือจากการสังเกต
 confused_with:
   - post-hoc
+  - reverse-causation
 related:
   - hasty-generalization
   - survivorship-bias

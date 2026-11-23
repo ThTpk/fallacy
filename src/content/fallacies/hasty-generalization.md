@@ -64,6 +64,7 @@ responses:
 confused_with:
   - bandwagon
   - survivorship-bias
+  - accident
 related:
   - appeal-to-authority
 sources:
