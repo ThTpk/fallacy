@@ -24,6 +24,11 @@ import AuthorityAnim from '../../components/AuthorityAnim.astro';
 import FallacyFallacyAnim from '../../components/FallacyFallacyAnim.astro';
 import AmphibolyAnim from '../../components/AmphibolyAnim.astro';
 import MiddleAnim from '../../components/MiddleAnim.astro';
+import GallopAnim from '../../components/GallopAnim.astro';
+import MotteAnim from '../../components/MotteAnim.astro';
+import GoalpostsAnim from '../../components/GoalpostsAnim.astro';
+import WellAnim from '../../components/WellAnim.astro';
+import WhataboutAnim from '../../components/WhataboutAnim.astro';
 import { mdLite, CATEGORY_TH, KIND_TH, LEVEL_TH, dots, thDate, url } from '../../lib/text';
 
 export async function getStaticPaths() {
@@ -91,6 +96,11 @@ const examples = [...d.examples].sort((a, b) => order[a.level] - order[b.level])
   {entry.id === 'fallacy-fallacy' && <FallacyFallacyAnim />}
   {entry.id === 'amphiboly' && <AmphibolyAnim />}
   {entry.id === 'undistributed-middle' && <MiddleAnim />}
+  {entry.id === 'gish-gallop' && <GallopAnim />}
+  {entry.id === 'motte-and-bailey' && <MotteAnim />}
+  {entry.id === 'moving-the-goalposts' && <GoalpostsAnim />}
+  {entry.id === 'poisoning-the-well' && <WellAnim />}
+  {entry.id === 'whataboutism' && <WhataboutAnim />}
 
   <h2>ทำไมมันผิด</h2>
   <div set:html={mdLite(d.why_wrong)} />
