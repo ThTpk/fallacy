@@ -66,6 +66,7 @@ export const MEDIUM_TH: Record<string, string> = {
   factcheck: 'การตรวจสอบข้อเท็จจริง',
   legal_filing: 'เอกสารคดี',
   guidance: 'เอกสารแนวปฏิบัติ',
+  ruling: 'คำวินิจฉัย',
 };
 
 export const DOMAIN_TH: Record<string, string> = {

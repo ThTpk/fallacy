@@ -230,8 +230,12 @@ const cases = defineCollection({
       // publishes to explain a practice or set expectations. It is not news,
       // not a press release, and not a fact-check, and two cases wanted it
       // before it existed.
+      // 'ruling' is a decision on a specific complaint - a press council
+      // adjudication, an ASA ruling, a regulator's order. 'legal_filing' is
+      // what the parties submit; this is what the body decides.
       medium: z.enum(['news', 'ad', 'social', 'transcript', 'press_release',
-                      'broadcast', 'factcheck', 'legal_filing', 'guidance']),
+                      'broadcast', 'factcheck', 'legal_filing', 'guidance',
+                      'ruling']),
     }),
     corroboration: z.array(z.object({
       outlet: z.string(),
