@@ -52,6 +52,7 @@ responses:
   - ถ้านับคนที่ล้มเหลวด้วย สัดส่วนจะเปลี่ยนไหม
 confused_with:
   - hasty-generalization
+  - self-selection
 related:
   - post-hoc
   - cum-hoc

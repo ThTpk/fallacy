@@ -136,6 +136,15 @@ const diagram = z.discriminatedUnion('type', [
     type: z.literal('chain'),
     steps: z.array(z.string()).min(3).max(5),
   }),
+  // a run of readings over time, with the moment something was done to them
+  z.object({
+    type: z.literal('swing'),
+    series: z.array(z.number()).min(5).max(14),
+    mark_at: z.number().int().min(0),
+    mark_label: z.string(),
+    mean_label: z.string(),
+    axis_label: z.string(),
+  }),
   // many weak claims at once: the count is the move, so the count is drawn
   z.object({
     type: z.literal('flood'),

@@ -65,6 +65,7 @@ confused_with:
   - bandwagon
   - survivorship-bias
   - accident
+  - texas-sharpshooter
 related:
   - appeal-to-authority
 sources:

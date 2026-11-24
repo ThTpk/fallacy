@@ -57,6 +57,7 @@ responses:
 confused_with:
   - cum-hoc
   - affirming-the-consequent
+  - regression-to-the-mean
 related:
   - survivorship-bias
 sources:
