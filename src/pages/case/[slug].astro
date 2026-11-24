@@ -1,7 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { MEDIUM_TH, thDate, url } from '../../lib/text';
+import {
+  CASE_STATUS_TH,
+  DOMAIN_TH,
+  MEDIUM_TH,
+  SENSITIVITY_TH,
+  thDate,
+  url,
+} from '../../lib/text';
 
 export async function getStaticPaths() {
   const cases = await getCollection('cases');
@@ -21,9 +28,9 @@ const byId = new Map(fallacies.map((f) => [f.id, f]));
   <p class="sub" style="margin:0"><a href={url('/')}>กลับหน้ารวม</a></p>
   <h1>{c.title_th}</h1>
   <p>
-    <span class="tag">{c.case_kind === 'pattern' ? 'รูปแบบที่หน่วยงานรายงาน' : 'คำพูดเฉพาะ'}</span>
+    <span class="tag">{c.case_kind === 'pattern' ? 'รูปแบบที่แหล่งข่าวรายงาน' : 'คำพูดเฉพาะ'}</span>
     <span class="tag">{MEDIUM_TH[c.source.medium]}</span>
-    <span class="tag">สถานะ {c.status}</span>
+    <span class="tag">สถานะ {CASE_STATUS_TH[c.status]}</span>
   </p>
 
   {c.status === 'retracted' && c.retraction_note && (
@@ -98,7 +105,8 @@ const byId = new Map(fallacies.map((f) => [f.id, f]));
   )}
 
   <p class="sub">
-    หมวด {c.domain} · ระดับความละเอียดอ่อน {c.sensitivity} · ตรวจโดย {c.reviewed_by.join(', ')} ·
+    หมวด {DOMAIN_TH[c.domain]} · ระดับความละเอียดอ่อน {SENSITIVITY_TH[c.sensitivity]} ·
+    ตรวจโดย {c.reviewed_by.join(', ')} ·
     ปรับปรุงล่าสุด {thDate(c.updated)}
   </p>
 </Base>

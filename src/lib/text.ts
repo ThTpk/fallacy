@@ -67,6 +67,31 @@ export const MEDIUM_TH: Record<string, string> = {
   legal_filing: 'เอกสารคดี',
 };
 
+export const DOMAIN_TH: Record<string, string> = {
+  health: 'สุขภาพ',
+  advertising: 'โฆษณา',
+  science: 'วิทยาศาสตร์',
+  economy: 'เศรษฐกิจและการเงิน',
+  politics: 'การเมือง',
+  law: 'กฎหมายและอาชญากรรม',
+  education: 'การศึกษา',
+  tech: 'เทคโนโลยี',
+  other: 'อื่น ๆ',
+};
+
+export const SENSITIVITY_TH: Record<string, string> = {
+  low: 'ต่ำ',
+  medium: 'ปานกลาง',
+  high: 'สูง',
+};
+
+export const CASE_STATUS_TH: Record<string, string> = {
+  draft: 'ฉบับร่าง',
+  review: 'รอตรวจทาน',
+  published: 'เผยแพร่แล้ว',
+  retracted: 'ถอนแล้ว',
+};
+
 export const dots = (n: number) => '●'.repeat(n) + '○'.repeat(3 - n);
 
 export const thDate = (d: Date) =>
