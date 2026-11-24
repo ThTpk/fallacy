@@ -1,0 +1,23 @@
+---
+// Mounted only on /fallacy/undistributed-middle.
+---
+
+<figure class="anim">
+  <div id="middle-stage"></div>
+  <figcaption>
+    ของสี่ขาตกลงวงเดิมเรื่อย ๆ ทุกชิ้นหนุนข้อสรุปแบบเดียวกันกับโต๊ะพอดี คลิกเพื่อเร่งชิ้นถัดไป
+  </figcaption>
+</figure>
+
+<style>
+  .anim { margin: 20px 0; }
+  .anim > div { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; line-height: 0; background: var(--surface); }
+  .anim svg { display: block; width: 100%; height: auto; color: var(--text); }
+  .anim :global(.pp) { fill: var(--surface); }
+  .anim :global(.um-t) { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
+  .anim figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; line-height: 1.6; }
+</style>
+
+<script>
+  import '../anim/undistributed-middle.ts';
+</script>

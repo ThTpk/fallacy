@@ -22,6 +22,8 @@ import BeggingAnim from '../../components/BeggingAnim.astro';
 import AnalogyAnim from '../../components/AnalogyAnim.astro';
 import AuthorityAnim from '../../components/AuthorityAnim.astro';
 import FallacyFallacyAnim from '../../components/FallacyFallacyAnim.astro';
+import AmphibolyAnim from '../../components/AmphibolyAnim.astro';
+import MiddleAnim from '../../components/MiddleAnim.astro';
 import { mdLite, CATEGORY_TH, KIND_TH, LEVEL_TH, dots, thDate, url } from '../../lib/text';
 
 export async function getStaticPaths() {
@@ -86,6 +88,8 @@ const examples = [...d.examples].sort((a, b) => order[a.level] - order[b.level])
   {entry.id === 'faulty-analogy' && <AnalogyAnim />}
   {entry.id === 'appeal-to-authority' && <AuthorityAnim />}
   {entry.id === 'fallacy-fallacy' && <FallacyFallacyAnim />}
+  {entry.id === 'amphiboly' && <AmphibolyAnim />}
+  {entry.id === 'undistributed-middle' && <MiddleAnim />}
 
   <h2>ทำไมมันผิด</h2>
   <div set:html={mdLite(d.why_wrong)} />
