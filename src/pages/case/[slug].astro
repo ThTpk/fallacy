@@ -28,7 +28,7 @@ const byId = new Map(fallacies.map((f) => [f.id, f]));
   <p class="sub" style="margin:0"><a href={url('/')}>กลับหน้ารวม</a></p>
   <h1>{c.title_th}</h1>
   <p>
-    <span class="tag">{c.case_kind === 'pattern' ? 'รูปแบบที่แหล่งข่าวรายงาน' : 'คำพูดเฉพาะ'}</span>
+    <span class="tag">{c.case_kind === 'pattern' ? 'รูปแบบที่แหล่งข้อมูลรายงาน' : 'คำพูดเฉพาะ'}</span>
     <span class="tag">{MEDIUM_TH[c.source.medium]}</span>
     <span class="tag">สถานะ {CASE_STATUS_TH[c.status]}</span>
   </p>

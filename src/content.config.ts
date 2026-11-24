@@ -226,8 +226,12 @@ const cases = defineCollection({
       url: z.string().url(),
       published: z.coerce.date(),
       accessed: z.coerce.date(),
-      medium: z.enum(['news', 'ad', 'social', 'transcript',
-                      'press_release', 'broadcast', 'factcheck', 'legal_filing']),
+      // 'guidance' covers what a regulator, professional body or institution
+      // publishes to explain a practice or set expectations. It is not news,
+      // not a press release, and not a fact-check, and two cases wanted it
+      // before it existed.
+      medium: z.enum(['news', 'ad', 'social', 'transcript', 'press_release',
+                      'broadcast', 'factcheck', 'legal_filing', 'guidance']),
     }),
     corroboration: z.array(z.object({
       outlet: z.string(),

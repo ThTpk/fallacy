@@ -65,6 +65,7 @@ export const MEDIUM_TH: Record<string, string> = {
   broadcast: 'รายการออกอากาศ',
   factcheck: 'การตรวจสอบข้อเท็จจริง',
   legal_filing: 'เอกสารคดี',
+  guidance: 'เอกสารแนวปฏิบัติ',
 };
 
 export const DOMAIN_TH: Record<string, string> = {
