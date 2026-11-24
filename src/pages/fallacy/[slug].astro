@@ -58,7 +58,8 @@ const examples = [...d.examples].sort((a, b) => order[a.level] - order[b.level])
   </p>
   <p>
     <span class="tag">{CATEGORY_TH[d.category]}</span>
-    <span class="tag">{KIND_TH[d.kind]}</span>
+    {/* for the rhetorical category the two labels say the same thing */}
+    {KIND_TH[d.kind] !== CATEGORY_TH[d.category] && <span class="tag">{KIND_TH[d.kind]}</span>}
     <span class="tag">ความยาก {dots(d.difficulty)}</span>
   </p>
 

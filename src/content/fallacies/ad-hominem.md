@@ -58,6 +58,7 @@ responses:
 confused_with:
   - straw-man
   - fallacy-fallacy
+  - poisoning-the-well
 related:
   - appeal-to-celebrity
 sources:

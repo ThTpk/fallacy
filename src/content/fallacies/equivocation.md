@@ -52,6 +52,7 @@ responses:
   - ลองนิยามคำนี้ให้ชัดก่อน แล้วเขียนเหตุผลใหม่
 confused_with:
   - amphiboly
+  - motte-and-bailey
 related:
   - no-true-scotsman
   - straw-man

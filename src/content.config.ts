@@ -136,6 +136,20 @@ const diagram = z.discriminatedUnion('type', [
     type: z.literal('chain'),
     steps: z.array(z.string()).min(3).max(5),
   }),
+  // many weak claims at once: the count is the move, so the count is drawn
+  z.object({
+    type: z.literal('flood'),
+    claims: z.number().int().min(6).max(40),
+    checked: z.number().int().min(0),
+    claims_label: z.string(),
+    checked_label: z.string(),
+  }),
+  // a demand that is met and then replaced by a further one
+  z.object({
+    type: z.literal('shifting-bar'),
+    rounds: z.array(z.object({ asked: z.string(), delivered: z.string() })).min(2).max(4),
+    never: z.string(),
+  }),
   z.object({
     type: z.literal('analogy-map'),
     a: z.string(),

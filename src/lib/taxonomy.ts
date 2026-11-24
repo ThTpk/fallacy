@@ -36,13 +36,9 @@ export const TAXONOMY: Branch = {
       note: 'โครงไม่ผิด แต่ข้ออ้างที่ใส่เข้าไปใช้ไม่ได้ ต้องรู้เรื่องที่พูดถึงก่อนจึงตัดสินได้',
       children: [
         {
-          id: 'relevance-group',
-          name: 'ข้ออ้างไม่เกี่ยวข้อง',
+          id: 'relevance',
+          category: 'relevance',
           note: 'ข้ออ้างอาจเป็นจริงทุกข้อ แต่ต่อให้จริงก็ไม่ได้ช่วยข้อสรุป',
-          children: [
-            { id: 'relevance', category: 'relevance' },
-            { id: 'rhetorical', category: 'rhetorical' },
-          ],
         },
         {
           id: 'presumption',
@@ -62,6 +58,11 @@ export const TAXONOMY: Branch = {
             { id: 'causal', category: 'causal' },
             { id: 'statistical', category: 'statistical' },
           ],
+        },
+        {
+          id: 'rhetorical',
+          category: 'rhetorical',
+          note: 'ไม่ได้พลาดที่การอนุมาน แต่เล่นที่ตัวการสนทนา เช่น เวลา ภาระพิสูจน์ หรือความน่าเชื่อถือของอีกฝ่าย',
         },
       ],
     },

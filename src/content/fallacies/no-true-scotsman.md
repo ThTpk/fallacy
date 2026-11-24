@@ -55,6 +55,7 @@ responses:
   - เกณฑ์ของคำว่า "ตัวจริง" คืออะไร และใช้กับทุกคนเท่ากันไหม
 confused_with:
   - begging-the-question
+  - moving-the-goalposts
 related:
   - false-dilemma
   - equivocation

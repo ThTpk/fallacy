@@ -52,7 +52,8 @@ responses:
   - สมมติว่าเขาทำจริงและผิดด้วย เรื่องที่เรากำลังพูดถึงเปลี่ยนไปไหม
   - เรากำลังคุยเรื่องของใครอยู่
   - คุณกำลังบอกว่าสิ่งนี้ไม่ผิด หรือว่ามาตรฐานไม่สม่ำเสมอ
-confused_with: []
+confused_with:
+  - whataboutism
 related:
   - ad-hominem
   - ignoratio-elenchi
