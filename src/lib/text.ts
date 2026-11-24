@@ -68,6 +68,7 @@ export const MEDIUM_TH: Record<string, string> = {
   guidance: 'เอกสารแนวปฏิบัติ',
   ruling: 'คำวินิจฉัย',
   study: 'งานวิจัย',
+  report: 'รายงาน',
 };
 
 export const DOMAIN_TH: Record<string, string> = {

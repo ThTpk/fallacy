@@ -236,9 +236,15 @@ const cases = defineCollection({
       // 'study' is peer-reviewed research. Useful here mainly for the papers
       // that measure how often a reasoning error occurs, which is stronger
       // evidence of a pattern than any single instance of it.
+      // 'report' is a dated measurement or research report an organisation
+      // publishes under its own name without peer review - an index
+      // provider's scorecard, an industry body's annual figures. It is not
+      // 'study', which implies review, and not 'guidance', which tells the
+      // reader what to do. It carries the organisation's own interest, so a
+      // case using it should say whose numbers these are.
       medium: z.enum(['news', 'ad', 'social', 'transcript', 'press_release',
                       'broadcast', 'factcheck', 'legal_filing', 'guidance',
-                      'ruling', 'study']),
+                      'ruling', 'study', 'report']),
     }),
     corroboration: z.array(z.object({
       outlet: z.string(),
