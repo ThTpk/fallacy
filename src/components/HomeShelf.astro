@@ -1,0 +1,24 @@
+---
+// Decoration for the top of the home page. Nothing here explains anything.
+---
+
+<figure class="shelf">
+  <div id="home-shelf"></div>
+</figure>
+
+<style>
+  .shelf { margin: 4px 0 18px; }
+  .shelf > div {
+    line-height: 0;
+    --lamp: #c98b2a;
+  }
+  @media (prefers-color-scheme: dark) {
+    .shelf > div { --lamp: #e0ad55; }
+  }
+  .shelf svg { display: block; width: 100%; height: auto; color: var(--text); }
+  .shelf :global(.pp) { fill: var(--bg); }
+</style>
+
+<script>
+  import '../anim/home-shelf.ts';
+</script>

@@ -1,0 +1,171 @@
+---
+// The whole collection as one collapsible tree, drawn with d3 on the client.
+// The data is computed here, at build time, so the browser never fetches it.
+import { getCollection } from 'astro:content';
+import { CATEGORY_TH, url } from '../lib/text';
+import { TAXONOMY, assertCoversEveryCategory, type Branch } from '../lib/taxonomy';
+
+assertCoversEveryCategory();
+
+const fallacies = await getCollection('fallacies');
+
+interface TNode {
+  id: string;
+  name: string;
+  note?: string;
+  count?: number;
+  href?: string;
+  level?: number;
+  children?: TNode[];
+}
+
+/** the root of the tree is already called ตรรกวิบัติ, so the leaves need not
+ *  repeat it; it costs 50px of label width on every single row */
+const short = (s: string) => s.replace(/^ตรรกวิบัติ/, '').trim() || s;
+
+function build(b: Branch): TNode | null {
+  const name = b.name ?? CATEGORY_TH[b.category!];
+
+  if (b.category) {
+    const items = fallacies
+      .filter((f) => f.data.category === b.category)
+      .sort(
+        (x, y) =>
+          x.data.difficulty - y.data.difficulty ||
+          x.data.name_th.localeCompare(y.data.name_th, 'th'),
+      );
+    // a category nobody has written an entry for yet is not drawn
+    if (items.length === 0) return null;
+    return {
+      id: b.id,
+      name,
+      note: b.note,
+      count: items.length,
+      children: items.map((f) => ({
+        id: f.id,
+        name: short(f.data.name_th),
+        href: url(`fallacy/${f.id}`),
+        level: f.data.difficulty,
+      })),
+    };
+  }
+
+  const children = (b.children ?? []).map(build).filter((c): c is TNode => c !== null);
+  if (children.length === 0) return null;
+  // a grouping node exists to say what its several branches have in common.
+  // With only one branch left — because the others have no entries yet — it
+  // just repeats that branch, so fold the two together and keep the note.
+  if (children.length === 1) {
+    return { ...children[0], note: children[0].note ?? b.note };
+  }
+  return {
+    id: b.id,
+    name,
+    note: b.note,
+    count: children.reduce((n, c) => n + (c.count ?? 0), 0),
+    children,
+  };
+}
+
+const tree = build(TAXONOMY)!;
+
+// every entry must end up on a leaf, or the tree is quietly lying about the size
+// of the collection
+const leaves = (n: TNode): number => (n.children ? n.children.reduce((s, c) => s + leaves(c), 0) : 1);
+if (leaves(tree) !== fallacies.length) {
+  throw new Error(
+    `category tree holds ${leaves(tree)} entries but the collection has ${fallacies.length}`,
+  );
+}
+
+const esc = (s: string) =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+/** the same tree as plain nested lists, for a browser that runs no script */
+const list = (n: TNode): string => {
+  const label = n.href
+    ? `<a href="${esc(n.href)}">${esc(n.name)}</a>`
+    : `<strong>${esc(n.name)}</strong>${n.count ? ` <span class="sub">${n.count}</span>` : ''}`;
+  const note = n.note ? `<div class="sub">${esc(n.note)}</div>` : '';
+  const kids = n.children ? `<ul>${n.children.map(list).join('')}</ul>` : '';
+  return `<li>${label}${note}${kids}</li>`;
+};
+const fallback = `<ul>${list(tree)}</ul>`;
+---
+
+<figure class="treewrap">
+  <div id="tree-controls" hidden>
+    <button type="button" id="tree-open">ขยายทั้งหมด</button>
+    <button type="button" id="tree-close">ย่อทั้งหมด</button>
+  </div>
+
+  <div id="category-tree">
+    <div class="fallback" set:html={fallback} />
+  </div>
+
+  <script type="application/json" id="category-tree-data" set:html={JSON.stringify(tree)} is:inline />
+
+  <figcaption>
+    คลิกที่หมวดเพื่อกางรายการข้างใน ตัวเลขคือจำนวนรายการที่อยู่ใต้กิ่งนั้น
+    การแยกชั้นบนสุดคือเชิงรูปแบบกับเชิงเนื้อหา ซึ่งต่างกันตรงที่ต้องรู้เนื้อหาก่อนจึงตัดสินได้หรือไม่
+  </figcaption>
+</figure>
+
+<style>
+  .treewrap { margin: 18px 0 8px; }
+
+  #tree-controls { display: flex; gap: 8px; margin-bottom: 8px; }
+  #tree-controls button {
+    font: inherit;
+    font-size: 0.85rem;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2px 14px;
+    cursor: pointer;
+  }
+  #tree-controls button:hover { color: var(--text); border-color: var(--muted); }
+
+  #category-tree {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 6px 2px;
+  }
+
+  /* the no-script tree */
+  #category-tree .fallback { padding: 6px 18px 10px; }
+  #category-tree .fallback ul { padding-left: 18px; }
+
+  #category-tree :global(svg.tree) { display: block; }
+  #category-tree :global(svg.tree text) {
+    font-family: 'Noto Sans Thai', system-ui, sans-serif;
+    font-size: 12.5px;
+    fill: var(--text);
+  }
+  #category-tree :global(svg.tree .branch) { font-weight: 500; }
+  #category-tree :global(svg.tree .cnt) { font-size: 11px; fill: var(--muted); }
+
+  #category-tree :global(svg.tree path) { fill: none; stroke: var(--line); stroke-width: 1.3px; }
+  #category-tree :global(svg.tree circle) { fill: var(--surface); stroke: var(--muted); stroke-width: 1.4px; }
+  /* a filled dot means there is something folded away under it */
+  #category-tree :global(svg.tree g[data-open='no'] circle) { fill: var(--hl); stroke: var(--hl); }
+  #category-tree :global(svg.tree .leaf circle) { fill: var(--line); stroke: none; }
+
+  #category-tree :global(svg.tree g[role='button']) { cursor: pointer; }
+  #category-tree :global(svg.tree g[role='button']:hover .lbl) { fill: var(--accent); }
+  #category-tree :global(svg.tree g[role='button']:focus) { outline: none; }
+  #category-tree :global(svg.tree g[role='button']:focus-visible circle) {
+    stroke: var(--accent);
+    stroke-width: 2.6px;
+  }
+  #category-tree :global(svg.tree a text) { fill: var(--accent); }
+  #category-tree :global(svg.tree a:hover text) { text-decoration: underline; }
+  #category-tree :global(svg.tree a:focus-visible text) { text-decoration: underline; }
+</style>
+
+<script>
+  import '../tree/category-tree.ts';
+</script>

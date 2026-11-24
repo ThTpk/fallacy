@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import CategoryTree from '../components/CategoryTree.astro';
+import HomeShelf from '../components/HomeShelf.astro';
 import { CATEGORY_TH, CATEGORY_ORDER, dots, thDate, url } from '../lib/text';
 
 const fallacies = await getCollection('fallacies');
@@ -26,6 +28,7 @@ const caseCount = (slug: string) =>
   title="ตรรกวิบัติ — คลังตรรกวิบัติและเคสจริง"
   description={`คลังตรรกวิบัติ ${fallacies.length} รายการ พร้อมแผนภาพอธิบายว่าตรรกะผิดตรงไหน และเคสจริง ${cases.length} เคสที่ระบุแหล่งที่มา`}
 >
+  <HomeShelf />
   <h1>ตรรกวิบัติ</h1>
   <p class="sub">
     ตรรกวิบัติ {fallacies.length} รายการ และเคสจริง {cases.length} เคส
@@ -40,6 +43,15 @@ const caseCount = (slug: string) =>
       <a href={url('fallacy/fallacy-fallacy')}>ตรรกวิบัติของการจับตรรกวิบัติ</a> เสียเอง
     </p>
   </div>
+
+  <section>
+    <h2>ภาพรวมทั้งคลัง <span class="en">{fallacies.length} รายการ</span></h2>
+    <p class="sub" style="margin-top:0">
+      หมวดหมู่ไม่ได้เรียงกันเฉย ๆ แต่แตกออกจากคำถามว่าข้อโต้แย้งพังตรงไหน
+      กดดูทีละกิ่งจะเห็นว่าแต่ละหมวดตอบคำถามคนละข้อ
+    </p>
+    <CategoryTree />
+  </section>
 
   <section>
     <h2>เริ่มที่นี่ <span class="en">พื้นฐาน {foundations.length} หน้า</span></h2>
