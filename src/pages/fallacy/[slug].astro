@@ -41,6 +41,18 @@ import RiskAnim from '../../components/RiskAnim.astro';
 import RegressionAnim from '../../components/RegressionAnim.astro';
 import SharpshooterAnim from '../../components/SharpshooterAnim.astro';
 import SelectionAnim from '../../components/SelectionAnim.astro';
+import NatureAnim from '../../components/NatureAnim.astro';
+import TraditionAnim from '../../components/TraditionAnim.astro';
+import NoveltyAnim from '../../components/NoveltyAnim.astro';
+import FearAnim from '../../components/FearAnim.astro';
+import CherryAnim from '../../components/CherryAnim.astro';
+import ContextAnim from '../../components/ContextAnim.astro';
+import ModerationAnim from '../../components/ModerationAnim.astro';
+import NirvanaAnim from '../../components/NirvanaAnim.astro';
+import SunkAnim from '../../components/SunkAnim.astro';
+import PleadingAnim from '../../components/PleadingAnim.astro';
+import GamblerAnim from '../../components/GamblerAnim.astro';
+import EcologicalAnim from '../../components/EcologicalAnim.astro';
 import { mdLite, CATEGORY_TH, KIND_TH, LEVEL_TH, dots, thDate, url } from '../../lib/text';
 
 export async function getStaticPaths() {
@@ -125,6 +137,18 @@ const examples = [...d.examples].sort((a, b) => order[a.level] - order[b.level])
   {entry.id === 'regression-to-the-mean' && <RegressionAnim />}
   {entry.id === 'texas-sharpshooter' && <SharpshooterAnim />}
   {entry.id === 'self-selection' && <SelectionAnim />}
+  {entry.id === 'appeal-to-nature' && <NatureAnim />}
+  {entry.id === 'appeal-to-tradition' && <TraditionAnim />}
+  {entry.id === 'appeal-to-novelty' && <NoveltyAnim />}
+  {entry.id === 'appeal-to-fear' && <FearAnim />}
+  {entry.id === 'cherry-picking' && <CherryAnim />}
+  {entry.id === 'quoting-out-of-context' && <ContextAnim />}
+  {entry.id === 'middle-ground' && <ModerationAnim />}
+  {entry.id === 'nirvana-fallacy' && <NirvanaAnim />}
+  {entry.id === 'sunk-cost' && <SunkAnim />}
+  {entry.id === 'special-pleading' && <PleadingAnim />}
+  {entry.id === 'gamblers-fallacy' && <GamblerAnim />}
+  {entry.id === 'ecological-fallacy' && <EcologicalAnim />}
 
   <h2>ทำไมมันผิด</h2>
   <div set:html={mdLite(d.why_wrong)} />
