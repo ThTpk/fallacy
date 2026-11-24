@@ -1,0 +1,26 @@
+---
+// Mounted only on /fallacy/denying-the-antecedent.
+---
+
+<figure class="anim">
+  <div id="antecedent-stage"></div>
+  <figcaption>
+    สวิตช์สองตัวต่อขนานกัน ตัดตัวเดียวหลอดยังติด ต้องตัดทุกทางหลอดถึงดับ คลิกเพื่อข้ามไปขั้นถัดไป
+  </figcaption>
+</figure>
+
+<style>
+  .anim { margin: 20px 0; }
+  .anim > div { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; line-height: 0; background: var(--surface); --lamp: #c98b2a; }
+  @media (prefers-color-scheme: dark) {
+    .anim > div { --lamp: #e0ad55; }
+  }
+  .anim svg { display: block; width: 100%; height: auto; color: var(--text); }
+  .anim :global(.pp) { fill: var(--surface); }
+  .anim :global(.dta-t) { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
+  .anim figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; line-height: 1.6; }
+</style>
+
+<script>
+  import '../anim/denying-the-antecedent.ts';
+</script>

@@ -29,6 +29,13 @@ import MotteAnim from '../../components/MotteAnim.astro';
 import GoalpostsAnim from '../../components/GoalpostsAnim.astro';
 import WellAnim from '../../components/WellAnim.astro';
 import WhataboutAnim from '../../components/WhataboutAnim.astro';
+import ConsequentAnim from '../../components/ConsequentAnim.astro';
+import AntecedentAnim from '../../components/AntecedentAnim.astro';
+import EquivocationAnim from '../../components/EquivocationAnim.astro';
+import LoadedAnim from '../../components/LoadedAnim.astro';
+import CelebrityAnim from '../../components/CelebrityAnim.astro';
+import PityAnim from '../../components/PityAnim.astro';
+import ReverseAnim from '../../components/ReverseAnim.astro';
 import { mdLite, CATEGORY_TH, KIND_TH, LEVEL_TH, dots, thDate, url } from '../../lib/text';
 
 export async function getStaticPaths() {
@@ -101,6 +108,13 @@ const examples = [...d.examples].sort((a, b) => order[a.level] - order[b.level])
   {entry.id === 'moving-the-goalposts' && <GoalpostsAnim />}
   {entry.id === 'poisoning-the-well' && <WellAnim />}
   {entry.id === 'whataboutism' && <WhataboutAnim />}
+  {entry.id === 'affirming-the-consequent' && <ConsequentAnim />}
+  {entry.id === 'denying-the-antecedent' && <AntecedentAnim />}
+  {entry.id === 'equivocation' && <EquivocationAnim />}
+  {entry.id === 'loaded-question' && <LoadedAnim />}
+  {entry.id === 'appeal-to-celebrity' && <CelebrityAnim />}
+  {entry.id === 'appeal-to-pity' && <PityAnim />}
+  {entry.id === 'reverse-causation' && <ReverseAnim />}
 
   <h2>ทำไมมันผิด</h2>
   <div set:html={mdLite(d.why_wrong)} />

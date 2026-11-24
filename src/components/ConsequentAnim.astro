@@ -1,0 +1,26 @@
+---
+// Mounted only on /fallacy/affirming-the-consequent.
+---
+
+<figure class="anim">
+  <div id="consequent-stage"></div>
+  <figcaption>
+    สามเส้นทางวิ่งเข้าหาปลายทางเดียวกัน เส้นที่สว่างคือเส้นที่พามาจริงในรอบนี้ คลิกเพื่อเปลี่ยนรอบ
+  </figcaption>
+</figure>
+
+<style>
+  .anim { margin: 20px 0; }
+  .anim > div { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; line-height: 0; background: var(--surface); --lamp: #c98b2a; }
+  @media (prefers-color-scheme: dark) {
+    .anim > div { --lamp: #e0ad55; }
+  }
+  .anim svg { display: block; width: 100%; height: auto; color: var(--text); }
+  .anim :global(.pp) { fill: var(--surface); }
+  .anim :global(.afc-t) { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
+  .anim figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; line-height: 1.6; }
+</style>
+
+<script>
+  import '../anim/affirming-the-consequent.ts';
+</script>
