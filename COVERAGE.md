@@ -14,9 +14,18 @@ It is still the best single check on whether this site has holes.
 Its section 1 is the closest thing to a canonical list. Of the 21 items named
 there, this site currently has 9.
 
-Updated 23 November 2026: the first tier below has since been written, so
-9 of 21 has become 19 of 21; only amphiboly and undistributed middle remain. The table records the state at the time of the
-check.
+Updated 24 November 2026: every tier below has since been written, so 9 of 21
+is now 21 of 21. The table records the state at the time of the original
+check, not today's.
+
+The last two in were amphiboly and undistributed middle. Amphiboly had been
+parked under "probably skip" because the textbook examples turn on quirks of
+Greek and English. That call was wrong for Thai: with no inflection, no
+mandatory punctuation and modifiers that stack to the right with nothing
+marking what they attach to, structural ambiguity is *easier* to produce in
+Thai than in English, not harder. The entry is built on Thai examples, and the
+`amphiboly--equivocation` comparison carries the dividing line that was
+previously going to live inside `equivocation` as a paragraph.
 
 | SEP core fallacy | here | note |
 |---|---|---|
@@ -87,11 +96,16 @@ draw an arrow pointing the wrong way.
 
 **After that** — complete the formal category, which currently has only two
 entries: undistributed middle, illicit major, fallacy of four terms.
+*Done for undistributed middle on 24 November 2026. Illicit major and the
+fallacy of four terms are still open, and are the strongest remaining
+candidates: both are syllogism rules like the one undistributed middle
+breaks, so they reuse its `two-subsets` diagram and its vocabulary.*
 
-**Probably skip** — amphiboly, accent, form of expression, combination and
-division of words. Real, but they turn on quirks of Greek and of written
-English that do not transfer cleanly to Thai. Worth a paragraph inside
-`equivocation` rather than entries of their own.
+**Probably skip** — accent, form of expression, combination and division of
+words. Real, but they turn on quirks of Greek and of written English that do
+not transfer cleanly to Thai. Worth a paragraph inside `equivocation` rather
+than entries of their own. *Amphiboly was on this list and has been moved off
+it; see the note under "the core fallacies" for why.*
 
 ## What SEP confirms about choices already made here
 

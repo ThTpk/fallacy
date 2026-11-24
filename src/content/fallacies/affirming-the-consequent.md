@@ -54,6 +54,7 @@ responses:
 confused_with:
   - denying-the-antecedent
   - post-hoc
+  - undistributed-middle
 related:
   - cum-hoc
 sources:

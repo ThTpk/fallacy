@@ -31,6 +31,8 @@ else if (d.type === 'circular') H = 76 + d.nodes.length * 86;
 else if (d.type === 'sets') H = 290;
 else if (d.type === 'common-cause') H = 300;
 else if (d.type === 'two-meanings') H = 270;
+else if (d.type === 'two-readings') H = 272;
+else if (d.type === 'two-subsets') H = 300;
 else if (d.type === 'two-failure-points') H = 270;
 else if (d.type === 'argument-structure')
   H = 106 + (d.premises.length + (d.hidden_premise ? 1 : 0)) * 62;
@@ -60,6 +62,11 @@ let tm: any = null;
 if (d.type === 'two-meanings') {
   const r = row(2, 220, 60);
   tm = { ...r, y: 180, wx: (W - 200) / 2, ww: 200, wy: 48 };
+}
+let tr: any = null;
+if (d.type === 'two-readings') {
+  const r = row(2, 256, 56);
+  tr = { ...r, y: 172, sx: 60, sw: 560, sy: 46 };
 }
 let sp: any = null;
 if (d.type === 'spectrum') {
@@ -308,6 +315,42 @@ const mx = { xs: [220, 430], ys: [90, 176], w: 200, h: 72 };
         <text x={tm.xs[1] + tm.w / 2} y={tm.y + 24} text-anchor="middle" font-size="11.5" fill="var(--muted)">ความหมายในข้อสรุป</text>
         <text x={tm.xs[1] + tm.w / 2} y={tm.y + 46} text-anchor="middle" font-size={fit(d.meaning_2, tm.w)} fill="var(--text)">{d.meaning_2}</text>
 
+      </g>
+    )}
+
+    {d.type === 'two-readings' && tr && (
+      <g>
+        <rect x={tr.sx} y={tr.sy} width={tr.sw} height="64" rx="9" fill="var(--hl-bg)" stroke="var(--hl)" />
+        <text x={W / 2} y={tr.sy + 22} text-anchor="middle" font-size="11.5" fill="var(--muted)">ถ้อยคำชุดเดียวกัน</text>
+        <text x={W / 2} y={tr.sy + 48} text-anchor="middle" font-size={fit(d.sentence, tr.sw)} fill="var(--text)" font-weight="500">{d.sentence}</text>
+
+        <line x1={W / 2 - 30} y1={tr.sy + 74} x2={tr.xs[0] + tr.w / 2} y2={tr.y - 12} stroke="var(--line)" stroke-width="1.6" marker-end="url(#ah)" />
+        <line x1={W / 2 + 30} y1={tr.sy + 74} x2={tr.xs[1] + tr.w / 2} y2={tr.y - 12} stroke="var(--line)" stroke-width="1.6" marker-end="url(#ah)" />
+
+        <rect x={tr.xs[0]} y={tr.y} width={tr.w} height="76" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x={tr.xs[0] + tr.w / 2} y={tr.y + 26} text-anchor="middle" font-size="11.5" fill="var(--muted)">อ่านแบบที่หนึ่ง</text>
+        <text x={tr.xs[0] + tr.w / 2} y={tr.y + 52} text-anchor="middle" font-size={fit(d.reading_1, tr.w)} fill="var(--text)">{d.reading_1}</text>
+
+        <rect x={tr.xs[1]} y={tr.y} width={tr.w} height="76" rx="9" fill="var(--box)" stroke="var(--line)" />
+        <text x={tr.xs[1] + tr.w / 2} y={tr.y + 26} text-anchor="middle" font-size="11.5" fill="var(--muted)">อ่านแบบที่สอง</text>
+        <text x={tr.xs[1] + tr.w / 2} y={tr.y + 52} text-anchor="middle" font-size={fit(d.reading_2, tr.w)} fill="var(--text)">{d.reading_2}</text>
+      </g>
+    )}
+
+    {d.type === 'two-subsets' && (
+      <g>
+        <rect x="90" y="60" width="500" height="152" rx="14" fill="var(--box)" stroke="var(--line)" stroke-dasharray="5 4" />
+        <text x="110" y="86" font-size="12.5" fill="var(--muted)">{d.outer}</text>
+
+        <rect x="124" y="106" width="186" height="76" rx="12" fill="var(--hl-bg)" stroke="var(--hl)" />
+        <text x="217" y="152" text-anchor="middle" font-size={fit(d.a, 186)} fill="var(--text)" font-weight="500">{d.a}</text>
+
+        <rect x="370" y="106" width="186" height="76" rx="12" fill="var(--hl-bg)" stroke="var(--hl)" />
+        <text x="463" y="152" text-anchor="middle" font-size={fit(d.b, 186)} fill="var(--text)" font-weight="500">{d.b}</text>
+
+        <path d="M314 144 L366 144" fill="none" stroke="var(--bad)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)" />
+        <text x={W / 2} y="240" text-anchor="middle" font-size="12" fill="var(--bad)">ลูกศรที่ถูกอ้าง ซึ่งไม่ได้ตามมา</text>
+        <text x="90" y="270" font-size="12.5" fill="var(--text)">ข้อสรุป {d.claim}</text>
       </g>
     )}
 

@@ -50,7 +50,8 @@ not_fallacy:
 responses:
   - คำนี้ในประโยคแรกกับประโยคหลัง หมายถึงอย่างเดียวกันไหม
   - ลองนิยามคำนี้ให้ชัดก่อน แล้วเขียนเหตุผลใหม่
-confused_with: []
+confused_with:
+  - amphiboly
 related:
   - no-true-scotsman
   - straw-man

@@ -65,6 +65,23 @@ const diagram = z.discriminatedUnion('type', [
     meaning_1: z.string(),
     meaning_2: z.string(),
   }),
+  // like two-meanings, but the ambiguity is in how the words are arranged
+  // rather than in any one word, so the whole sentence sits at the top
+  z.object({
+    type: z.literal('two-readings'),
+    sentence: z.string(),
+    reading_1: z.string(),
+    reading_2: z.string(),
+  }),
+  // one wide set holding two separate groups: being inside the same circle
+  // is not the same as being in the same place in it
+  z.object({
+    type: z.literal('two-subsets'),
+    outer: z.string(),
+    a: z.string(),
+    b: z.string(),
+    claim: z.string(),
+  }),
   // --- types used by the foundation pages: these explain a concept rather
   // --- than showing where a particular argument breaks
   z.object({
