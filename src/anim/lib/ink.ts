@@ -181,7 +181,10 @@ export function run(draw: (t: number, dt: number) => void): () => void {
   let id = 0, prev = 0;
   const tick = (now: number) => {
     const t = frozen ?? (now - t0) / 1000;
-    draw(t, Math.min(0.05, t - prev)); prev = t;
+    // the first frame's timestamp can predate t0, because the frame may have
+    // begun before this module ran. A negative dt means nothing to a scene,
+    // and one that accumulates it into a clock ends up indexing at -1.
+    draw(t, Math.max(0, Math.min(0.05, t - prev))); prev = t;
     if (!still) id = requestAnimationFrame(tick);
   };
   id = requestAnimationFrame(tick);

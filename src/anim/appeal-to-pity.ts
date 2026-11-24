@@ -82,7 +82,7 @@ if (stage) {
 
     const i = Math.floor(k / EVERY);
     const u = Math.min(1, (k - i * EVERY) / FALL);
-    const cur = ITEMS[Math.min(i, ITEMS.length - 1)];
+    const cur = ITEMS[Math.max(0, Math.min(i, ITEMS.length - 1))];
 
     // how much is actually sitting on the pan
     let load = 0, placed = 0;
