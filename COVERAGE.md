@@ -127,3 +127,36 @@ it; see the note under "the core fallacies" for why.*
 - **Begging the question is valid but useless.** SEP notes it is not invalid,
   so it "should be thought of as epistemic rather than logical". That is the
   point the `validity-vs-truth` foundation page already makes.
+
+## A wider audit, 24 November 2026
+
+SEP's core list was exhausted, so this round diffed the collection against two
+broader sources instead: the [Fallacy Files
+taxonomy](https://www.fallacyfiles.org/newtaxon.html) and [Wikipedia's list of
+fallacies](https://en.wikipedia.org/wiki/List_of_fallacies). Between them they
+name well over 150 items. Neither claims to be complete, and the two disagree
+about where several things belong, which is itself consistent with what SEP
+says about taxonomies.
+
+**Twelve were added**: appeal to nature, appeal to tradition, appeal to
+novelty, appeal to fear, cherry picking, quoting out of context, argument to
+moderation, nirvana fallacy, sunk cost, special pleading, gambler's fallacy,
+ecological fallacy. The collection goes from 39 to 51.
+
+**Declined, with reasons** — these are the ones worth recording so the question
+does not get reopened without new information:
+
+| name | why not |
+|---|---|
+| guilt by association | the `undistributed-middle` entry already says this is the same shape, and explains it. A comparison page would serve better than a twelfth entry |
+| p-hacking, multiple comparisons | this is the `subtle` example on `texas-sharpshooter` |
+| prosecutor's fallacy | base rate neglect read from the other end; a comparison page, not an entry |
+| anecdotal fallacy | too close to `hasty-generalization` to separate for this audience |
+| illicit major, illicit minor, four terms, existential fallacy, affirming a disjunct, denying a conjunct, masked man, modal scope | real, and the first two remain the strongest formal candidates, but they are syllogism and propositional rules that ordinary readers do not meet in the wild |
+| accent, if-by-whiskey, etymological fallacy, intentionality fallacy | turn on quirks of English or on literary theory |
+| appeal to force | distinct from appeal to fear in that the speaker is the threat, but rare enough in the everyday material this site draws on |
+
+**Still open, in rough order of value**: thought-terminating cliché, tone
+policing, courtier's reply and appeal to accomplishment (all rhetorical, all
+common online), false attribution, incomplete comparison ("better" with no
+baseline), and appeal to consequences.

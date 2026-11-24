@@ -61,6 +61,7 @@ responses:
   - มีกลุ่มที่ไม่ได้ทำอะไรในช่วงเดียวกันให้เทียบไหม
 confused_with:
   - post-hoc
+  - gamblers-fallacy
 related:
   - cum-hoc
   - survivorship-bias

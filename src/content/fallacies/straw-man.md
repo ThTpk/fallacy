@@ -52,6 +52,7 @@ responses:
 confused_with:
   - ad-hominem
   - ignoratio-elenchi
+  - quoting-out-of-context
 related:
   - fallacy-fallacy
   - equivocation

@@ -57,6 +57,7 @@ responses:
   - ลองไปดูกับข้อมูลชุดใหม่ที่ยังไม่เคยเห็น ยังเจอรูปแบบเดิมอยู่หรือเปล่า
 confused_with:
   - hasty-generalization
+  - cherry-picking
 related:
   - survivorship-bias
   - cum-hoc

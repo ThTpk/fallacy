@@ -56,6 +56,7 @@ responses:
 confused_with:
   - begging-the-question
   - moving-the-goalposts
+  - special-pleading
 related:
   - false-dilemma
   - equivocation

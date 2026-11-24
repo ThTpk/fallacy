@@ -49,6 +49,7 @@ responses:
   - การกระจายตัวภายในกลุ่มเป็นอย่างไร
 confused_with:
   - composition
+  - ecological-fallacy
 related:
   - hasty-generalization
   - equivocation

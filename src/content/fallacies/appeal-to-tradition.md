@@ -65,6 +65,7 @@ responses:
   - มีข้อมูลผลลัพธ์จากช่วงที่ผ่านมาให้ดูไหม
 confused_with:
   - appeal-to-novelty
+  - sunk-cost
 related:
   - appeal-to-nature
   - bandwagon
