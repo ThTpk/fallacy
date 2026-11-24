@@ -233,9 +233,12 @@ const cases = defineCollection({
       // 'ruling' is a decision on a specific complaint - a press council
       // adjudication, an ASA ruling, a regulator's order. 'legal_filing' is
       // what the parties submit; this is what the body decides.
+      // 'study' is peer-reviewed research. Useful here mainly for the papers
+      // that measure how often a reasoning error occurs, which is stronger
+      // evidence of a pattern than any single instance of it.
       medium: z.enum(['news', 'ad', 'social', 'transcript', 'press_release',
                       'broadcast', 'factcheck', 'legal_filing', 'guidance',
-                      'ruling']),
+                      'ruling', 'study']),
     }),
     corroboration: z.array(z.object({
       outlet: z.string(),

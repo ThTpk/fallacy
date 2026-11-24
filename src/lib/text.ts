@@ -67,6 +67,7 @@ export const MEDIUM_TH: Record<string, string> = {
   legal_filing: 'เอกสารคดี',
   guidance: 'เอกสารแนวปฏิบัติ',
   ruling: 'คำวินิจฉัย',
+  study: 'งานวิจัย',
 };
 
 export const DOMAIN_TH: Record<string, string> = {
