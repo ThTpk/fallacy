@@ -1,0 +1,159 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SituationMap, { type SNode } from '../../components/SituationMap.astro';
+import { dots, thDate, url } from '../../lib/text';
+
+export async function getStaticPaths() {
+  const situations = await getCollection('situations');
+  const fallacies = await getCollection('fallacies');
+  const cases = await getCollection('cases');
+  return situations
+    .sort((a, b) => a.data.order - b.data.order)
+    .map((entry, i, all) => ({
+      params: { slug: entry.id },
+      props: {
+        entry,
+        fallacies,
+        cases,
+        prev: all[i - 1],
+        next: all[i + 1],
+        total: all.length,
+      },
+    }));
+}
+
+const { entry, fallacies, cases, prev, next, total } = Astro.props;
+const s = entry.data;
+const byId = new Map(fallacies.map((f) => [f.id, f]));
+
+// Every slug in a situation file is a reference(), so a typo already fails the
+// build. This checks the other half: that each listed entry really is in the
+// collection we loaded, so the page can read its Thai name without a fallback.
+const resolved = s.groups.map((g) => ({
+  ...g,
+  items: g.items.map((it) => {
+    if (!it.slug) return { ...it, f: undefined };
+    const f = byId.get(it.slug.id);
+    if (!f) {
+      throw new Error(`situation ${entry.id} lists ${it.slug.id}, which is not in the collection`);
+    }
+    return { ...it, f };
+  }),
+}));
+
+const listed = resolved.flatMap((g) => g.items.filter((it) => it.f));
+const unlisted = resolved.flatMap((g) => g.items.filter((it) => !it.f));
+
+// an entry may honestly appear in more than one group of one situation, but
+// repeating it inside a single group is a mistake in the file
+for (const g of resolved) {
+  const ids = g.items.map((it) => it.slug?.id ?? it.name_th!);
+  if (new Set(ids).size !== ids.length) {
+    throw new Error(`situation ${entry.id}: group "${g.title_th}" lists the same item twice`);
+  }
+}
+
+const caseCount = (slug: string) =>
+  cases.filter((c) => c.data.fallacies.some((f) => f.slug.id === slug)).length;
+const withCases = listed.filter((it) => caseCount(it.f!.id) > 0).length;
+
+const tree: SNode = {
+  name: s.title_th,
+  children: resolved.map((g) => ({
+    name: g.title_th,
+    note: g.why,
+    count: g.items.length,
+    children: g.items.map((it) =>
+      it.f
+        ? { name: it.f.data.name_th, href: url(`fallacy/${it.f.id}`), note: it.example }
+        : { name: it.name_th!, note: 'ยังไม่มีรายการนี้ในคลัง' },
+    ),
+  })),
+};
+---
+
+<Base title={`${s.title_th} — ตรรกวิบัติตามสถานการณ์`} description={s.one_liner}>
+  <p class="sub" style="margin:0">
+    <a href={url('/')}>กลับหน้ารวม</a> ·
+    <a href={url('situation')}>ตรรกวิบัติตามสถานการณ์</a>
+  </p>
+  <p class="lvl" style="margin:10px 0 0">
+    สถานการณ์ {s.order} จาก {total} · {listed.length} รายการจากคลัง
+    {unlisted.length > 0 && ` · อีก ${unlisted.length} รายการยังไม่มีในคลัง`}
+  </p>
+  <h1>{s.title_th}</h1>
+  {s.title_en && <p class="en" style="margin:0 0 10px">{s.title_en}</p>}
+  <p style="font-size:1.1rem">{s.one_liner}</p>
+
+  <p>{s.lead}</p>
+
+  <SituationMap
+    tree={tree}
+    label={`แผนผังตรรกวิบัติ${s.title_th}`}
+    caption="ชื่อที่เป็นลิงก์คือรายการที่มีหน้าของตัวเองในคลัง วางเมาส์บนกิ่งเพื่อดูว่ากลุ่มนั้นรวมกันด้วยเหตุใด และวางบนรายการเพื่อดูตัวอย่างประโยค"
+  />
+
+  {resolved.map((g, gi) => (
+    <section>
+      <h2>{gi + 1}. {g.title_th} <span class="en">{g.items.length} รายการ</span></h2>
+      <p class="sub" style="margin-top:0">{g.why}</p>
+      <ul class="plain">
+        {g.items.map((it) => (
+          <li class="card">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline">
+              <strong>
+                {it.f
+                  ? <a href={url(`fallacy/${it.f.id}`)}>{it.f.data.name_th}</a>
+                  : it.name_th}
+              </strong>
+              {it.f
+                ? <span class="lvl">{dots(it.f.data.difficulty)}</span>
+                : <span class="tag">ยังไม่มีในคลัง</span>}
+            </div>
+            <div class="en">{it.f ? it.f.data.name_en : it.name_en}</div>
+            <p style="margin:8px 0 0"><em>{it.example}</em></p>
+            {it.note && <p class="sub" style="margin:6px 0 0">{it.note}</p>}
+            {it.f && caseCount(it.f.id) > 0 && (
+              <div style="margin-top:8px">
+                <span class="tag">เคสจริง {caseCount(it.f.id)} เคส</span>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <section>
+    <h2>พูดอย่างไรดี</h2>
+    <p class="sub" style="margin-top:0">
+      ประโยคเหล่านี้ไม่ได้เอ่ยชื่อตรรกวิบัติ แต่ขอสิ่งที่ขาดไปตรง ๆ
+    </p>
+    <ul class="plain">
+      {s.responses.map((r) => (
+        <li class="card">
+          <div class="sub">{r.when}</div>
+          <p style="margin:4px 0 0">“{r.say}”</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {s.note && (
+    <div class="card" style="margin-top:28px">
+      <strong>ข้อควรระวัง</strong>
+      <p style="margin:6px 0 0">{s.note}</p>
+    </div>
+  )}
+
+  <p class="sub" style="margin-top:28px">
+    รายการในหน้านี้ {withCases} รายการมีเคสจริงประกอบในคลัง ·
+    ปรับปรุงล่าสุด {thDate(s.updated)}
+  </p>
+
+  <nav class="sub" style="margin-top:18px;display:flex;gap:16px;flex-wrap:wrap">
+    {prev && <a href={url(`situation/${prev.id}`)}>← {prev.data.title_th}</a>}
+    {next && <a href={url(`situation/${next.id}`)}>{next.data.title_th} →</a>}
+  </nav>
+</Base>

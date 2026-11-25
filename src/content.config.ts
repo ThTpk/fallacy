@@ -317,4 +317,54 @@ const comparisons = defineCollection({
   }),
 });
 
-export const collections = { fallacies, cases, foundations, comparisons };
+// A situation page groups entries by where you run into them rather than by
+// what is broken in the argument. The taxonomy answers "what went wrong"; this
+// answers "I am in a meeting, what should I expect". The same entry turns up in
+// several situations, which is the point: the setting changes the disguise, not
+// the error.
+const situationItem = z
+  .object({
+    // Either an entry that exists in the collection, or a name the collection
+    // has no entry for yet. The second case is kept deliberately: naming the
+    // gap is more useful than pointing the reader at the nearest entry and
+    // letting them think it is the same thing.
+    slug: reference('fallacies').optional(),
+    name_th: z.string().optional(),
+    name_en: z.string().optional(),
+    // how it actually sounds in that setting, in one line
+    example: z.string(),
+    note: z.string().optional(),
+  })
+  .refine((i) => Boolean(i.slug) !== Boolean(i.name_th), {
+    message: 'an item carries either a slug from the collection or an unlisted name_th, never both',
+    path: ['slug'],
+  });
+
+const situations = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/situations' }),
+  schema: z.object({
+    title_th: z.string(),
+    title_en: z.string().optional(),
+    // reading order on the index page
+    order: z.number().int(),
+    one_liner: z.string(),
+    // what makes this setting different from the others, not a summary of it
+    lead: z.string(),
+    groups: z
+      .array(
+        z.object({
+          title_th: z.string(),
+          // why these belong together here, which is the part a plain list omits
+          why: z.string(),
+          items: z.array(situationItem).min(1),
+        }),
+      )
+      .min(2),
+    // what to say instead of naming the fallacy out loud
+    responses: z.array(z.object({ when: z.string(), say: z.string() })).min(1),
+    note: z.string().optional(),
+    updated: z.coerce.date(),
+  }),
+});
+
+export const collections = { fallacies, cases, foundations, comparisons, situations };

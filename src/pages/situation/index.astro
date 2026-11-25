@@ -1,0 +1,133 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SituationMap, { type SNode } from '../../components/SituationMap.astro';
+import { url } from '../../lib/text';
+
+const situations = (await getCollection('situations')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const fallacies = await getCollection('fallacies');
+const byId = new Map(fallacies.map((f) => [f.id, f]));
+
+const items = (e: (typeof situations)[number]) => e.data.groups.flatMap((g) => g.items);
+
+// how many distinct entries in the collection this set of pages reaches, and
+// which entries no situation mentions yet - a number worth printing, because a
+// situation page that quietly skips half the collection is less useful than one
+// that says so
+const mentioned = new Set(
+  situations.flatMap((e) => items(e).flatMap((it) => (it.slug ? [it.slug.id] : []))),
+);
+const unmentioned = fallacies.filter((f) => !mentioned.has(f.id)).length;
+
+const tree: SNode = {
+  name: 'ตามสถานการณ์',
+  children: situations.map((e) => ({
+    name: e.data.title_th,
+    note: e.data.one_liner,
+    count: items(e).length,
+    children: e.data.groups.map((g) => ({
+      name: g.title_th,
+      note: g.why,
+      count: g.items.length,
+      href: url(`situation/${e.id}`),
+    })),
+  })),
+};
+
+// the same entry turning up in several situations is the point of these pages,
+// so it is worth showing which ones do
+const appearances = new Map<string, string[]>();
+for (const e of situations) {
+  for (const it of items(e)) {
+    if (!it.slug) continue;
+    const seen = appearances.get(it.slug.id) ?? [];
+    if (!seen.includes(e.data.title_th)) seen.push(e.data.title_th);
+    appearances.set(it.slug.id, seen);
+  }
+}
+const shared = [...appearances.entries()]
+  .filter(([, where]) => where.length > 1)
+  .map(([id, where]) => ({ f: byId.get(id)!, where }))
+  .sort((a, b) => b.where.length - a.where.length ||
+    a.f.data.name_th.localeCompare(b.f.data.name_th, 'th'));
+---
+
+<Base
+  title="ตรรกวิบัติตามสถานการณ์"
+  description={`ตรรกวิบัติที่เจอบ่อยใน ${situations.length} สถานการณ์ แยกเป็นกลุ่มตามกลไกที่มันใช้ พร้อมประโยคตัวอย่างและวิธีถามกลับ`}
+>
+  <p class="sub" style="margin:0"><a href={url('/')}>กลับหน้ารวม</a></p>
+  <h1>ตรรกวิบัติตามสถานการณ์</h1>
+  <p class="sub">
+    {situations.length} สถานการณ์ · อ้างถึงรายการในคลัง {mentioned.size} รายการ
+    จากทั้งหมด {fallacies.length} รายการ
+  </p>
+
+  <p style="font-size:1.1rem">
+    หมวดหมู่หลักของคลังแยกตามคำถามว่าข้อโต้แย้งพังตรงไหน หน้านี้แยกด้วยคำถามอีกข้อหนึ่ง
+    คือเราไปเจอมันที่ไหน
+  </p>
+
+  <p>
+    สองวิธีจัดนี้ตอบคนละความต้องการ ถ้าอยากรู้ว่าประโยคที่เพิ่งได้ยินผิดเพราะอะไร
+    ให้เริ่มจากหมวดหมู่ ถ้ารู้อยู่แล้วว่าพรุ่งนี้ต้องเข้าประชุมหรือต้องอ่านข่าวงานวิจัย
+    และอยากรู้ว่าควรเตรียมใจเจออะไร ให้เริ่มจากหน้านี้
+    รายการเดียวกันปรากฏในหลายสถานการณ์ได้ และนั่นคือประเด็นของหน้านี้
+    เพราะสถานที่เปลี่ยนเครื่องแต่งกายของมัน ไม่ได้เปลี่ยนความผิดพลาดข้างใน
+  </p>
+
+  <SituationMap
+    tree={tree}
+    label="แผนผังสถานการณ์และกลุ่มตรรกวิบัติในแต่ละสถานการณ์"
+    caption="แต่ละกิ่งคือสถานการณ์หนึ่ง และกิ่งย่อยคือกลุ่มของกลไกที่พบในสถานการณ์นั้น ตัวเลขคือจำนวนรายการ กดที่กลุ่มเพื่อเปิดหน้าของสถานการณ์นั้น"
+  />
+
+  <section>
+    <h2>สถานการณ์ทั้งหมด</h2>
+    <ul class="plain">
+      {situations.map((e) => (
+        <li class="card">
+          <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline">
+            <strong><a href={url(`situation/${e.id}`)}>{e.data.title_th}</a></strong>
+            <span class="lvl">{items(e).length} รายการ</span>
+          </div>
+          {e.data.title_en && <div class="en">{e.data.title_en}</div>}
+          <div style="margin-top:6px">{e.data.one_liner}</div>
+          <div class="sub" style="margin-top:8px">
+            {e.data.groups.map((g) => g.title_th).join(' · ')}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {shared.length > 0 && (
+    <section>
+      <h2>รายการที่โผล่ในหลายสถานการณ์ <span class="en">{shared.length} รายการ</span></h2>
+      <p class="sub" style="margin-top:0">
+        รายการเหล่านี้คุ้มที่จะอ่านก่อน เพราะอ่านครั้งเดียวแล้วใช้ได้หลายที่
+      </p>
+      <ul class="plain">
+        {shared.map(({ f, where }) => (
+          <li class="card">
+            <strong><a href={url(`fallacy/${f.id}`)}>{f.data.name_th}</a></strong>
+            <span class="lvl" style="margin-left:8px">{where.length} สถานการณ์</span>
+            <div class="sub" style="margin-top:4px">{where.join(' · ')}</div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <div class="card" style="margin-top:28px">
+    <strong>ขอบเขตของหน้านี้</strong>
+    <p style="margin:6px 0 0">
+      หน้าเหล่านี้เป็นการจัดกลุ่มเพื่อการเรียนรู้ ไม่ใช่การอ้างอิงแหล่งข้อมูล
+      ประโยคตัวอย่างในแต่ละสถานการณ์เป็นประโยคที่แต่งขึ้นให้เห็นรูป ไม่ได้ยกมาจากเหตุการณ์จริง
+      ส่วนเคสจริงที่ระบุแหล่งที่มาอยู่ในหน้าของแต่ละรายการและในหน้ารวม
+      และยังมีอีก {unmentioned} รายการในคลังที่ยังไม่ถูกจัดเข้าสถานการณ์ใด
+    </p>
+  </div>
+</Base>

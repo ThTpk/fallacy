@@ -1,0 +1,81 @@
+---
+// One situation (or the whole set of them) drawn as an open map with d3.
+// The data is computed by the caller at build time and baked into the page, so
+// the browser fetches nothing; this component only carries it and styles it.
+export interface SNode {
+  name: string;
+  href?: string;
+  note?: string;
+  count?: number;
+  children?: SNode[];
+}
+
+interface Props {
+  tree: SNode;
+  /** the figure's accessible name, and the caption under it */
+  label: string;
+  caption: string;
+}
+
+const { tree, label, caption } = Astro.props;
+
+const esc = (s: string) =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+/** the same map as plain nested lists, for a browser that runs no script */
+const list = (n: SNode): string => {
+  const label = n.href
+    ? `<a href="${esc(n.href)}">${esc(n.name)}</a>`
+    : `<strong>${esc(n.name)}</strong>${n.count ? ` <span class="sub">${n.count}</span>` : ''}`;
+  const kids = n.children ? `<ul>${n.children.map(list).join('')}</ul>` : '';
+  return `<li>${label}${kids}</li>`;
+};
+const fallback = `<ul>${list(tree)}</ul>`;
+---
+
+<figure class="sitmapwrap" data-sitmap={label}>
+  <div class="sitmap-host">
+    <div class="fallback" set:html={fallback} />
+  </div>
+  <script type="application/json" set:html={JSON.stringify(tree)} is:inline />
+  <figcaption>{caption}</figcaption>
+</figure>
+
+<style>
+  .sitmapwrap { margin: 18px 0 8px; }
+
+  .sitmap-host {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 6px 2px;
+  }
+
+  /* the no-script map */
+  .sitmap-host .fallback { padding: 6px 18px 10px; }
+  .sitmap-host .fallback ul { padding-left: 18px; }
+
+  .sitmap-host :global(svg.sitmap) { display: block; }
+  .sitmap-host :global(svg.sitmap text) {
+    font-family: 'Noto Sans Thai', system-ui, sans-serif;
+    font-size: 12.5px;
+    fill: var(--text);
+  }
+  .sitmap-host :global(svg.sitmap .branch) { font-weight: 500; }
+  .sitmap-host :global(svg.sitmap .cnt) { font-size: 11px; fill: var(--muted); }
+  /* an entry the collection has no page for yet is drawn, but not as a link */
+  .sitmap-host :global(svg.sitmap .plain) { fill: var(--muted); font-style: italic; }
+
+  .sitmap-host :global(svg.sitmap path) { fill: none; stroke: var(--line); stroke-width: 1.3px; }
+  .sitmap-host :global(svg.sitmap circle) { fill: var(--surface); stroke: var(--muted); stroke-width: 1.4px; }
+  .sitmap-host :global(svg.sitmap .leaf circle) { fill: var(--line); stroke: none; }
+
+  .sitmap-host :global(svg.sitmap a text) { fill: var(--accent); }
+  .sitmap-host :global(svg.sitmap a:hover text) { text-decoration: underline; }
+  .sitmap-host :global(svg.sitmap a:focus-visible text) { text-decoration: underline; }
+</style>
+
+<script>
+  import '../tree/situation-map.ts';
+</script>
