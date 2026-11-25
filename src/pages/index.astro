@@ -11,11 +11,9 @@ const comparisons = await getCollection('comparisons');
 const foundations = (await getCollection('foundations')).sort(
   (a, b) => a.data.order - b.data.order,
 );
-const situations = (await getCollection('situations')).sort(
-  (a, b) => a.data.order - b.data.order,
-);
-const situationItemCount = (e: (typeof situations)[number]) =>
-  e.data.groups.reduce((n, g) => n + g.items.length, 0);
+// only the count is needed here; the situations themselves live on their own
+// page, which the button below opens
+const situations = await getCollection('situations');
 
 const byCategory = CATEGORY_ORDER.map((c) => ({
   id: c,
@@ -75,27 +73,17 @@ const caseCount = (slug: string) =>
   </section>
 
   <section>
-    <h2>
-      ตามสถานการณ์ <span class="en">{situations.length} สถานการณ์</span>
-    </h2>
+    <h2>ตามสถานการณ์ <span class="en">{situations.length} สถานการณ์</span></h2>
     <p class="sub" style="margin-top:0">
-      หมวดหมู่ข้างบนแยกตามคำถามว่าข้อโต้แย้งพังตรงไหน ส่วนหน้าเหล่านี้แยกด้วยคำถามว่าเราไปเจอมันที่ไหน
+      หมวดหมู่ข้างบนแยกตามคำถามว่าข้อโต้แย้งพังตรงไหน อีกหน้าหนึ่งแยกด้วยคำถามว่าเราไปเจอมันที่ไหน
+      เช่น ในที่ประชุม เวลาอ่านข่าวงานวิจัย หรือเวลาเจอมิจฉาชีพ
       แต่ละหน้ามีประโยคตัวอย่างของสถานการณ์นั้น และคำถามที่ใช้ดึงกลับมาที่ประเด็นได้โดยไม่ต้องเอ่ยชื่อตรรกวิบัติ
     </p>
-    <ul class="plain">
-      {situations.map((e) => (
-        <li class="card">
-          <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline">
-            <strong><a href={url(`situation/${e.id}`)}>{e.data.title_th}</a></strong>
-            <span class="lvl">{situationItemCount(e)} รายการ</span>
-          </div>
-          <div style="margin-top:6px">{e.data.one_liner}</div>
-        </li>
-      ))}
-    </ul>
-    <p class="sub">
-      <a href={url('situation')}>ดูแผนผังรวมทุกสถานการณ์</a>
-      ซึ่งบอกด้วยว่ารายการใดโผล่ในหลายสถานการณ์
+    <p style="margin:14px 0 0">
+      <a class="btn" href={url('situation')}>
+        เปิดหน้าตรรกวิบัติตามสถานการณ์
+        <span class="btn-n">{situations.length} สถานการณ์</span>
+      </a>
     </p>
   </section>
 

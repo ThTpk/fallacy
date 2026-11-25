@@ -126,6 +126,23 @@ const { title, description } = Astro.props;
         background: var(--box);
       }
       .lvl { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.02em; }
+      /* a link that is the way on to a whole section, not a word inside a
+         sentence. It stays an <a>, so middle-click and the keyboard behave. */
+      .btn {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 10px;
+        flex-wrap: wrap;
+        font-weight: 500;
+        color: var(--accent);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 7px 20px;
+        text-decoration: none;
+      }
+      .btn:hover, .btn:focus-visible { border-color: var(--accent); background: var(--box); }
+      .btn .btn-n { font-size: 0.8rem; font-weight: 400; color: var(--muted); }
       ul.plain { list-style: none; padding: 0; }
       ul.plain li { margin: 6px 0; }
       blockquote {
