@@ -8,6 +8,13 @@
 //
 // Several maps can sit on one page, so each one is found through its own
 // wrapper rather than by a fixed id.
+//
+// On a narrow screen the component's CSS hides the map and shows the nested
+// list instead. This file never reads that breakpoint: it asks the svg whether
+// it is being displayed. A hidden element measures as zero, and every column
+// width here comes from measured text, so laying out while hidden would set
+// every column to nothing. Keeping the question to "am I visible" leaves the
+// breakpoint in exactly one place, the stylesheet.
 import { cluster as clusterLayout, hierarchy, type HierarchyNode } from 'd3-hierarchy';
 import { select } from 'd3-selection';
 import { linkHorizontal } from 'd3-shape';
@@ -42,16 +49,20 @@ function draw(wrap: HTMLElement) {
   if (!host || !raw) return;
 
   const data: SNode = JSON.parse(raw.textContent || '{}');
-  // the no-script list has done its job once this runs
-  host.querySelector('.fallback')?.remove();
 
   const svg = select(host)
     .append('svg')
     .attr('class', 'sitmap')
     .attr('role', 'img')
     .attr('aria-label', wrap.dataset.sitmap || 'แผนผังตรรกวิบัติในสถานการณ์นี้');
+  const svgEl = svg.node()!;
   const gLink = svg.append('g').attr('class', 'links');
   const gNode = svg.append('g').attr('class', 'nodes');
+
+  // there is an svg to show now, so the stylesheet may prefer it to the list
+  // where there is room. Until this class lands, the list stands on its own,
+  // which is what a browser running no script keeps at every width.
+  wrap.classList.add('has-svg');
 
   const root = hierarchy<SNode>(data) as Node;
   // only the vertical positions come from the layout. The horizontal ones are
@@ -147,11 +158,18 @@ function draw(wrap: HTMLElement) {
     gNode.attr('transform', `translate(${PAD} ${PAD - minX})`);
   }
 
+  /** a hidden svg measures as zero, and the columns are built from those
+   *  measurements, so there is nothing to compute until it is on screen */
+  const shown = () => svgEl.getBoundingClientRect().width > 0;
+
+  let laid = false;
   function relayout() {
+    if (!shown()) return;
     fit();
     columns();
     place();
     resize();
+    laid = true;
   }
 
   relayout();
@@ -160,6 +178,20 @@ function draw(wrap: HTMLElement) {
   // Noto Sans Thai arrives every label is a different width, and so is every
   // column, so the whole pass has to run again rather than just the resize
   document.fonts?.ready.then(relayout);
+
+  // a phone turned to landscape, or a window dragged wider, can cross the
+  // breakpoint and reveal a map that was never measured. Once it has been laid
+  // out the column widths come from the text alone and no longer depend on the
+  // viewport, so this listener has nothing left to do and stops.
+  let queued = false;
+  window.addEventListener('resize', () => {
+    if (laid || queued) return;
+    queued = true;
+    requestAnimationFrame(() => {
+      queued = false;
+      relayout();
+    });
+  });
 }
 
 document.querySelectorAll<HTMLElement>('[data-sitmap]').forEach(draw);

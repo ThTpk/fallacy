@@ -2,6 +2,12 @@
 // One situation (or the whole set of them) drawn as an open map with d3.
 // The data is computed by the caller at build time and baked into the page, so
 // the browser fetches nothing; this component only carries it and styles it.
+//
+// Below the site's narrow breakpoint the map is replaced by the nested list,
+// not shrunk. A map that is 700px wide on a 340px screen is mostly horizontal
+// scrolling, and the list says the same thing in a shape a phone can hold. The
+// list is also what a browser running no script gets, at any width, so it has
+// to carry the notes rather than be a bare skeleton of the figure.
 export interface SNode {
   name: string;
   href?: string;
@@ -22,15 +28,22 @@ const { tree, label, caption } = Astro.props;
 const esc = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-/** the same map as plain nested lists, for a browser that runs no script */
+/** the same map as plain nested lists. The map hides its notes inside SVG
+ *  <title> tooltips, which a phone has no way to show, so here they are
+ *  written out instead. */
 const list = (n: SNode): string => {
-  const label = n.href
+  const head = n.href
     ? `<a href="${esc(n.href)}">${esc(n.name)}</a>`
     : `<strong>${esc(n.name)}</strong>${n.count ? ` <span class="sub">${n.count}</span>` : ''}`;
+  const note = n.note ? `<div class="sub">${esc(n.note)}</div>` : '';
   const kids = n.children ? `<ul>${n.children.map(list).join('')}</ul>` : '';
-  return `<li>${label}${kids}</li>`;
+  return `<li>${head}${note}${kids}</li>`;
 };
-const fallback = `<ul>${list(tree)}</ul>`;
+// The map needs a root to hang the branches off. The list does not: the root
+// only repeats the heading above the figure, and carrying it costs every row
+// an indent on the screen that has the least of it.
+const top = tree.children ?? [tree];
+const fallback = `<ul>${top.map(list).join('')}</ul>`;
 ---
 
 <figure class="sitmapwrap" data-sitmap={label}>
@@ -38,7 +51,13 @@ const fallback = `<ul>${list(tree)}</ul>`;
     <div class="fallback" set:html={fallback} />
   </div>
   <script type="application/json" set:html={JSON.stringify(tree)} is:inline />
-  <figcaption>{caption}</figcaption>
+  <figcaption>
+    <span class="cap-map">{caption}</span>
+    <span class="cap-list">
+      หน้าจอแคบจึงแสดงเป็นลิสต์แทนแผนผัง ชื่อที่เป็นลิงก์คือรายการที่มีหน้าของตัวเองในคลัง
+      เปิดบนจอที่กว้างกว่านี้จะเห็นเป็นแผนผัง
+    </span>
+  </figcaption>
 </figure>
 
 <style>
@@ -52,11 +71,31 @@ const fallback = `<ul>${list(tree)}</ul>`;
     padding: 6px 2px;
   }
 
-  /* the no-script map */
-  .sitmap-host .fallback { padding: 6px 18px 10px; }
-  .sitmap-host .fallback ul { padding-left: 18px; }
+  /* The list is injected with set:html, so none of it carries Astro's scoping
+     attribute and a plain descendant selector would never match it. Only
+     .fallback itself is in the template; everything inside needs :global. */
+  .sitmap-host .fallback { padding: 10px 16px 12px; }
+  .sitmap-host .fallback :global(ul) { padding-left: 20px; margin: 4px 0; }
+  .sitmap-host .fallback :global(li) { margin: 5px 0; }
+  /* the top level is the groups, which read as headings rather than items */
+  .sitmap-host .fallback > :global(ul) { padding-left: 0; list-style: none; margin: 0; }
+  .sitmap-host .fallback > :global(ul) > :global(li) { margin: 0 0 14px; }
+  .sitmap-host .fallback > :global(ul) > :global(li:last-child) { margin-bottom: 2px; }
 
-  .sitmap-host :global(svg.sitmap) { display: block; }
+  /* The default is the list: it is what a browser with no script gets, and
+     what a narrow screen gets. The svg only takes over when the script has
+     drawn one AND there is room, which is why .has-svg exists - without it,
+     a no-script wide screen would hide the list and show nothing. */
+  .sitmapwrap :global(svg.sitmap) { display: none; }
+  .cap-map { display: none; }
+
+  @media (min-width: 620px) {
+    .sitmapwrap.has-svg :global(svg.sitmap) { display: block; }
+    .sitmapwrap.has-svg .fallback { display: none; }
+    .sitmapwrap.has-svg .cap-map { display: inline; }
+    .sitmapwrap.has-svg .cap-list { display: none; }
+  }
+
   .sitmap-host :global(svg.sitmap text) {
     font-family: 'Noto Sans Thai', system-ui, sans-serif;
     font-size: 12.5px;
