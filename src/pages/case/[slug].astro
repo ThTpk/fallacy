@@ -62,7 +62,14 @@ const byId = new Map(fallacies.map((f) => [f.id, f]));
           <span class="tag">{f.confidence === 'clear' ? 'ชัดเจน' : 'ยังเถียงได้'}</span>
         </div>
         {fa && <div class="en">{fa.data.name_en}</div>}
-        <p style="margin:8px 0 0">{f.analysis}</p>
+        {/* The analysis fields are YAML folded scalars ('>'), which turn a
+            single line break into a space and a blank line into exactly one
+            newline - not two. So every newline left in the string is a
+            paragraph break, and splitting on /\n+/ is what recovers them.
+            An analysis written as one block still yields one paragraph. */}
+        {f.analysis.split(/\n+/).filter((p) => p.trim()).map((para, i) => (
+          <p style={i === 0 ? 'margin:8px 0 0' : 'margin:10px 0 0'}>{para.trim()}</p>
+        ))}
       </div>
     );
   })}
