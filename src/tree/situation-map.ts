@@ -29,7 +29,11 @@ type Node = HierarchyNode<SNode> & {
   lw?: number;
 };
 
+/** vertical pitch between siblings */
 const ROW = 26;
+/** clear space between the end of one column's longest label and the next
+ *  column's dots. Below about 18px the curve of the link has nowhere to go */
+const GAP = 28;
 const PAD = 14;
 
 function draw(wrap: HTMLElement) {
@@ -41,10 +45,6 @@ function draw(wrap: HTMLElement) {
   // the no-script list has done its job once this runs
   host.querySelector('.fallback')?.remove();
 
-  const depth = (n: SNode): number => 1 + Math.max(0, ...(n.children ?? []).map(depth));
-  // three levels want more room per column than two
-  const COL = depth(data) >= 3 ? 150 : 210;
-
   const svg = select(host)
     .append('svg')
     .attr('class', 'sitmap')
@@ -54,21 +54,27 @@ function draw(wrap: HTMLElement) {
   const gNode = svg.append('g').attr('class', 'nodes');
 
   const root = hierarchy<SNode>(data) as Node;
-  clusterLayout<SNode>().nodeSize([ROW, COL])(root);
+  // only the vertical positions come from the layout. The horizontal ones are
+  // set below from the measured text, because a fixed pitch cannot know how
+  // wide a Thai sentence is and a group title here is a sentence.
+  clusterLayout<SNode>().nodeSize([ROW, 1])(root);
 
   const nodes = root.descendants() as Node[];
   const links = root.links() as unknown as Array<{ source: Node; target: Node }>;
+  const maxDepth = Math.max(...nodes.map((d) => d.depth));
 
   const link = linkHorizontal<unknown, Node>().x((d) => d.y).y((d) => d.x);
-  gLink.selectAll('path').data(links).enter().append('path').attr('d', (d) => link(d)!);
+  const path = gLink.selectAll<SVGPathElement, { source: Node; target: Node }>('path')
+    .data(links)
+    .enter()
+    .append('path');
 
   const node = gNode
     .selectAll<SVGGElement, Node>('g')
     .data(nodes)
     .enter()
     .append('g')
-    .attr('class', (d) => (d.children ? 'n' : 'n leaf'))
-    .attr('transform', (d) => `translate(${d.y} ${d.x})`);
+    .attr('class', (d) => (d.children ? 'n' : 'n leaf'));
 
   node.each(function (d) {
     const s = select(this);
@@ -92,7 +98,7 @@ function draw(wrap: HTMLElement) {
 
   /** Thai combining vowels and tone marks carry no width of their own, so a
    *  character count overstates a label by about a third. Measure the drawn
-   *  text instead, and remember the total so the canvas can fit it. */
+   *  text instead, and remember the total so the column can hold it. */
   function fit() {
     node.each(function (d) {
       const t = this.querySelector<SVGTextElement>('text.lbl');
@@ -102,6 +108,27 @@ function draw(wrap: HTMLElement) {
       if (c) c.setAttribute('x', String(10 + w + 9));
       d.lw = 10 + w + (c ? 9 + c.getComputedTextLength() : 0);
     });
+  }
+
+  /** Each column is as wide as its own widest label. A single pitch for every
+   *  depth is what put a branch title on top of the leaf beside it: the group
+   *  titles on these pages are long, and no constant fits both them and the
+   *  short root. */
+  function columns() {
+    const widest: number[] = new Array(maxDepth + 1).fill(0);
+    for (const d of nodes) widest[d.depth] = Math.max(widest[d.depth], d.lw ?? 0);
+    let at = 0;
+    const left: number[] = [];
+    for (let i = 0; i <= maxDepth; i++) {
+      left[i] = at;
+      at += widest[i] + GAP;
+    }
+    for (const d of nodes) d.y = left[d.depth];
+  }
+
+  function place() {
+    node.attr('transform', (d) => `translate(${d.y} ${d.x})`);
+    path.attr('d', (d) => link(d)!);
   }
 
   function resize() {
@@ -120,15 +147,19 @@ function draw(wrap: HTMLElement) {
     gNode.attr('transform', `translate(${PAD} ${PAD - minX})`);
   }
 
-  fit();
-  resize();
+  function relayout() {
+    fit();
+    columns();
+    place();
+    resize();
+  }
+
+  relayout();
 
   // the first measurement runs against whatever font happens to be up; once
-  // Noto Sans Thai arrives every label is a different width
-  document.fonts?.ready.then(() => {
-    fit();
-    resize();
-  });
+  // Noto Sans Thai arrives every label is a different width, and so is every
+  // column, so the whole pass has to run again rather than just the resize
+  document.fonts?.ready.then(relayout);
 }
 
 document.querySelectorAll<HTMLElement>('[data-sitmap]').forEach(draw);
