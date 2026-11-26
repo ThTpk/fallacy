@@ -82,8 +82,30 @@ const P = (s: string) => paras(s).map((t, i) => ({ t, first: i === 0 }));
           <span class="tag">{f.confidence === 'clear' ? 'ชัดเจน' : 'ยังเถียงได้'}</span>
         </div>
         {fa && <div class="en">{fa.data.name_en}</div>}
+
+        {/* The analyses were written as commentary on the entry page and say
+            "this entry" 91 times across the archive - its form, its test, the
+            questions it suggests. A reader who arrived here from a search has
+            not read that page, so those references had nothing to point at.
+            Pulling the three fields in puts the referent on the same screen.
+            Read live from the entry rather than copied, so it cannot drift. */}
+        {fa && (
+          <div class="formcard">
+            <div class="sub">{fa.data.one_liner}</div>
+            {fa.data.form && <div class="formline">{fa.data.form}</div>}
+            {fa.data.responses.length > 0 && (
+              <>
+                <div class="sub qhead">คำถามที่รายการนี้ใช้ตรวจ</div>
+                <ul class="qs">
+                  {fa.data.responses.map((q) => <li>{q}</li>)}
+                </ul>
+              </>
+            )}
+          </div>
+        )}
+
         {P(f.analysis).map((p) => (
-          <p style={p.first ? 'margin:8px 0 0' : 'margin:10px 0 0'}>{p.t}</p>
+          <p style={p.first ? 'margin:12px 0 0' : 'margin:10px 0 0'}>{p.t}</p>
         ))}
       </div>
     );
@@ -162,4 +184,27 @@ const P = (s: string) => paras(s).map((t, i) => ({ t, first: i === 0 }));
   }
   .plainbox p { font-size: 1.04rem; }
   .formalbox { border-left: 3px solid var(--muted); }
+
+  /* The entry's own form and test, inset inside the analysis card. It has to
+     be quiet: it is reference material the analysis points at, not something
+     to read first. Hence the muted type and the lack of a heading above it. */
+  .formcard {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-left: 2px solid var(--line);
+    background: color-mix(in srgb, var(--muted) 7%, transparent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  .formline {
+    margin-top: 6px;
+    font-weight: 500;
+    line-height: 1.7;
+  }
+  .qhead { margin-top: 10px; }
+  .qs {
+    margin: 4px 0 0;
+    padding-left: 18px;
+    font-size: 0.95rem;
+  }
+  .qs li { margin: 3px 0; }
 </style>
