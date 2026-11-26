@@ -242,9 +242,17 @@ const cases = defineCollection({
       // 'study', which implies review, and not 'guidance', which tells the
       // reader what to do. It carries the organisation's own interest, so a
       // case using it should say whose numbers these are.
+      // 'commentary' is a signed piece in which a named author explains or
+      // argues in their own voice, published by an institution but not
+      // reviewed by it - an academic's post on a university centre's blog,
+      // an op-ed. Its weight comes from the author's standing on that
+      // subject, not from the institution's finding, so a case using it must
+      // name the author and say why this author in particular. The one it
+      // was added for quotes the person who coined a term, writing to
+      // correct how other people were using it: nobody else could.
       medium: z.enum(['news', 'ad', 'social', 'transcript', 'press_release',
                       'broadcast', 'factcheck', 'legal_filing', 'guidance',
-                      'ruling', 'study', 'report']),
+                      'ruling', 'study', 'report', 'commentary']),
     }),
     corroboration: z.array(z.object({
       outlet: z.string(),

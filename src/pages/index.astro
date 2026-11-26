@@ -25,6 +25,11 @@ const byCategory = CATEGORY_ORDER.map((c) => ({
 
 const caseCount = (slug: string) =>
   cases.filter((c) => c.data.fallacies.some((f) => f.slug.id === slug)).length;
+
+// How many entries have at least one sourced case. Counted here rather than
+// written into the sentence below, so that adding an entry without a case
+// corrects the sentence instead of turning it into a false claim.
+const withCase = fallacies.filter((f) => caseCount(f.id) > 0).length;
 ---
 
 <Base
@@ -137,6 +142,9 @@ const caseCount = (slug: string) =>
     <p class="sub" style="margin-top:0">
       ทุกเคสยกคำพูดตรงตัว ระบุสื่อ วันเผยแพร่ และวันที่เปิดดูหน้าต้นทาง
       และมีช่องการตีความอย่างเมตตาที่สุดกับช่องสิ่งที่ไม่ได้กล่าวอ้าง
+      {withCase === fallacies.length
+        ? ` ขณะนี้ทุกรายการในคลังทั้ง ${fallacies.length} รายการมีเคสจริงประกอบอย่างน้อยหนึ่งเคส`
+        : ` ขณะนี้ ${withCase} จาก ${fallacies.length} รายการมีเคสจริงประกอบแล้ว`}
     </p>
     <ul class="plain">
       {cases
