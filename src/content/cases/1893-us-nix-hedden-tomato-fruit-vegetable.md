@@ -5,6 +5,10 @@ date_of_statement: 1893-05-10
 quote: "Botanically speaking, tomatoes are the fruit of a vine, just as are cucumbers, squashes, beans, and peas. But in the common language of the people, whether sellers or consumers of provisions, all these are vegetables which are grown in kitchen gardens"
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ในทางพฤกษศาสตร์ มะเขือเทศคือผลของไม้เลื้อย เช่นเดียวกับแตงกวา ฟักทอง ถั่วฝัก และถั่วลันเตา
+  แต่ในภาษาที่ผู้คนใช้กันทั่วไป ไม่ว่าจะเป็นผู้ขายหรือผู้บริโภคเสบียงอาหาร
+  ของทั้งหมดนี้คือผักที่ปลูกกันในสวนครัว
 plain: >
   ผู้นำเข้ามะเขือเทศฟ้องขอคืนภาษี เพราะกฎหมายภาษีปี 1883 เก็บภาษีผัก แต่ยกเว้นผลไม้
   ข้อโต้แย้งของเขาคือพจนานุกรมนิยามผลไม้ว่าเป็นส่วนของพืชที่ห่อหุ้มเมล็ด

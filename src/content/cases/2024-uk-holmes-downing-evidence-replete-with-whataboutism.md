@@ -5,6 +5,10 @@ date_of_statement: 2024-08-06
 quote: "His evidence was replete with whataboutism, avoiding answering for his decisions or actions by turning to what he thought were issues with the Claimant’s case."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  คำเบิกความของเขาเต็มไปด้วยการตอบแบบ แล้วเรื่องนั้นล่ะ
+  คือเลี่ยงการตอบสำหรับการตัดสินใจหรือการกระทำของตัวเอง
+  ด้วยการหันไปที่สิ่งที่เขาคิดว่าเป็นปัญหาในคดีของผู้ฟ้อง
 plain: >
   คดีแพ่งเรื่องค่าบริการเป็นคนกลางซื้ออสังหาริมทรัพย์
   ผู้พิพากษาประเมินความน่าเชื่อถือของจำเลยที่หนึ่งในฐานะพยาน

@@ -5,6 +5,12 @@ date_of_statement: 2025-05-08
 quote: "Over consecutive five-year periods, in almost every category, the worst-performing quartile saw the highest proportion of funds that were subsequently merged or liquidated. For example, 25% of all fourth-quartile domestic U.S. equity funds (based on 2014-2019 performance) were either merged or liquidated within the subsequent five years; the comparable figure for top-quartile funds was only 7%."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ตลอดช่วงห้าปีที่ต่อเนื่องกัน ในเกือบทุกหมวด
+  กลุ่มกองทุนที่ผลงานแย่ที่สุดหนึ่งในสี่มีสัดส่วนของกองทุนที่ถูกควบรวมหรือปิดในภายหลังสูงที่สุด
+  ตัวอย่างเช่น ร้อยละ 25 ของกองทุนหุ้นสหรัฐฯ ในกลุ่มหนึ่งในสี่ที่แย่ที่สุด
+  วัดจากผลงานปี 2014 ถึง 2019 ถูกควบรวมหรือปิดภายในห้าปีถัดมา
+  ขณะที่ตัวเลขเดียวกันของกองทุนกลุ่มที่ดีที่สุดหนึ่งในสี่อยู่ที่เพียงร้อยละ 7
 plain: >
   รายงานประจำของ S&P Dow Jones Indices นับว่ากองทุนที่หายไปจากตลาดเป็นกองแบบไหน
   คำตอบคือกองที่ผลงานแย่ที่สุดหนึ่งในสี่ ถูกปิดหรือควบรวมในอัตราสูงกว่า

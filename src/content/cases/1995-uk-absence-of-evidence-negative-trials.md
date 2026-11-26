@@ -5,6 +5,10 @@ date_of_statement: 1995-08-19
 quote: "This term wrongly implies that the study has shown that there is no difference, whereas usually all that has been shown is an absence of evidence of a difference. These are quite different statements."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  คำนี้สื่อผิดไปว่างานวิจัยได้แสดงแล้วว่าไม่มีความต่าง
+  ทั้งที่ตามปกติสิ่งที่แสดงได้มีเพียงการไม่มีหลักฐานของความต่าง
+  สองข้อความนี้ต่างกันมาก
 plain: >
   วงการแพทย์เคยเรียกงานวิจัยที่เทียบยาสองตัวแล้ว ไม่พบ ความต่าง ว่าเป็นงานที่ได้ผลเป็นลบ
   นักสถิติสองคนเขียนใน วารสาร BMJ ว่าคำนั้นทำให้คนอ่านเข้าใจผิด

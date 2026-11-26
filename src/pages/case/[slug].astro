@@ -62,6 +62,18 @@ const P = (s: string) => paras(s).map((t, i) => ({ t, first: i === 0 }));
   <div class="card">
     <blockquote style="font-size:1.08rem">{c.quote}</blockquote>
     <div class="sub" style="margin-top:10px">ยกมาตรงตัว · {c.quote_lang === 'th' ? 'ภาษาไทย' : 'ภาษาอังกฤษ'}</div>
+
+    {/* The translation sits under the quotation, never in place of it. The
+        original is the evidence; a rendering is not, which is why the label
+        says whose words these are before the words appear. */}
+    {c.quote_th && (
+      <div class="quoteth">
+        <div class="sub">คำแปลของคลังนี้ ไม่ใช่ถ้อยคำต้นฉบับ</div>
+        {paras(c.quote_th).map((t, i) => (
+          <p style={i === 0 ? 'margin:4px 0 0' : 'margin:8px 0 0'}>{t}</p>
+        ))}
+      </div>
+    )}
   </div>
 
   <h3>บริบท</h3>
@@ -207,4 +219,13 @@ const P = (s: string) => paras(s).map((t, i) => ({ t, first: i === 0 }));
     font-size: 0.95rem;
   }
   .qs li { margin: 3px 0; }
+
+  /* The Thai rendering of an English quotation. Set apart from the quotation
+     above it by a rule rather than a box, so that it reads as a note on the
+     quotation and not as a second quotation. */
+  .quoteth {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+  }
 </style>

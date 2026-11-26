@@ -5,6 +5,8 @@ date_of_statement: 2012-02-24
 quote: "Women should forget local politics and 'look after the kids'"
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ผู้หญิงควรเลิกยุ่งกับการเมืองท้องถิ่นแล้วไป ดูแลลูก
 plain: >
   หนังสือพิมพ์ในเมลเบิร์นลงพาดหัวว่า ผู้หญิงควรเลิกยุ่งกับการเมืองท้องถิ่นแล้วไปดูแลลูก
   วางไว้เหนือพาดหัวหลักที่รายงานความโกรธที่มีต่อคำพูดนั้น

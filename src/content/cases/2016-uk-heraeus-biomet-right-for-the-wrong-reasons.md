@@ -5,6 +5,10 @@ date_of_statement: 2016-06-15
 quote: "If the OLG ruling stands, his certificate was correct. In my view it matters not that he was right for the wrong reasons. It would be odd to set aside service in those circumstances."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ถ้าคำตัดสินของ OLG ยังคงอยู่ ใบรับรองของเขาก็ถูกต้อง
+  ในความเห็นของข้าพเจ้า ไม่สำคัญว่าเขาถูกด้วยเหตุผลที่ผิด
+  การเพิกถอนการส่งหมายในสถานการณ์เช่นนั้นย่อมเป็นเรื่องแปลก
 plain: >
   ในคำร้องเรื่องเขตอำนาจศาล ฝ่ายจำเลยโจมตีใบรับรองที่ทนายฝ่ายโจทก์ลงนามไว้
   โดยไม่ได้อ้างว่าเนื้อหาในใบรับรองผิด แต่อ้างเรื่องสภาพจิตใจของผู้ลงนามในเวลานั้น

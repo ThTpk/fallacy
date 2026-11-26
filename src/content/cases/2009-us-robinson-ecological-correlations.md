@@ -5,6 +5,11 @@ date_of_statement: 2009-01-28
 quote: "He showed an even more striking discrepancy between ecological and individual correlations between illiteracy and nativity (foreign-born vs rest), such that the state-level correlation was negative (r = –0.53), while the individual correlation was positive (r = 0.12)."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  เขาแสดงความแตกต่างที่ยิ่งน่าทึ่งกว่านั้น ระหว่างสหสัมพันธ์ระดับพื้นที่กับระดับบุคคล
+  ของการอ่านไม่ออกเขียนไม่ได้กับถิ่นกำเนิด คือผู้เกิดต่างประเทศเทียบกับคนที่เหลือ
+  โดยสหสัมพันธ์ระดับรัฐเป็นลบ ที่ค่า −0.53
+  ขณะที่สหสัมพันธ์ระดับบุคคลเป็นบวก ที่ค่า 0.12
 plain: >
   มีงานคลาสสิกปี 1950 ที่วิเคราะห์สำมะโนประชากรสหรัฐฯ ปี 1930
   เมื่อนับเป็นรัฐ รัฐที่มีสัดส่วนคนเกิดต่างประเทศสูง กลับมีอัตราคนอ่านไม่ออกเขียนไม่ได้ต่ำ

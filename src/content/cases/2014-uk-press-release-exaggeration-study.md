@@ -5,6 +5,10 @@ date_of_statement: 2014-12-10
 quote: "40% (95% confidence interval 33% to 46%) of the press releases contained exaggerated advice, 33% (26% to 40%) contained exaggerated causal claims, and 36% (28% to 46%) contained exaggerated inference to humans from animal research."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ร้อยละ 40 ของข่าวประชาสัมพันธ์ ช่วงความเชื่อมั่นร้อยละ 95 อยู่ที่ 33 ถึง 46
+  มีคำแนะนำที่เกินจริง ร้อยละ 33 ช่วง 26 ถึง 40 มีข้อกล่าวอ้างเชิงสาเหตุที่เกินจริง
+  และร้อยละ 36 ช่วง 28 ถึง 46 มีการอนุมานจากงานวิจัยในสัตว์มาสู่มนุษย์ที่เกินจริง
 plain: >
   คณะผู้วิจัยนำข่าวประชาสัมพันธ์งานวิจัยด้านสุขภาพ 462 ชิ้น
   จากมหาวิทยาลัยชั้นนำของสหราชอาณาจักร 20 แห่ง

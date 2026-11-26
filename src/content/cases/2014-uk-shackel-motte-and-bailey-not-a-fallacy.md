@@ -5,6 +5,11 @@ date_of_statement: 2014-09-05
 quote: "The basic fallacy that is available is offering the arguments for doctrines in the Motte as if they were arguments for the doctrines in the Bailey. The crudest such fallacy would have the form ‘Motte, therefore Bailey’, and certainly, despite its crudity, there is no shortage of such argumentation."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ตรรกวิบัติพื้นฐานที่มีให้ใช้ คือการเสนอเหตุผลที่สนับสนุนข้ออ้างในป้อม
+  ราวกับว่ามันเป็นเหตุผลที่สนับสนุนข้ออ้างในทุ่ง
+  ตรรกวิบัติแบบนั้นในรูปที่หยาบที่สุดจะมีรูปว่า ป้อม ดังนั้น ทุ่ง
+  และแน่นอนว่าแม้จะหยาบเพียงนั้น การให้เหตุผลเช่นนี้ก็มีอยู่ไม่ขาด
 plain: >
   นักปรัชญาที่ตั้งชื่อแนวคิด ป้อมกับทุ่ง เขียนบทความแก้ความเข้าใจผิดเรื่องแนวคิดของตัวเอง
   อุปมามาจากปราสาทยุคกลาง หอหินบนเนินคือที่มั่นที่ป้องกันง่ายแต่อยู่ไม่สบาย
@@ -47,6 +52,12 @@ context: >
 
   ส่วนที่เป็นเหตุให้เขาเขียนบทความนี้คือการแก้ความเข้าใจผิดเรื่องประเภทของแนวคิดนี้
   Some people have spoken of a Motte and Bailey Doctrine as being a fallacy and others of it being a matter of strategic equivocation. Strictly speaking, neither is correct. A fallacy is an argument that is invalid and equivocation is giving different meanings to the same terms when you should be keeping their meaning invariant. A doctrine, however, is a body of propositions, not an argument.
+  ใจความคือ บางคนพูดถึงชุดข้ออ้างแบบป้อมกับทุ่งว่าเป็นตรรกวิบัติ
+  บางคนว่าเป็นเรื่องของการเล่นสองความหมายเชิงกลยุทธ์
+  พูดอย่างเคร่งครัดแล้วไม่ถูกทั้งสองอย่าง
+  ตรรกวิบัติคือข้อโต้แย้งที่ไม่สมเหตุสมผล
+  ส่วนการเล่นสองความหมายคือการให้ความหมายต่างกันแก่คำเดียวกันในที่ที่ควรรักษาความหมายให้คงเดิม
+  แต่ชุดข้ออ้างคือกลุ่มของประพจน์ ไม่ใช่ข้อโต้แย้ง
 
   ข้อความที่ยกมาข้างบนอยู่ถัดจากนั้น หลังจากเขาเขียนว่าเมื่อชุดข้ออ้างแบบนี้ตั้งขึ้นแล้ว
   มันเปิดโอกาสให้เล่นตุกติกในการโต้แย้งได้มาก

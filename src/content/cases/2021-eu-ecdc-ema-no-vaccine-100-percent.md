@@ -5,6 +5,11 @@ date_of_statement: 2021-08-04
 quote: "Although the effectiveness of all COVID-19 vaccines authorised in the EU/EEA is very high, no vaccine is 100% effective. This means that a limited number of SARS-CoV-2 infections among persons that have completed the recommended vaccination schedule (i.e. ‘breakthrough infections’) are expected."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  แม้ประสิทธิผลของวัคซีนโควิด 19 ทุกตัวที่ได้รับอนุญาตในสหภาพยุโรปและเขตเศรษฐกิจยุโรปจะสูงมาก
+  แต่ไม่มีวัคซีนใดได้ผลร้อยเปอร์เซ็นต์
+  ข้อนี้แปลว่าการติดเชื้อไวรัสจำนวนจำกัดในผู้ที่ฉีดวัคซีนครบตามกำหนดแล้ว
+  ซึ่งเรียกว่าการติดเชื้อที่ทะลุภูมิคุ้มกัน เป็นสิ่งที่คาดหมายได้
 plain: >
   หน่วยงานยาและหน่วยงานควบคุมโรคของยุโรปออกแถลงการณ์ร่วม
   ตอบข้ออ้างที่ว่า ยังมีคนฉีดวัคซีนแล้วติดเชื้ออยู่ แปลว่าวัคซีนไม่ได้ผล
@@ -46,6 +51,9 @@ context: >
   However, as long as the virus continues to circulate, we will continue to see breakthrough
   infections in vaccinated people. This does not mean that the vaccines are not working.
   Vaccinated people are far better protected against severe COVID-19 than unvaccinated people
+  ใจความคือ ตราบใดที่ไวรัสยังแพร่อยู่ เราก็จะยังเห็นการติดเชื้อที่ทะลุภูมิคุ้มกันในผู้ที่ฉีดวัคซีนแล้วต่อไป
+  ข้อนี้ไม่ได้แปลว่าวัคซีนไม่ได้ผล
+  ผู้ที่ฉีดวัคซีนแล้วได้รับการป้องกันจากโควิด 19 ชนิดรุนแรงดีกว่าผู้ที่ไม่ได้ฉีดมาก
   แถลงการณ์นี้เขียนขึ้นเพื่อตอบข้ออ้างที่กำลังแพร่ในตอนนั้น ไม่ใช่เพื่ออธิบายทฤษฎี
 speaker_role: >
   แถลงการณ์ร่วมของสำนักงานยาแห่งยุโรปและศูนย์ป้องกันและควบคุมโรคแห่งยุโรป

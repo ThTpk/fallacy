@@ -5,6 +5,9 @@ date_of_statement: 2023-07-20
 quote: "you spew out a ton of information, accurate or not, that your opponent has no possibility of refuting in the time available"
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  คุณพ่นข้อมูลออกมาเป็นกอง จะถูกต้องหรือไม่ก็ตาม
+  ในปริมาณที่คู่โต้ของคุณไม่มีทางหักล้างได้เลยภายในเวลาที่มีอยู่
 plain: >
   ผู้ที่ตั้งชื่อเทคนิคถล่มข้อมูลอธิบายว่ามันทำงานอย่างไร
   คือพูดข้อมูลออกมาเป็นกอง ถูกหรือผิดก็ตาม

@@ -5,6 +5,10 @@ date_of_statement: 2003-10-28
 quote: "a telemarketing technique in which telephone calls are used to canvass vast numbers of potential voters, feeding them false and damaging 'information' about a candidate under the guise of taking a poll to see how this 'information' affects voter preferences."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  เทคนิคการตลาดทางโทรศัพท์ที่ใช้การโทรเพื่อหยั่งเสียงผู้มีสิทธิ์เลือกตั้งจำนวนมหาศาล
+  โดยป้อนข้อมูลเท็จที่สร้างความเสียหายเกี่ยวกับผู้สมัครคนหนึ่งให้แก่พวกเขา
+  ภายใต้ข้ออ้างว่ากำลังทำโพลเพื่อดูว่าข้อมูลนี้ส่งผลต่อความชอบของผู้มีสิทธิ์อย่างไร
 plain: >
   มีเทคนิคหาเสียงที่ปลอมตัวเป็นโพล คือโทรหาผู้มีสิทธิ์เลือกตั้งจำนวนมาก
   แล้วถามในรูปว่า คุณจะยังสนับสนุนผู้สมัครคนนี้อยู่ไหม ถ้าคุณรู้ว่าเขาเคยทำเรื่องนี้

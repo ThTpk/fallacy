@@ -5,6 +5,10 @@ date_of_statement: 2017-03-30
 quote: "Mr Burkill submitted that the judge had been guilty of the fallacy of the undistributed middle. Just because a barrier improves penetration resistance, it did not mean that everything which improved penetration resistance was a barrier."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ทนายความ Burkill เสนอว่าผู้พิพากษาได้กระทำตรรกวิบัติพจน์กลางไม่กระจาย
+  การที่ชั้นกั้นช่วยให้ต้านการทะลุได้ดีขึ้น
+  ไม่ได้แปลว่าทุกสิ่งที่ช่วยให้ต้านการทะลุได้ดีขึ้นคือชั้นกั้น
 plain: >
   คดีสิทธิบัตรเรื่องผ้าที่ต้านการทะลุ ประเด็นคือคำว่า ชั้นกั้น ในสิทธิบัตรหมายถึงอะไร
   ทนายฝ่ายอุทธรณ์กล่าวหาว่าผู้พิพากษาศาลล่างให้เหตุผลผิดรูป
@@ -49,6 +53,9 @@ context: >
   แล้วให้เหตุผลว่าการใส่เส้นด้ายที่หลอมติดกันนั้นสร้างโครงสร้างขึ้นภายในเนื้อผ้า
   และเขียนต่อว่า
   It is entirely logical to describe the fabric including such a structure as a barrier, or as including a barrier. A barrier is not necessarily a continuous layer of material, nor is there any reason why it may not be formed by a combination of yarns.
+  ใจความคือ การเรียกผ้าที่มีโครงสร้างเช่นนั้นว่าชั้นกั้น หรือว่ามีชั้นกั้นอยู่ในตัว
+  เป็นเรื่องที่สมเหตุสมผลทุกประการ ชั้นกั้นไม่จำเป็นต้องเป็นแผ่นวัสดุที่ต่อเนื่อง
+  และไม่มีเหตุผลใดที่มันจะเกิดจากการประกอบกันของเส้นด้ายไม่ได้
   พร้อมสรุปว่าการตีความของ Stretchline ไม่ได้ลบคำว่าชั้นกั้นออกจากข้อถือสิทธิ เพียงแต่ให้ความหมายที่ต่างออกไป
 speaker_role: คำพิพากษาศาลอุทธรณ์อังกฤษและเวลส์ แผนกคดีแพ่ง ย่อหน้าที่ยกมาเป็นการบันทึกข้อโต้แย้งของทนายความฝ่ายอุทธรณ์
 source:

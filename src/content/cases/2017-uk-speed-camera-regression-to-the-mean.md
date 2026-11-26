@@ -5,6 +5,11 @@ date_of_statement: 2017-11-20
 quote: "Whether speed cameras actually do save lives seems an easy assertion to test: measure the numbers of casualties at a site over a period, say two years; introduce a speed camera; re-measure the number of casualties over an equal period, and any reduction is due to the camera."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  คำถามว่ากล้องจับความเร็วช่วยชีวิตคนได้จริงหรือไม่ ดูเหมือนเป็นข้ออ้างที่ทดสอบได้ง่าย
+  คือนับจำนวนผู้บาดเจ็บที่จุดหนึ่งตลอดช่วงเวลาหนึ่ง สมมติว่าสองปี
+  แล้วติดตั้งกล้องจับความเร็ว จากนั้นนับจำนวนผู้บาดเจ็บใหม่ตลอดช่วงเวลาที่เท่ากัน
+  ส่วนที่ลดลงไม่ว่าเท่าใดก็เป็นผลจากกล้อง
 plain: >
   วิธีวัดผลกล้องจับความเร็วที่ใช้กันคือ นับอุบัติเหตุสองปีก่อนติด
   แล้วนับสองปีหลังติด ส่วนที่ลดลงนับเป็นผลงานของกล้อง

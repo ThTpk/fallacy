@@ -5,6 +5,8 @@ date_of_statement: 2020-04-20
 quote: "provide stronger, longer lasting relief than other pain drugs"
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  บรรเทาอาการได้แรงกว่าและยาวนานกว่ายาแก้ปวดตัวอื่น
 plain: >
   หน่วยงานกำกับการค้าของสหรัฐฯ ดำเนินคดีกับผู้ขายยาแก้ปวดทางไปรษณีย์
   ที่ส่งเอกสารโฆษณาถึงผู้สูงอายุชาวอเมริกัน

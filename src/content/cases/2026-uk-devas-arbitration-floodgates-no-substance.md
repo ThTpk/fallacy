@@ -5,6 +5,11 @@ date_of_statement: 2026-01-30
 quote: "In conclusion on Issues 2 and 3, I do not consider that the floodgates argument advanced by the Interveners has any real substance. I agree with India that the conditions in section 45(2) would not be met in most cases, given that an application under section 45 requires the parties’ agreement or the tribunal’s permission."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  สรุปในประเด็นที่สองและที่สาม ข้าพเจ้าไม่เห็นว่าข้อโต้แย้งเรื่องประตูน้ำแตก
+  ที่ฝ่ายผู้ร้องสอดเสนอมานั้นจะมีสาระจริงจังแต่อย่างใด
+  ข้าพเจ้าเห็นพ้องกับอินเดียว่าเงื่อนไขในมาตรา 45(2) จะไม่ถูกทำให้ครบในกรณีส่วนใหญ่
+  เนื่องจากคำร้องตามมาตรา 45 ต้องอาศัยความตกลงของคู่ความหรืออนุญาตของคณะอนุญาโตตุลาการ
 plain: >
   ในคดีที่รัฐบาลอินเดียยื่นคำร้องต่อศาลอังกฤษเรื่องการอนุญาโตตุลาการ
   ฝ่ายคัดค้านเตือนว่าถ้าศาลรับคำร้องนี้ ประตูน้ำจะแตก
@@ -46,11 +51,22 @@ context: >
 
   ย่อหน้า 122 บันทึกข้ออ้างแบบลูกโซ่ของฝ่ายผู้ร้องสอดไว้ว่า
   The Interveners said that, taken to its logical conclusion, it would open the floodgates to a raft of litigation by which unhappy arbitrating parties sought to challenge legal questions decided in procedural orders.
+  ใจความคือ ฝ่ายผู้ร้องสอดกล่าวว่า ถ้าลากไปถึงข้อสรุปตามตรรกะ
+  เรื่องนี้จะเปิดประตูน้ำให้คดีไหลเข้ามาเป็นกอง
+  โดยคู่กรณีในอนุญาโตตุลาการที่ไม่พอใจจะมาโต้แย้งประเด็นข้อกฎหมาย
+  ที่ถูกชี้ขาดไปแล้วในคำสั่งเกี่ยวกับกระบวนพิจารณา
   และบันทึกคำตอบของอินเดียต่อกันในย่อหน้าเดียวว่า
   India said that the floodgates argument was fanciful because the conditions in section 45(2) would not be met in most cases, given that an application under section 45 requires the parties’ agreement or the tribunal’s permission. It also said that questions of law are rarely determined in procedural orders.
+  ใจความคือ อินเดียกล่าวว่าข้ออ้างเรื่องประตูน้ำแตกนั้นเป็นเรื่องเพ้อฝัน
+  เพราะเงื่อนไขในมาตรา 45(2) จะไม่ถูกทำให้ครบในกรณีส่วนใหญ่
+  เนื่องจากคำร้องตามมาตรา 45 ต้องอาศัยความตกลงของคู่ความหรืออนุญาตของคณะอนุญาโตตุลาการ
+  และกล่าวด้วยว่าประเด็นข้อกฎหมายแทบไม่ถูกชี้ขาดในคำสั่งเกี่ยวกับกระบวนพิจารณา
 
   ข้อความที่ยกมาข้างบนคือข้อสรุปของศาลในย่อหน้า 146 ซึ่งลงท้ายด้วยอีกประโยคหนึ่งว่า
   As the Defendants also submitted, the narrow circumstances in which section 45 can be invoked are the reason why it is unnecessary and inappropriate to superimpose additional limits.
+  ใจความคือ ดังที่ฝ่ายจำเลยเสนอไว้ด้วย
+  ความแคบของสถานการณ์ที่ใช้มาตรา 45 ได้นั้นเองคือเหตุผล
+  ที่ทำให้การเพิ่มข้อจำกัดซ้อนลงไปอีกเป็นสิ่งที่ไม่จำเป็นและไม่เหมาะสม
 speaker_role: คำพิพากษาศาลสูงอังกฤษและเวลส์ ศาลพาณิชย์ เขียนโดยผู้พิพากษา Trower
 source:
   outlet: High Court of Justice (Commercial Court), England and Wales

@@ -5,6 +5,11 @@ date_of_statement: 2015-10-30
 quote: "A potential problem with presenting relative risk in the format IARC uses is that many people will incorrectly conclude that if they ate processed meat, they had an 18% (almost one in five) chance of getting bowel cancer. Thus, they were misled."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ปัญหาที่อาจเกิดจากการนำเสนอความเสี่ยงสัมพัทธ์ในรูปแบบที่ IARC ใช้
+  คือคนจำนวนมากจะสรุปอย่างผิด ๆ ว่าถ้าพวกเขากินเนื้อแปรรูป
+  พวกเขามีโอกาสร้อยละ 18 ซึ่งเกือบหนึ่งในห้า ที่จะเป็นมะเร็งลำไส้ใหญ่
+  ด้วยเหตุนี้พวกเขาจึงถูกทำให้เข้าใจผิด
 plain: >
   หน่วยงานมะเร็งขององค์การอนามัยโลกรายงานว่า การกินเนื้อแปรรูปวันละ 50 กรัม
   เพิ่มความเสี่ยงมะเร็งลำไส้ใหญ่ขึ้น 18 เปอร์เซ็นต์

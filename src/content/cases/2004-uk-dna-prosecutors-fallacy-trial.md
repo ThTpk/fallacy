@@ -5,6 +5,10 @@ date_of_statement: 2004-10-27
 quote: "I think, just to take it briefly, that there was about a one in a billion, ie a thousand million, chance of it being someone other than him? A. Of getting a matching DNA profile, yes."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ถาม ผมคิดว่า ถ้าจะพูดอย่างสั้น มีโอกาสราวหนึ่งในพันล้าน
+  คือหนึ่งพันล้าน ที่จะเป็นคนอื่นที่ไม่ใช่เขา ใช่หรือไม่
+  ตอบ ที่จะได้โปรไฟล์ดีเอ็นเอที่ตรงกัน ใช่ครับ
 plain: >
   ในคดีอาญาที่อังกฤษ พยานผู้เชี่ยวชาญด้านดีเอ็นเอเบิกความ
   แล้วพูดสลับสองคำถามที่หน้าตาคล้ายกันแต่คนละเรื่อง
@@ -45,6 +49,9 @@ context: >
   that is to say the probability of obtaining a DNA match if the crime scene sample
   came from someone other than or unrelated to the defendant
   as the probability that the defendant left the crime scene sample.
+  ใจความคือ ตรรกวิบัตินี้คือการเอาความน่าจะเป็นที่จะพบโปรไฟล์ตรงกัน
+  เมื่อตัวอย่างจากที่เกิดเหตุมาจากคนอื่นที่ไม่ใช่จำเลยหรือไม่ใช่ญาติของจำเลย
+  ไปเรียกผิดว่าเป็นความน่าจะเป็นที่จำเลยเป็นผู้ทิ้งตัวอย่างนั้นไว้
   คลังนี้ไม่ระบุชื่อจำเลยและผู้เสียหาย แม้คำพิพากษาจะระบุไว้
   เพราะชื่อไม่เกี่ยวกับประเด็นด้านเหตุผลที่กำลังอธิบาย
 speaker_role: >

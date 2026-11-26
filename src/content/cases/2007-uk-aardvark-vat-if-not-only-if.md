@@ -5,6 +5,9 @@ date_of_statement: 2007-11-23
 quote: "Subsection (8) indicates that a default is material to a surcharge `if’ one of two conditions are satisfied, not only if one of the two are satisfied."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  อนุมาตรา (8) ระบุว่าการผิดนัดเป็นสาระต่อเงินเพิ่ม ถ้า เข้าเงื่อนไขข้อใดข้อหนึ่งในสองข้อ
+  ไม่ใช่ เฉพาะเมื่อ เข้าเงื่อนไขข้อใดข้อหนึ่งในสองข้อ
 plain: >
   บริษัทหนึ่งอุทธรณ์เงินเพิ่มจากการชำระภาษีมูลค่าเพิ่มล่าช้า
   อัตราเงินเพิ่มคิดตามจำนวนครั้งที่ผิดนัดมาก่อน

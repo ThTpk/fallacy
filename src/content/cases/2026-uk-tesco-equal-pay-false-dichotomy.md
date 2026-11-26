@@ -5,6 +5,11 @@ date_of_statement: 2026-05-12
 quote: "I consider that Tesco’s argument was based on a false dichotomy between what an employee does in practice and what the contract of employment requires him or her to do. That dichotomy is, I think, a product of transposing a literal reading of the decision in Shields into all equal value cases."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ข้าพเจ้าเห็นว่าข้อโต้แย้งของเทสโกตั้งอยู่บนทางเลือกลวง
+  ระหว่างสิ่งที่ลูกจ้างทำจริงในทางปฏิบัติ กับสิ่งที่สัญญาจ้างกำหนดให้เขาหรือเธอทำ
+  ข้าพเจ้าคิดว่าทางเลือกสองทางนั้นเป็นผลของการยกคำพิพากษาคดี Shields
+  ไปอ่านตามตัวอักษรแล้วใช้กับคดีค่างานเท่าเทียมทุกคดี
 plain: >
   พนักงานเทสโกฟ้องเรื่องค่าจ้างที่ไม่เท่าเทียม คดีมาถึงจุดที่ต้องตีความคำว่า งาน
   ฝ่ายบริษัทเถียงว่าคำนี้ต้องหมายถึงอย่างใดอย่างหนึ่ง

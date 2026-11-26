@@ -5,6 +5,11 @@ date_of_statement: 2014-12-11
 quote: "Registered products have been assessed by the MHRA and meet systematic standards of safety, quality, and patient information. Registered products are suitable for use without medical supervision, and indications are based on traditional use rather than proven efficacy."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ผลิตภัณฑ์ที่ขึ้นทะเบียนผ่านการประเมินโดย MHRA
+  และเป็นไปตามมาตรฐานอย่างเป็นระบบด้านความปลอดภัย คุณภาพ และข้อมูลสำหรับผู้ป่วย
+  ผลิตภัณฑ์ที่ขึ้นทะเบียนเหมาะสำหรับการใช้โดยไม่ต้องอยู่ในการดูแลของแพทย์
+  และข้อบ่งใช้ตั้งอยู่บนการใช้ตามประเพณี ไม่ใช่บนประสิทธิผลที่พิสูจน์แล้ว
 plain: >
   หน่วยงานกำกับดูแลยาของสหราชอาณาจักรมีระบบขึ้นทะเบียนยาสมุนไพรแผนโบราณ
   เอกสารของหน่วยงานแยกให้ชัดว่าตรวจอะไรและไม่ตรวจอะไร

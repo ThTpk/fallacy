@@ -5,6 +5,10 @@ date_of_statement: 2019-04-08
 quote: "I will not, however, simply split the difference between two reasonable valuations because I am persuaded, on balance, that Mr Stoyle’s values are more likely to be those that would be achieved on a notional sale of individual hotels on the Valuation Date."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  อย่างไรก็ตาม ข้าพเจ้าจะไม่แบ่งครึ่งระหว่างการประเมินมูลค่าสองค่าที่สมเหตุสมผลทั้งคู่
+  เพราะเมื่อชั่งน้ำหนักแล้วข้าพเจ้าเห็นว่า มูลค่าของคุณ Stoyle
+  น่าจะเป็นมูลค่าที่จะเกิดขึ้นจริงมากกว่า หากมีการขายโรงแรมแต่ละแห่งแยกกันในวันที่ใช้ตีมูลค่า
 plain: >
   คดีผู้ถือหุ้นที่ศาลต้องกำหนดราคาหุ้น ซึ่งขึ้นอยู่กับการตีมูลค่าโรงแรมหลายแห่ง
   ผู้เชี่ยวชาญสองฝ่ายให้ตัวเลขต่างกัน และทั้งคู่ยอมรับว่าตัวเลขของอีกฝ่ายอยู่ในเกณฑ์ที่สมเหตุสมผล

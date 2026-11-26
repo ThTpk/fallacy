@@ -5,6 +5,11 @@ date_of_statement: 2022-12-20
 quote: "Anecdotal evidence about the individual experiences of consumers, including surveys of consumer experiences, are never sufficient to substantiate claims about the effects of a health product.  Even if consumer experiences are genuine, they may be attributable to a placebo effect or other factors unrelated to the product."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  คำบอกเล่าประสบการณ์ส่วนบุคคลของผู้บริโภค รวมถึงการสำรวจประสบการณ์ของผู้บริโภค
+  ไม่เคยเพียงพอที่จะสนับสนุนข้อกล่าวอ้างเกี่ยวกับผลของผลิตภัณฑ์สุขภาพ
+  แม้ประสบการณ์ของผู้บริโภคจะเป็นของจริง
+  มันก็อาจเกิดจากผลของยาหลอกหรือจากปัจจัยอื่นที่ไม่เกี่ยวกับผลิตภัณฑ์
 plain: >
   เอกสารแนวปฏิบัติของหน่วยงานกำกับการค้าของสหรัฐฯ ว่าด้วยการโฆษณาผลิตภัณฑ์สุขภาพ
   ระบุว่าคำบอกเล่าประสบการณ์ของผู้ใช้ รวมถึงการสำรวจความเห็นผู้ใช้

@@ -5,6 +5,10 @@ date_of_statement: 2005-11-02
 quote: "I do not consider the argument that the claimant has “moved the goal posts” during the period between the first Inspector's report in 1999 and the present day to be sustainable."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ข้าพเจ้าไม่เห็นว่าข้อโต้แย้งที่ว่าผู้ฟ้องได้ ย้ายเสาประตู
+  ในช่วงระหว่างรายงานฉบับแรกของผู้ตรวจการในปี 1999 กับปัจจุบัน
+  จะเป็นข้อที่รับฟังได้
 plain: >
   สภาเทศมณฑลขอคำสั่งศาลให้บริษัทหนึ่งย้ายวัสดุที่ถมในพื้นที่สนามกอล์ฟออก
   บริษัทต่อสู้ว่าตลอดการเจรจาหลายปี สภาเปลี่ยนข้อเรียกร้องไปเรื่อย
@@ -50,11 +54,19 @@ context: >
 
   ข้อความที่ยกมาข้างบนคือคำวินิจฉัยในย่อหน้า 58 และวิธีที่ศาลไปถึงคำตอบนั้นคือการย้อนดูเอกสารที่ลงวันที่ไว้
   It is certainly the case that the Council's position has not changed since May 2002 when the defendants' application for planning permission for the 9 hole golf course was refused.
+  ใจความคือ จุดยืนของสภาไม่เปลี่ยนเลยนับแต่พฤษภาคม 2002
+  ซึ่งเป็นเวลาที่คำขออนุญาตผังเมืองสำหรับสนามกอล์ฟเก้าหลุมของฝ่ายจำเลยถูกปฏิเสธ
   แล้วชี้ต่อว่าแม้ก่อนหน้านั้นสภาก็ระบุไว้ชัดแล้วสามข้อ
   But even before that the claimant had made it clear that a substantial part of the waste had to go from the area to the east of the irrigation lake, that it was important to reflect very closely the underlying landform prior to depositing the waste, and that the idea of adding a 1 metre depth over agreed pre-existing contours which the defendant argued would allow 40,000 cubic metres of waste to be used on the site did not accord with the discussions between Ms Coyne and Mr Osment: see Mr Young's letter dated 8 November 2000.
+  ใจความคือ แม้ก่อนหน้านั้นสภาก็ระบุชัดแล้วว่าวัสดุส่วนใหญ่ต้องถูกย้ายออกจากพื้นที่ด้านตะวันออกของทะเลสาบ
+  ว่าการสะท้อนรูปแผ่นดินเดิมก่อนการถมอย่างใกล้เคียงเป็นเรื่องสำคัญ
+  และว่าข้อเสนอให้ถมหนาหนึ่งเมตรเหนือเส้นระดับที่ตกลงกัน
+  ซึ่งฝ่ายจำเลยอ้างว่าจะทำให้ใช้วัสดุได้สี่หมื่นลูกบาศก์เมตร ไม่ตรงกับที่คุยกันไว้
 
   ย่อหน้า 60 สรุปสิ่งที่เกิดขึ้นจริงไว้ว่า
   The planning applications that were made in the light of those negotiations in 2001 and 2002 did not, for the reasons that I have given, reflect the indications that the claimant had given as to what might be acceptable.
+  ใจความคือ คำขออนุญาตผังเมืองที่ยื่นหลังการเจรจาในปี 2001 และ 2002
+  ไม่ได้สะท้อนสิ่งที่สภาเคยบอกไว้ว่าอะไรจะรับได้ ด้วยเหตุผลที่ศาลได้ให้ไว้แล้ว
 speaker_role: คำพิพากษาศาลสูงอังกฤษ แผนกคดีสามัญ เขียนโดยผู้พิพากษา Beatson
 source:
   outlet: High Court of Justice (Queen's Bench Division), England and Wales

@@ -5,6 +5,12 @@ date_of_statement: 2017-03-13
 quote: "Each party recognizes that, by its bare terms, Exemption F raises questions as to its scope, largely due to the fact that no comma precedes the words “or distribution.” But each side also contends that the exemption's text has a latent clarity, at least after one applies various interpretive aids."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  คู่ความแต่ละฝ่ายยอมรับว่า ว่าตามถ้อยคำเปล่า ๆ ของมัน
+  ข้อยกเว้น F ทำให้เกิดคำถามเรื่องขอบเขตของมัน
+  ส่วนใหญ่เป็นเพราะไม่มีลูกน้ำวางอยู่หน้าคำว่า หรือการกระจายสินค้า
+  แต่แต่ละฝ่ายก็ยืนยันเช่นกันว่าถ้อยคำของข้อยกเว้นนั้นมีความชัดเจนแฝงอยู่
+  อย่างน้อยก็หลังจากนำเครื่องมือช่วยตีความต่าง ๆ มาใช้แล้ว
 plain: >
   คนขับรถส่งนมฟ้องบริษัทเรื่องค่าล่วงเวลา
   ทั้งคดีขึ้นอยู่กับประโยคในกฎหมายรัฐเมนที่ไม่มีลูกน้ำอยู่ตำแหน่งหนึ่ง
@@ -39,6 +45,9 @@ context: >
   ซึ่งคำพิพากษายกมาว่า The canning, processing, preserving, freezing, drying, marketing,
   storing, packing for shipment or distribution of: (1) Agricultural produce;
   (2) Meat and fish products; and (3) Perishable foods.
+  ใจความคือ การบรรจุกระป๋อง การแปรรูป การถนอม การแช่แข็ง การอบแห้ง การทำตลาด
+  การจัดเก็บ การบรรจุเพื่อการขนส่งหรือการกระจายสินค้า ของสิ่งต่อไปนี้
+  หนึ่ง ผลิตผลทางการเกษตร สอง ผลิตภัณฑ์เนื้อสัตว์และปลา และสาม อาหารที่เน่าเสียง่าย
   ฝ่ายคนขับอ่านว่าคำท้ายเป็นกิจกรรมเดียว คือการแพ็ก ไม่ว่าจะแพ็กเพื่อส่งหรือเพื่อกระจายสินค้า
   ซึ่งพวกเขาไม่ได้ทำ จึงไม่เข้าข้อยกเว้นและได้รับความคุ้มครองเรื่องค่าล่วงเวลา
   ฝ่ายบริษัทอ่านว่าเป็นสองกิจกรรมแยกกัน คือแพ็กเพื่อส่ง กับการกระจายสินค้า

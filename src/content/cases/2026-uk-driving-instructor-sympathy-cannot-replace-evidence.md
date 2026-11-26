@@ -5,6 +5,10 @@ date_of_statement: 2026-07-23
 quote: "However, sympathy cannot replace evidence. The Tribunal must be satisfied that the circumstances relied upon are sufficiently established and sufficiently exceptional to justify granting a third trainee licence."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  อย่างไรก็ตาม ความเห็นใจแทนหลักฐานไม่ได้
+  ศาลต้องเป็นที่พอใจว่าสถานการณ์ที่ยกมาอ้างนั้นได้รับการยืนยันเพียงพอ
+  และเป็นสถานการณ์ยกเว้นเพียงพอที่จะเป็นเหตุให้ออกใบอนุญาตฝึกสอนใบที่สามได้
 plain: >
   ผู้อุทธรณ์คนหนึ่งขอใบอนุญาตฝึกสอนขับรถใบที่สาม ซึ่งต้องมีเหตุยกเว้น
   เหตุที่เขายกคือปัญหาสุขภาพและความล่าช้าในการได้คิวสอบ
@@ -40,13 +44,24 @@ context: >
 
   คำวินิจฉัยบันทึกว่าการอุทธรณ์พิจารณาจากเอกสารเท่านั้น และระบุผลของข้อนั้นไว้ในย่อหน้า 27 ว่า
   Unfortunately because the appeal proceeded on the papers, the Tribunal did not have the opportunity to test the evidence through questioning or assess oral explanations which might have expanded upon the written material. The result is that a number of important evidential questions remain unanswered.
+  ใจความคือ น่าเสียดายที่เมื่อการอุทธรณ์พิจารณาจากเอกสารเท่านั้น
+  ศาลจึงไม่มีโอกาสทดสอบพยานหลักฐานด้วยการซักถาม
+  หรือประเมินคำอธิบายด้วยปากที่อาจขยายความจากเอกสารได้
+  ผลคือยังเหลือคำถามด้านพยานหลักฐานที่สำคัญหลายข้อซึ่งไม่มีคำตอบ
 
   ย่อหน้า 28 เป็นการรับความเห็นใจไว้อย่างชัดเจนก่อนจะตัดสิน
   The Tribunal has considerable sympathy for the Appellant. The material before it suggests that he pursued qualification in good faith, that he experienced genuine medical difficulties, and that no allegation of misconduct or abuse of the licensing regime has ever been made.
+  ใจความคือ ศาลเห็นใจผู้อุทธรณ์อย่างมาก
+  เอกสารที่อยู่ต่อหน้าศาลชี้ว่าเขามุ่งสอบให้ผ่านด้วยความสุจริต ว่าเขาประสบปัญหาสุขภาพจริง
+  และว่าไม่เคยมีข้อกล่าวหาเรื่องการประพฤติมิชอบหรือการใช้ระบบใบอนุญาตโดยไม่ถูกต้องเลย
 
   ข้อความที่ยกมาข้างบนคือย่อหน้า 29 ซึ่งต่อจากย่อหน้านั้นทันที
   แล้วย่อหน้า 30 ระบุว่าอะไรที่ขาดไป
   Whilst the medical documents support the existence of a condition, they do not quantify the amount of training time lost or demonstrate the extent to which the Appellant was prevented from gaining the practical experience ordinarily available during the licensed period.
+  ใจความคือ แม้เอกสารทางการแพทย์จะสนับสนุนว่ามีอาการอยู่จริง
+  แต่มันไม่ได้ระบุจำนวนเวลาฝึกที่เสียไป
+  และไม่ได้แสดงว่าผู้อุทธรณ์ถูกกันออกจากประสบการณ์ภาคปฏิบัติ
+  ที่ปกติจะได้รับในช่วงที่ถือใบอนุญาตมากน้อยเพียงใด
 
   ผลของคดีคือศาลยกอุทธรณ์ และยืนการปฏิเสธของนายทะเบียน
 speaker_role: คำวินิจฉัยศาลปกครองชั้นต้นสหราชอาณาจักร ห้องพิจารณาคดีกำกับดูแลทั่วไป แผนกคมนาคม เขียนโดยผู้พิพากษา Brian Kennedy KC

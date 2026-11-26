@@ -5,6 +5,9 @@ date_of_statement: 2012-07-06
 quote: "Instead, and unhelpfully for the most part, her report consisted of an ad hominem attack on Professor Turok himself."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  แทนที่จะเป็นเช่นนั้น และโดยส่วนใหญ่แล้วไม่เป็นประโยชน์
+  รายงานของเธอกลับเป็นการโจมตีตัวศาสตราจารย์ Turok เอง
 plain: >
   ในคดีหมิ่นประมาทที่นักวิชาการคนหนึ่งฟ้องนิตยสาร Nature
   ฝ่ายจำเลยส่งรายงานผู้เชี่ยวชาญที่วิเคราะห์บทความของผู้ฟ้อง 58 ชิ้นทีละชิ้น
@@ -48,6 +51,9 @@ context: >
   Third, and in any event, neither of the reports really engaged with the reports to which they were supposed to be responding.
   แล้วระบุให้ชัดว่าอะไรที่ไม่ได้ทำ
   She did not as would have been expected, particularly given the sequential exchange of reports, go through the exercise of examining the 58 papers analysed by Professor Turok and explain why they were to be regarded as good quality papers.
+  ใจความคือ เธอไม่ได้ทำสิ่งที่ควรคาดหมายได้ โดยเฉพาะเมื่อรายงานถูกแลกเปลี่ยนกันเป็นลำดับ
+  คือไล่ตรวจบทความทั้ง 58 ชิ้นที่ศาสตราจารย์ Turok วิเคราะห์ไว้
+  แล้วอธิบายว่าทำไมจึงควรถือว่าเป็นบทความคุณภาพดี
   พร้อมข้อสังเกตว่าการไม่ทำเช่นนั้นน่าประหลาดใจเป็นพิเศษ
   เพราะ Dr Marek-Crnjac อ้างว่าตนได้ตรวจทานบทความเหล่านั้นทุกชิ้นก่อนตีพิมพ์
   ประโยคที่ยกมาข้างบนเป็นประโยคปิดของย่อหน้าเดียวกัน

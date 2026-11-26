@@ -216,6 +216,16 @@ const cases = defineCollection({
     quote_lang: z.enum(['th', 'en']).default('th'),
     quote_is_verbatim: z.literal(true),
 
+    // 'quote_th' is this archive's own rendering of an English quotation into
+    // Thai. It never replaces the quotation: the original stays above it,
+    // verbatim, because the original is the evidence and a translation is
+    // not. The page labels it as the archive's wording so that no reader can
+    // mistake it for the source's. The refine at the bottom requires it
+    // whenever the quotation is in English - a Thai reader who cannot read
+    // the quotation cannot check the case against its source, and a case
+    // nobody can check is worth less than one nobody reads.
+    quote_th: z.string().max(700).optional(),
+
     // 'plain' is the case in ordinary Thai for a reader who knows nothing
     // about the field the quote comes from: what happened, where the
     // reasoning broke, what to carry away. It carries no untranslated
@@ -291,10 +301,15 @@ const cases = defineCollection({
     status: z.enum(['draft', 'review', 'published', 'retracted']),
     retraction_note: z.string().optional(),
     updated: z.coerce.date(),
-  }).refine(
-    (c) => c.sensitivity !== 'high' || c.reviewed_by.length >= 2,
-    { message: 'high-sensitivity case needs at least 2 reviewers', path: ['reviewed_by'] },
-  ),
+  })
+    .refine(
+      (c) => c.sensitivity !== 'high' || c.reviewed_by.length >= 2,
+      { message: 'high-sensitivity case needs at least 2 reviewers', path: ['reviewed_by'] },
+    )
+    .refine(
+      (c) => c.quote_lang !== 'en' || Boolean(c.quote_th),
+      { message: 'an English quotation needs quote_th, the Thai rendering', path: ['quote_th'] },
+    ),
 });
 
 const foundations = defineCollection({

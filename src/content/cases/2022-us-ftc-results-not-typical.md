@@ -5,6 +5,11 @@ date_of_statement: 2022-12-20
 quote: "Testimonials that report results more dramatic than users can generally expect are likely to be deceptive.  Moreover, attempts to disclaim dramatic results with statements like “Results not typical” don’t cure the deception."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  คำรับรองที่รายงานผลลัพธ์ซึ่งน่าตื่นเต้นเกินกว่าที่ผู้ใช้ทั่วไปจะคาดหวังได้
+  มีแนวโน้มที่จะเป็นการหลอกลวง
+  ยิ่งกว่านั้น การพยายามปฏิเสธความรับผิดต่อผลลัพธ์ที่น่าตื่นเต้นนั้น
+  ด้วยข้อความอย่าง ผลลัพธ์นี้ไม่ใช่ผลทั่วไป ก็ไม่ได้แก้การหลอกลวงนั้น
 plain: >
   เอกสารแนวปฏิบัติของหน่วยงานกำกับการค้าของสหรัฐฯ บันทึกรูปแบบหนึ่งที่พบในคดีโฆษณาเท็จ
   คือหยิบผู้ใช้ที่ได้ผลดีที่สุดมาเป็นหน้าโฆษณา

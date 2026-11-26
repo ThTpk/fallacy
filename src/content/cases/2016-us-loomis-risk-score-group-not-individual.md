@@ -5,6 +5,12 @@ date_of_statement: 2016-07-13
 quote: "However the due process implications compel us to caution circuit courts that because COMPAS risk assessment scores are based on group data, they are able to identify groups of high-risk offenders — not a particular high-risk individual."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  อย่างไรก็ตาม นัยในเรื่องกระบวนการอันควรแห่งกฎหมาย
+  บังคับให้เราต้องเตือนศาลชั้นต้นว่า
+  เนื่องจากคะแนนประเมินความเสี่ยงของ COMPAS ตั้งอยู่บนข้อมูลของกลุ่ม
+  มันจึงสามารถระบุกลุ่มของผู้กระทำผิดที่มีความเสี่ยงสูงได้
+  ไม่ใช่ระบุตัวบุคคลที่มีความเสี่ยงสูงรายใดรายหนึ่ง
 plain: >
   ศาลสูงสุดรัฐวิสคอนซินพิจารณาคดีที่จำเลยโต้แย้งการใช้คะแนนความเสี่ยงจากโปรแกรมคอมพิวเตอร์
   ประกอบการกำหนดโทษ โปรแกรมให้คะแนนหนึ่งถึงสิบจากข้อมูลของกลุ่มคนที่มีลักษณะคล้ายกัน
@@ -45,6 +51,9 @@ context: >
   A pointed example of potential misunderstanding arising from the use of group data
   is that an individual who has never committed a violent offense may nevertheless be
   labeled as a high risk for recidivism on the violent risk scale.
+  ใจความคือ ตัวอย่างที่ชี้ชัดของความเข้าใจผิดที่อาจเกิดจากการใช้ข้อมูลของกลุ่ม
+  คือคนที่ไม่เคยก่อเหตุรุนแรงเลยสักครั้ง
+  ก็ยังอาจถูกติดป้ายว่ามีความเสี่ยงสูงที่จะก่อเหตุซ้ำในมาตรวัดความเสี่ยงด้านความรุนแรง
 
   ศาลไม่ได้ห้ามใช้เครื่องมือนี้ แต่วางเงื่อนไขว่ารายงานที่แนบคะแนนต้องมีคำเตือนเป็นลายลักษณ์อักษร
   และห้ามใช้คะแนนเพื่อกำหนดว่าจะจำคุกหรือไม่ หรือกำหนดความหนักเบาของโทษ

@@ -5,6 +5,9 @@ date_of_statement: 2021-05-02
 quote: "That sort of variability is less informative than you'd get with a random sample of 40 people."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ความผันผวนในระดับนั้นให้ข้อมูลน้อยกว่าที่คุณจะได้
+  จากกลุ่มตัวอย่างที่สุ่มมาเพียงสี่สิบคน
 plain: >
   สำนักข่าวในนิวซีแลนด์นำผลโพลที่ฝังไว้ในหน้าข่าวของตัวเองมารายงานเป็นข่าว
   นักสถิติจากมหาวิทยาลัยโอ๊คแลนด์ชี้ว่าตัวเลขแบบนั้นให้ข้อมูลน้อยกว่า

@@ -5,6 +5,11 @@ date_of_statement: 2018-02-15
 quote: "Consider this statement: if each bank is safe and sound, the banking system must be safe and sound as well. By now, we have learnt the hard way that this might indeed be a fallacy of composition."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ลองพิจารณาข้อความนี้ ถ้าธนาคารแต่ละแห่งมั่นคงและแข็งแรง
+  ระบบธนาคารก็ย่อมมั่นคงและแข็งแรงด้วย
+  มาถึงตอนนี้ เราได้เรียนรู้ด้วยวิธีที่เจ็บปวดแล้วว่า
+  ข้อความนี้อาจเป็นตรรกวิบัติส่วนประกอบจริง ๆ
 plain: >
   กรรมการบริหารธนาคารกลางยุโรปกล่าวสุนทรพจน์ว่า ประโยคที่ว่า
   ถ้าธนาคารทุกแห่งมั่นคง ระบบธนาคารก็ต้องมั่นคง นั้นเป็นตรรกวิบัติ

@@ -5,6 +5,9 @@ date_of_statement: 2025-11-07
 quote: "the principle against fettering discretion requires decision-makers not to shut their ears to claims falling outside the policies they have adopted"
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  หลักการห้ามผูกมัดดุลพินิจกำหนดให้ผู้มีอำนาจตัดสินใจ
+  ต้องไม่ปิดหูไม่ฟังข้อเรียกร้องที่อยู่นอกนโยบายซึ่งตนได้วางไว้
 plain: >
   คำพิพากษาศาลอังกฤษยกหลักกฎหมายข้อหนึ่งมาอธิบาย
   หลักนั้นบอกว่าหน่วยงานที่มีอำนาจตัดสินใจตั้งนโยบายทั่วไปขึ้นใช้ได้

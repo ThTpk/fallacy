@@ -5,6 +5,10 @@ date_of_statement: 2013-02-05
 quote: "On the basis of a bi-directional genetic approach that limits confounding, our study suggests that a higher BMI leads to lower 25(OH)D, while any effects of lower 25(OH)D increasing BMI are likely to be small."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  บนฐานของวิธีทางพันธุกรรมแบบสองทิศซึ่งจำกัดอิทธิพลของปัจจัยกวน
+  งานวิจัยของเราชี้ว่าดัชนีมวลกายที่สูงขึ้นนำไปสู่ระดับวิตามินดีในเลือดที่ต่ำลง
+  ขณะที่ผลของระดับวิตามินดีที่ต่ำลงต่อการเพิ่มขึ้นของดัชนีมวลกาย น่าจะมีเพียงเล็กน้อย
 plain: >
   เป็นที่รู้กันมานานว่าคนที่อ้วนมักมีวิตามินดีในเลือดต่ำ
   ความสัมพันธ์เดียวนี้อ่านได้สองทิศ และสองทิศนำไปสู่การแก้ปัญหาที่ตรงข้ามกัน
@@ -42,6 +46,10 @@ context: >
   might alleviate some of the adverse health effects of obesity.
   Conversely, if low vitamin D levels cause obesity, encouraging people to take vitamin D
   supplements might help to control the obesity epidemic.
+  ใจความคือ ถ้าความอ้วนทำให้ขาดวิตามินดี การเฝ้าระวังและรักษาภาวะขาดวิตามินดี
+  ก็อาจบรรเทาผลเสียต่อสุขภาพบางอย่างของความอ้วนได้
+  ในทางกลับกัน ถ้าระดับวิตามินดีที่ต่ำทำให้อ้วน
+  การส่งเสริมให้คนกินวิตามินดีเสริมก็อาจช่วยคุมการระบาดของโรคอ้วนได้
   งานนี้แยกสองทิศด้วยวิธี Mendelian randomization
   ซึ่งใช้ยีนเป็นตัวแทนของปัจจัยที่ต้องการศึกษา โดยอาศัยข้อเท็จจริงว่ายีนไม่เปลี่ยนตามเวลา
   และถูกส่งต่อมาแบบสุ่ม จึงไม่ถูกรบกวนจากตัวแปรกวนและไม่ถูกสลับทิศ

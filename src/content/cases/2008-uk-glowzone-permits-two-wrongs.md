@@ -5,6 +5,12 @@ date_of_statement: 2008-10-20
 quote: 'even if it is assumed that the defendant has wrongly applied its policy in relation to BFA and should therefore have given BFA a lesser number of TPPs, it does not follow that the claimant should, as a matter of discretion, be granted more TPPs by the defendant. The simple maxim "two wrongs do not make a right" is obviously apt in that context.'
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  แม้จะสมมติว่าจำเลยใช้นโยบายของตนกับ BFA อย่างไม่ถูกต้อง
+  และด้วยเหตุนั้นควรให้ใบอนุญาตจอดรถแก่ BFA น้อยกว่าที่ให้ไป
+  ก็ไม่ได้ตามมาว่าจำเลยควรใช้ดุลพินิจให้ใบอนุญาตแก่ผู้ฟ้องเพิ่มขึ้น
+  สุภาษิตง่าย ๆ ที่ว่า ความผิดสองครั้งไม่ทำให้กลายเป็นความถูก
+  ย่อมใช้ได้อย่างชัดเจนในบริบทนั้น
 plain: >
   บริษัทหนึ่งขอใบอนุญาตจอดรถสำหรับผู้ค้าจากสภาเมืองเพิ่ม
   เหตุผลที่ยกมาคือคู่แข่งรายหนึ่งได้ใบอนุญาตมากกว่าที่นโยบายกำหนด
@@ -48,15 +54,23 @@ context: >
   จะนับเป็นผู้ค้าสามรายและได้สิทธิ 18 ใบหรือไม่
   ผู้พิพากษา Sullivan เขียนไว้ในย่อหน้า 9 ว่า
   Unfortunately, this claim has been bedevilled by a confusion in the claimant's approach between the lawfulness of the underlying policy that is operated by the defendant and the manner in which that policy has been applied to BFA.
+  ใจความคือ น่าเสียดายที่คำฟ้องนี้ติดขัด เพราะวิธีที่ผู้ฟ้องเข้าหาเรื่องสับสนระหว่างสองสิ่ง
+  คือความชอบด้วยกฎหมายของตัวนโยบายที่จำเลยใช้ กับวิธีที่นโยบายนั้นถูกใช้กับ BFA
 
   ในย่อหน้า 10 ศาลยอมรับในหลักการว่าบริษัทที่เห็นว่าคู่แข่งได้รับการปฏิบัติที่ใจกว้างเกินไป
   มีสิทธิยื่นขอให้ศาลทบทวนวิธีที่สภาจัดการคำขอของคู่แข่งรายนั้นได้
   แต่ชี้ว่าในคดีแบบนั้น BFA ต้องเป็นคู่ความที่มีส่วนได้เสีย และไม่มีคำฟ้องเช่นนั้นอยู่ต่อหน้าศาล
   พร้อมข้อสังเกตว่า
   Both the claimant and the defendant have adduced evidence as to the corporate structure and the activities of BFA, but the one party that is conspicuously absent from this debate is BFA itself.
+  ใจความคือ ทั้งผู้ฟ้องและจำเลยต่างนำพยานหลักฐานเรื่องโครงสร้างบริษัทและกิจการของ BFA เข้ามา
+  แต่ฝ่ายเดียวที่หายไปอย่างเห็นได้ชัดจากการถกเถียงนี้คือ BFA เอง
 
   ข้อความที่ยกมาข้างบนอยู่ในย่อหน้า 11 ซึ่งต่อท้ายด้วยการบอกว่าผลที่ตามมาจริงคืออะไร
   The only consequence of a challenge to the manner in which the defendant had dealt with BFA's application might be a decision that BFA's permits should be reduced or reconsidered. But it would certainly not follow that the claimant should be granted any more than the six permits to which it is entitled under the present scheme, the lawfulness of which has not been challenged.
+  ใจความคือ ผลเดียวที่อาจตามมาจากการโต้แย้งวิธีที่จำเลยจัดการคำขอของ BFA
+  คือคำวินิจฉัยว่าใบอนุญาตของ BFA ควรถูกลดหรือถูกพิจารณาใหม่
+  แต่ไม่ได้ตามมาเลยว่าผู้ฟ้องควรได้ใบอนุญาตเกินกว่าหกใบที่ตนมีสิทธิ์ตามระบบปัจจุบัน
+  ซึ่งไม่มีใครโต้แย้งความชอบด้วยกฎหมายของระบบนั้น
 speaker_role: คำพิพากษาศาลสูงอังกฤษ แผนกคดีปกครอง เขียนโดยผู้พิพากษา Sullivan
 source:
   outlet: High Court of Justice (Administrative Court), England and Wales

@@ -5,6 +5,13 @@ date_of_statement: 2024-02-14
 quote: "It follows that Apple’s attempt to include the Ericsson Patent Families without payment for access to 0.61% of the Stack amounts to impermissible special pleading. Put another way, there is no way in which the Judgment can on a reasoned (as opposed to arbitrary) basis apportion a proper (FRAND) value to the limited rights in regard to the Ericsson Patent Families"
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ด้วยเหตุนี้ ความพยายามของ Apple ที่จะรวมกลุ่มสิทธิบัตรของ Ericsson เข้ามา
+  โดยไม่จ่ายค่าเข้าถึงร้อยละ 0.61 ของกองสิทธิบัตร
+  จึงเท่ากับเป็นการขอยกเว้นให้ตนเองซึ่งยอมรับไม่ได้
+  พูดอีกอย่างคือ ไม่มีทางใดเลยที่คำพิพากษาจะแบ่งสรรมูลค่าที่เหมาะสมและเป็นธรรม
+  ให้แก่สิทธิที่จำกัดในกลุ่มสิทธิบัตรของ Ericsson ได้บนฐานที่มีเหตุผลรองรับ
+  ซึ่งตรงข้ามกับฐานที่เป็นการสุ่มเลือก
 plain: >
   คดีนี้เป็นข้อพิพาทเรื่องค่าสิทธิบัตรระหว่างบริษัทสองราย
   ศาลคำนวณค่าไว้แล้วบนฐานว่าสิ่งที่ผู้จ่ายซื้อคือการเข้าถึงมาตรฐานทางเทคนิคทั้งก้อน

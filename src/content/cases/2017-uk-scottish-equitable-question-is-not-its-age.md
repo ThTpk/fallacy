@@ -5,6 +5,11 @@ date_of_statement: 2017-06-15
 quote: "Secondly, a newish body, that is to say, RL, is not to be regarded as an unsuitable provider simply because it is new otherwise we could never have new entrants into the market for transfers. The question is not its age but its financial strength, record and expectations."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ประการที่สอง องค์กรที่ค่อนข้างใหม่ กล่าวคือ RL
+  ไม่พึงถูกถือว่าเป็นผู้ให้บริการที่ไม่เหมาะสมเพียงเพราะมันใหม่
+  มิฉะนั้นเราก็จะไม่มีวันมีผู้เล่นรายใหม่เข้าสู่ตลาดการโอนกิจการได้เลย
+  คำถามไม่ได้อยู่ที่อายุของมัน แต่อยู่ที่ฐานะการเงิน ประวัติ และความคาดหมายที่มีต่อมัน
 plain: >
   บริษัทประกันแห่งหนึ่งขอให้ศาลอนุมัติการโอนกรมธรรม์ไปให้บริษัทผู้รับโอน
   ผู้คัดค้านรายหนึ่งบอกว่าบิดาของเธอเลือกบริษัทเดิมมาโดยตั้งใจ เพราะเป็นบริษัทเก่าแก่
@@ -47,11 +52,17 @@ context: >
 
   ผู้พิพากษา Warren ตอบเป็นสองข้อ ข้อแรกอยู่ในย่อหน้า 115 และตอบข้ออ้างเรื่องความเก่าแก่
   There are two points to make. Firstly, the venerable position of SE is not, I am afraid, of itself a relevant factor. Even venerable institutions can fail as those who work in this area of the law are well aware.
+  ใจความคือ มีสองข้อที่ต้องพูด ข้อแรกคือความเก่าแก่น่านับถือของบริษัทเดิมนั้น
+  น่าเสียดายที่ไม่ใช่ปัจจัยที่เกี่ยวข้องในตัวเอง
+  สถาบันที่เก่าแก่น่านับถือก็ล้มได้ ดังที่คนทำงานในกฎหมายด้านนี้ทราบกันดี
   พร้อมเติมว่าบริษัทเดิมเองก็เป็นส่วนหนึ่งของกลุ่มบริษัทที่ศาลไม่ทราบอายุหรือความเก่าแก่
 
   ข้อที่สองคือย่อหน้า 116 ซึ่งเป็นช่องคำพูดของเคสนี้ และตอบข้ออ้างเรื่องความใหม่
   ย่อหน้าเดียวกันปิดด้วยการระบุว่าสิ่งที่ศาลใช้ตัดสินแทนอายุคืออะไร
   As to this, the independent expert and the regulators are clearly satisfied about its financial strength, there is no criticism made of its record, and I have no reason to think that it will not be properly and prudently managed into the future.
+  ใจความคือ ในข้อนี้ ผู้เชี่ยวชาญอิสระและหน่วยงานกำกับดูแลพอใจอย่างชัดเจนในฐานะการเงินของบริษัทผู้รับโอน
+  ไม่มีใครติงประวัติของมัน
+  และศาลไม่มีเหตุให้คิดว่ามันจะไม่ถูกบริหารอย่างเหมาะสมและรอบคอบต่อไปในอนาคต
 speaker_role: คำพิพากษาศาลสูงอังกฤษและเวลส์ แผนกคดีแพ่ง เขียนโดยผู้พิพากษา Warren
 source:
   outlet: High Court of Justice (Chancery Division), England and Wales

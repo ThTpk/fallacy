@@ -5,6 +5,12 @@ date_of_statement: 2009-12-16
 quote: "A work of sculpture in the traditional fine art sense would undoubtedly have the qualities of eye appeal necessary to make its shape registrable as a design. But the converse does not follow. A principally utilitarian object with design features which could attract registered design protection is not necessarily a work of sculpture under the 1988 Act."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  งานประติมากรรมในความหมายของวิจิตรศิลป์ตามประเพณี
+  ย่อมมีคุณสมบัติด้านความงามที่ทำให้รูปทรงของมันจดทะเบียนเป็นแบบผลิตภัณฑ์ได้อย่างไม่ต้องสงสัย
+  แต่ประโยคกลับทิศไม่ได้ตามมาด้วย
+  วัตถุที่มุ่งใช้ประโยชน์เป็นหลัก ซึ่งมีลักษณะของแบบที่อาจได้รับความคุ้มครองในฐานะแบบผลิตภัณฑ์จดทะเบียน
+  ไม่จำเป็นต้องเป็นงานประติมากรรมตามกฎหมายปี 1988
 plain: >
   คดีนี้คือคดีหมวกทหารสตอร์มทรูปเปอร์ของสตาร์วอร์ส
   ผู้ทำหมวกต้นแบบเดิมทำสำเนาออกขาย และ Lucasfilm ฟ้องเรื่องลิขสิทธิ์
@@ -46,6 +52,9 @@ context: >
   ต้องตัดสินด้วยบทบัญญัติเรื่องลิขสิทธิ์ของ Copyright, Designs and Patents Act 1988 เอง
   แล้วเขียนว่า
   The fact that a model or cast which qualifies as a sculpture may have design features which also entitle it to registration as a design in those respects tells one little about how to define the limits of copyright protection. They are simply different issues.
+  ใจความคือ การที่แบบหรือแม่พิมพ์ซึ่งเข้าข่ายประติมากรรม
+  จะมีลักษณะของแบบที่ทำให้จดทะเบียนเป็นแบบผลิตภัณฑ์ได้ด้วยในแง่เหล่านั้น
+  บอกอะไรเกี่ยวกับการกำหนดขอบเขตของความคุ้มครองลิขสิทธิ์ได้น้อยมาก มันเป็นคนละประเด็นกัน
   ก่อนจะต่อด้วยสามประโยคที่ยกมาเป็นช่องคำพูดของเคสนี้
 speaker_role: คำพิพากษาขององค์คณะศาลอุทธรณ์อังกฤษและเวลส์ แผนกคดีแพ่ง
 source:

@@ -5,6 +5,14 @@ date_of_statement: 2004-02-17
 quote: "This, with great respect, is a petitio principii - reasoning which assumes the very thing which requires decision. If one starts from the proposition that 28 February was the appellant's EDT, everything else of course follows. But if one asks whether 28 February was in law her EDT, it is the roads which lead back to s.97(1)(b) and not s.97(1)(b) which determine the answer."
 quote_lang: en
 quote_is_verbatim: true
+quote_th: >
+  ด้วยความเคารพอย่างยิ่ง นี่คือ petitio principii
+  คือการให้เหตุผลที่ตั้งสิ่งซึ่งต้องวินิจฉัยไว้เป็นข้อยุติเสียเอง
+  ถ้าเริ่มจากข้อตั้งว่าวันที่ 28 กุมภาพันธ์คือวันสิ้นสุดการจ้างของผู้อุทธรณ์
+  ทุกอย่างที่เหลือก็ตามมาเองแน่นอน
+  แต่ถ้าถามว่าวันที่ 28 กุมภาพันธ์เป็นวันสิ้นสุดการจ้างของเธอตามกฎหมายหรือไม่
+  ถนนทั้งหลายที่ย้อนกลับมาที่มาตรา 97(1)(b) ต่างหากที่เป็นตัวกำหนดคำตอบ
+  ไม่ใช่มาตรา 97(1)(b) ที่กำหนดคำตอบ
 plain: >
   ลูกจ้างคนหนึ่งยื่นฟ้องศาลแรงงาน และทั้งคดีขึ้นอยู่กับว่าวันสิ้นสุดการจ้างคือวันไหน
   เพราะกำหนดเวลายื่นฟ้องคือสามเดือนนับจากวันนั้น
@@ -50,6 +58,9 @@ context: >
   จะทำให้ระบบคำนวณอายุงานต่อเนื่องเสียหาย คำพิพากษาบันทึกคำตอบของศาลอุทธรณ์คดีแรงงานไว้ว่า
   ผู้พิพากษา Peter Clark เขียนว่า
   All roads lead back to s.97(1)(b). What was the EDT? If, in this case, it is 28 February then no relevant provision of the Act is excluded or limited. That is the end date for the purposes of limitation, continuity and the calculation of the basic award in accordance with the relevant statutory provisions
+  ใจความคือ ถ้าในคดีนี้วันนั้นคือ 28 กุมภาพันธ์ ก็ไม่มีบทบัญญัติใดของกฎหมายที่ถูกตัดหรือถูกจำกัด
+  และวันนั้นคือวันสิ้นสุด สำหรับทั้งเรื่องอายุความ ความต่อเนื่องของการจ้าง
+  และการคำนวณค่าชดเชยพื้นฐานตามบทบัญญัติที่เกี่ยวข้อง
 
   ข้อความที่ยกมาข้างบนคือคำตอบของผู้พิพากษา Sedley ต่อย่อหน้านั้น อยู่ในย่อหน้า 19
   ผลของคดีคือศาลอุทธรณ์วินิจฉัยว่าวันสิ้นสุดการจ้างไม่เร็วกว่า 2 มีนาคม 2001
