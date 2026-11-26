@@ -215,6 +215,22 @@ const cases = defineCollection({
     quote: z.string().max(400),
     quote_lang: z.enum(['th', 'en']).default('th'),
     quote_is_verbatim: z.literal(true),
+
+    // 'plain' is the case in ordinary Thai for a reader who knows nothing
+    // about the field the quote comes from: what happened, where the
+    // reasoning broke, what to carry away. It carries no untranslated
+    // abbreviation and no term of art without a gloss, because it is the
+    // first thing on the page and the only thing many readers will read.
+    // Kept short on purpose - past about 900 characters it stops being the
+    // short version and becomes a second analysis.
+    plain: z.string().min(120).max(900),
+
+    // 'formal' is optional, and is the same error written in the notation of
+    // logic, set theory or probability. It is for the reader who wants the
+    // structure rather than the story, and it must stay a comparison: it may
+    // not introduce a claim about the case that the analysis does not make.
+    formal: z.string().max(1400).optional(),
+
     context: z.string(),
     speaker_role: z.string(),
     speaker_name: z.string().optional(),

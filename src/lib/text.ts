@@ -4,6 +4,20 @@
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
 export const url = (p: string) => `${BASE}/${p.replace(/^\//, '')}`;
 
+/** Split a YAML folded scalar ('>') into paragraphs.
+ *
+ *  A folded scalar turns a single line break into a space and a blank line
+ *  into exactly ONE newline, not two. So every newline that survives in the
+ *  string is a paragraph break the author put there on purpose, and splitting
+ *  on /\n+/ is what recovers them. mdLite cannot be used for these fields: it
+ *  splits on /\n{2,}/, which a folded scalar never produces, so it would
+ *  render every one of them as a single block.
+ *
+ *  A field written as one block still yields one paragraph, so this is safe
+ *  to apply to every folded field whether or not its author broke it up. */
+export const paras = (s: string): string[] =>
+  s.split(/\n+/).map((p) => p.trim()).filter(Boolean);
+
 /** Minimal inline formatting for the plain-string fields in front matter.
  *  Escapes first, then supports blank-line paragraphs and **bold** only. */
 export function mdLite(s: string): string {

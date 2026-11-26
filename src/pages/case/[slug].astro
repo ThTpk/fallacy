@@ -6,6 +6,7 @@ import {
   DOMAIN_TH,
   MEDIUM_TH,
   SENSITIVITY_TH,
+  paras,
   thDate,
   url,
 } from '../../lib/text';
@@ -22,9 +23,15 @@ export async function getStaticPaths() {
 const { entry, fallacies } = Astro.props;
 const c = entry.data;
 const byId = new Map(fallacies.map((f) => [f.id, f]));
+
+// Every long field in a case is a YAML folded scalar, so paragraph breaks
+// survive as single newlines and have to be recovered. Before this was done
+// here, a 5,000-character context rendered as one unbroken block, which is
+// the shape nobody reads. See paras() for why mdLite cannot do this job.
+const P = (s: string) => paras(s).map((t, i) => ({ t, first: i === 0 }));
 ---
 
-<Base title={`${c.title_th} — เคสจริง`} description={c.quote}>
+<Base title={`${c.title_th} — เคสจริง`} description={c.plain ?? c.quote}>
   <p class="sub" style="margin:0"><a href={url('/')}>กลับหน้ารวม</a></p>
   <h1>{c.title_th}</h1>
   <p>
@@ -40,6 +47,17 @@ const byId = new Map(fallacies.map((f) => [f.id, f]));
     </div>
   )}
 
+  {/* The short version comes first, before the quotation and the citation
+      apparatus. A reader who stops here should still leave with the point. */}
+  {c.plain && (
+    <div class="card plainbox">
+      <div class="sub" style="margin-bottom:6px">อ่านแบบสั้น</div>
+      {P(c.plain).map((p) => (
+        <p style={p.first ? 'margin:0' : 'margin:8px 0 0'}>{p.t}</p>
+      ))}
+    </div>
+  )}
+
   <h2>ข้อความที่ยกมา</h2>
   <div class="card">
     <blockquote style="font-size:1.08rem">{c.quote}</blockquote>
@@ -47,7 +65,9 @@ const byId = new Map(fallacies.map((f) => [f.id, f]));
   </div>
 
   <h3>บริบท</h3>
-  <p>{c.context}</p>
+  {P(c.context).map((p) => (
+    <p style={p.first ? 'margin:0' : 'margin:10px 0 0'}>{p.t}</p>
+  ))}
   <p class="sub">ผู้พูดหรือที่มาของข้อความ: {c.speaker_role}{c.speaker_name && ` (${c.speaker_name})`}</p>
 
   <h2>การวิเคราะห์</h2>
@@ -62,24 +82,37 @@ const byId = new Map(fallacies.map((f) => [f.id, f]));
           <span class="tag">{f.confidence === 'clear' ? 'ชัดเจน' : 'ยังเถียงได้'}</span>
         </div>
         {fa && <div class="en">{fa.data.name_en}</div>}
-        {/* The analysis fields are YAML folded scalars ('>'), which turn a
-            single line break into a space and a blank line into exactly one
-            newline - not two. So every newline left in the string is a
-            paragraph break, and splitting on /\n+/ is what recovers them.
-            An analysis written as one block still yields one paragraph. */}
-        {f.analysis.split(/\n+/).filter((p) => p.trim()).map((para, i) => (
-          <p style={i === 0 ? 'margin:8px 0 0' : 'margin:10px 0 0'}>{para.trim()}</p>
+        {P(f.analysis).map((p) => (
+          <p style={p.first ? 'margin:8px 0 0' : 'margin:10px 0 0'}>{p.t}</p>
         ))}
       </div>
     );
   })}
 
+  {/* The same error written in the notation of logic or arithmetic. It sits
+      after the analysis because it is a second pass over the same ground for
+      a reader who wants it, not a prerequisite for the first pass. */}
+  {c.formal && (
+    <>
+      <h2>เทียบกับคณิตศาสตร์และตรรกศาสตร์</h2>
+      <div class="card formalbox">
+        {P(c.formal).map((p) => (
+          <p style={p.first ? 'margin:0' : 'margin:10px 0 0'}>{p.t}</p>
+        ))}
+      </div>
+    </>
+  )}
+
   <h2>การตีความอย่างเมตตาที่สุด</h2>
-  <p>{c.charitable_reading}</p>
+  {P(c.charitable_reading).map((p) => (
+    <p style={p.first ? 'margin:0' : 'margin:10px 0 0'}>{p.t}</p>
+  ))}
 
   <h2>สิ่งที่เคสนี้ไม่ได้กล่าวอ้าง</h2>
   <div class="card" style="border-color:var(--accent)">
-    <p style="margin:0">{c.not_claiming}</p>
+    {P(c.not_claiming).map((p) => (
+      <p style={p.first ? 'margin:0' : 'margin:10px 0 0'}>{p.t}</p>
+    ))}
   </div>
 
   <h2>แหล่งที่มา</h2>
@@ -107,7 +140,9 @@ const byId = new Map(fallacies.map((f) => [f.id, f]));
   {c.verification_notes && (
     <>
       <h3>บันทึกการตรวจสอบ</h3>
-      <p class="sub">{c.verification_notes}</p>
+      {P(c.verification_notes).map((p) => (
+        <p class="sub" style={p.first ? 'margin:0' : 'margin:8px 0 0'}>{p.t}</p>
+      ))}
     </>
   )}
 
@@ -117,3 +152,14 @@ const byId = new Map(fallacies.map((f) => [f.id, f]));
     ปรับปรุงล่าสุด {thDate(c.updated)}
   </p>
 </Base>
+
+<style>
+  /* The short version has to look like the place to start, not like one more
+     card among many, so it carries a tint as well as a bar. */
+  .plainbox {
+    border-left: 3px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+  }
+  .plainbox p { font-size: 1.04rem; }
+  .formalbox { border-left: 3px solid var(--muted); }
+</style>
